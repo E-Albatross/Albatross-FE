@@ -1,16 +1,30 @@
-import React, { useRef, Component } from "react";
-import { StyleSheet, View, Button, Text } from "react-native";
+import React, { Component } from 'react'; 
+import {Text,View,Button, StyleSheet} from 'react-native';
 
-  export default class MainPage extends Component { 
+export default class MainPage extends Component { 
     render() { 
         return ( 
-        <View>
-            <Button onPress={() => this.goCaptureScreen()} title='Capture Screen'/> 
+        <View style={styles.column}>
+            <Button onPress={() => this.props.navigation.navigate('CAPTURE')} title='capture'/>
+            <Button onPress={() => this.props.navigation.navigate('DRAWER')} title='Drawer'/> 
+            <Button onPress={() => this.props.navigation.navigate('PROFILE')} title='profile'/>
         </View> 
         ); 
-    } 
-    goCaptureScreen(){ 
-        // CaptureScreen으로 화면 이동 
-        this.props.navigation.navigate('CAPTURE'); 
     }
 }
+
+const styles = StyleSheet.create({
+    column: {
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "center",
+    },
+    row: {
+      marginTop: 70,
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+  });
