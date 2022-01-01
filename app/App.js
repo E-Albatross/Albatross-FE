@@ -1,20 +1,19 @@
-import React, {useState} from 'react';
+import * as React from 'react'; 
+import { NavigationContainer } from '@react-navigation/native'; 
+import { createStackNavigator } from '@react-navigation/stack';
 
-import CaptureSign from './pages/CaptureSign'
+import MainPage from './pages/MainPage';
+import CaptureTest from './pages/CaptureTest';
 
-export default function App() {
-  const handleOK = (signature) => {
-    if(signature.nativeEvent){
-      let newX = signature.nativeEvent.offsetX;
-      let newY = signature.nativeEvent.offsetY;
-      console.log(newX);
-      console.log(newY);
-    }
-  };
-
-  return (
-    <>
-      <CaptureSign onOk={handleOK}/>
-    </>
-  );
-}
+const Stack = createStackNavigator(); 
+  function App() { 
+    return ( 
+      <NavigationContainer> 
+        <Stack.Navigator initialRouteName="MAIN"> 
+        <Stack.Screen name="MAIN" component={MainPage} options={{ title: '메인화면' }}/> 
+        <Stack.Screen name="CAPTURE" component={CaptureTest} options={{ title: '캡쳐화면' }}/> 
+        </Stack.Navigator> 
+      </NavigationContainer> 
+    ); 
+  } 
+export default App;
