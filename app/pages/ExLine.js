@@ -13,6 +13,7 @@ import home from '../assets/home.png';
 import pen from '../assets/pen.png';
 import erase from '../assets/erase.png';
 import arrow from '../assets/arrow.png';
+import arrow2 from '../assets/arrow2.png';
 
 const ExLine = () => {
   const ref = useRef();
@@ -79,7 +80,7 @@ const ExLine = () => {
             <Image source={arrow}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleRedo} style={styles.iconbutton}>
-            <Image source={arrow}/>
+            <Image source={arrow2}/>
           </TouchableOpacity>
         </View>
       </View>
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     },
     headerSubRow: {
       width:"35%",
-      marginRight:10,
+      marginRight:20,
       height: "7%",
       display: "flex",
       flexDirection: "row",
