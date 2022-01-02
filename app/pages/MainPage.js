@@ -34,6 +34,11 @@ export default class MainPage extends Component {
               </TouchableOpacity>
             </View>
 
+            <View style={styles.wordRow}>
+              <Text style={{color: "#C4C4C4"}}> New </Text>
+              <View style={styles.line}></View>
+            </View>
+
             <View style={styles.literatureRow}>
               {/* 여기서부터는 따로 js파일 작업 필요. 일단 복붙으로 처리 */}
               <TouchableOpacity onPress={() => this.props.navigation.navigate('CAPTURE')} style={styles.iconbutton}> 
@@ -45,6 +50,11 @@ export default class MainPage extends Component {
               <TouchableOpacity onPress={() => this.props.navigation.navigate('CAPTURE')} style={styles.iconbutton}> 
                 <Image source={literature}/>
               </TouchableOpacity>
+            </View>
+
+            <View style={styles.wordRow}>
+              <Text style={{color: "#C4C4C4"}}> Best </Text>
+              <View style={styles.line}></View>
             </View>
 
             <View style={styles.literatureRow}>
@@ -91,15 +101,30 @@ const styles = StyleSheet.create({
       alignItems: "center",
     },
     practiceRow: {
-      marginBottom: 50,
+      marginBottom: 30,
       width:"90%",
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
     },
+    wordRow: {
+      marginBottom: 5,
+      marginTop: 5,
+      width:"90%",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    line:{
+      width: '94%',
+      height: 1,
+      backgroundColor: '#C4C4C4',
+    },
     literatureRow: {
-      marginTop: 20,
+      marginTop: 10,
+      marginBottom: 10,
       width:"85%",
       display: "flex",
       flexDirection: "row",
