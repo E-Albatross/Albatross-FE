@@ -1,8 +1,8 @@
 import React, {useState, Component} from 'react';
 
-import CaptureSign from './CaptureSign'
+import Canvas from './Canvas'
 
- export default function CaptureTest() {
+ export default function ExWord() {
    const handleOK = (signature) => {
      if(signature.nativeEvent){
        let newX = signature.nativeEvent.offsetX;
@@ -14,7 +14,7 @@ import CaptureSign from './CaptureSign'
 
    return (
      <>
-       <CaptureSign onOk={handleOK}/>
+       <Canvas onOk={handleOK}/>
      </>
    );
  }

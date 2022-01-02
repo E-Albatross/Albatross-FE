@@ -7,7 +7,7 @@ import SignatureScreen from "react-native-signature-canvas";
 import ViewShot, { captureScreen } from 'react-native-view-shot';
 import CameraRoll from '@react-native-community/cameraroll';
 
-const CaptureSign = ({ onOK }) => {
+const Canvas = ({ onOK }) => {
   const ref = useRef();
 
   const handleOK = (signature) => { onOK(signature); };
@@ -62,7 +62,7 @@ const CaptureSign = ({ onOK }) => {
         <Button title="Erase" onPress={handleErase} />
         <Button title="Undo" onPress={handleUndo} />
         <Button title="Redo" onPress={handleRedo} />
-        <Button title="갤러리에 저장" onPress={onSave} />
+        <Button title="검사하기" onPress={onSave} />
       </View>
       <ViewShot ref={captureRef} options={{ format: 'jpg', quality: 0.9 }}>
       <View style={{ marginTop: 10, height: 1000, width : 1000,
@@ -76,7 +76,7 @@ const CaptureSign = ({ onOK }) => {
   );
 };
 
-export default CaptureSign;
+export default Canvas;
 
 const styles = StyleSheet.create({
   container: {
