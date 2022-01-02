@@ -89,43 +89,89 @@ const ExWord = () => {
           <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
         </View>
         {/* 가로줄 */}
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 120}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 170}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 220}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 270}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 320}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 370}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 420}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 470}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 520}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 570}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 620}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 670}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 135}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 200}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 265}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 330}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 395}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 460}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 525}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 590}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 655}}/>
         <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 720}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 770}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 820}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 870}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 920}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 970}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 1020}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 1070}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 785}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 850}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 915}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 980}}/>
         {/* 세로줄 */}
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-370, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-320, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-270, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-220, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-170, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-120, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-70, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-20, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 30, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 80, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 130, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 180, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-355, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-290, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-225, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-160, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-95, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-30, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 35, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 100, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 165, top: 70}}/>
         <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 230, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 280, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 330, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 380, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 295, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 360, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 425, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 490, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 555, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 620, top: 70}}/>
+        {/* 자음 */}
+        <Text style={{position: "absolute", left:-415, top: 30, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㄱ </Text>
+        <Text style={{position: "absolute", left:-415, top: 95, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㄴ </Text>
+        <Text style={{position: "absolute", left:-415, top: 160, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㄷ </Text>
+        <Text style={{position: "absolute", left:-415, top: 225, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㄹ </Text>
+        <Text style={{position: "absolute", left:-415, top: 290, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅁ </Text>
+        <Text style={{position: "absolute", left:-415, top: 355, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅂ </Text>
+        <Text style={{position: "absolute", left:-415, top: 420, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅅ </Text>
+        <Text style={{position: "absolute", left:-415, top: 485, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅇ </Text>
+        <Text style={{position: "absolute", left:-415, top: 550, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅈ </Text>
+        <Text style={{position: "absolute", left:-415, top: 615, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅊ </Text>
+        <Text style={{position: "absolute", left:-415, top: 680, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅋ </Text>
+        <Text style={{position: "absolute", left:-415, top: 745, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅌ </Text>
+        <Text style={{position: "absolute", left:-415, top: 810, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅍ </Text>
+        <Text style={{position: "absolute", left:-415, top: 875, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅎ </Text>
+
+        <Text style={{position: "absolute", left:-351, top: 30, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㄱ </Text>
+        <Text style={{position: "absolute", left:-351, top: 95, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㄴ </Text>
+        <Text style={{position: "absolute", left:-351, top: 160, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㄷ </Text>
+        <Text style={{position: "absolute", left:-351, top: 225, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㄹ </Text>
+        <Text style={{position: "absolute", left:-351, top: 290, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅁ </Text>
+        <Text style={{position: "absolute", left:-351, top: 355, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅂ </Text>
+        <Text style={{position: "absolute", left:-351, top: 420, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅅ </Text>
+        <Text style={{position: "absolute", left:-351, top: 485, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅇ </Text>
+        <Text style={{position: "absolute", left:-351, top: 550, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅈ </Text>
+        <Text style={{position: "absolute", left:-351, top: 615, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅊ </Text>
+        <Text style={{position: "absolute", left:-351, top: 680, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅋ </Text>
+        <Text style={{position: "absolute", left:-351, top: 745, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅌ </Text>
+        <Text style={{position: "absolute", left:-351, top: 810, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅍ </Text>
+        <Text style={{position: "absolute", left:-351, top: 875, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3}}> ㅎ </Text>
+        {/* 모음 */}
+        <Text style={{position: "absolute", left:40, top: 30, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅏ </Text>
+        <Text style={{position: "absolute", left:40, top: 95, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅑ </Text>
+        <Text style={{position: "absolute", left:40, top: 160, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅓ </Text>
+        <Text style={{position: "absolute", left:40, top: 225, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅕ </Text>
+        <Text style={{position: "absolute", left:40, top: 290, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅗ </Text>
+        <Text style={{position: "absolute", left:40, top: 355, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅛ </Text>
+        <Text style={{position: "absolute", left:40, top: 420, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅜ </Text>
+        <Text style={{position: "absolute", left:40, top: 485, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅠ </Text>
+        <Text style={{position: "absolute", left:40, top: 550, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅡ </Text>
+        <Text style={{position: "absolute", left:40, top: 615, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold'}}> ㅣ </Text>
+
+        <Text style={{position: "absolute", left:105, top: 30, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅏ </Text>
+        <Text style={{position: "absolute", left:105, top: 95, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅑ </Text>
+        <Text style={{position: "absolute", left:105, top: 160, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅓ </Text>
+        <Text style={{position: "absolute", left:105, top: 225, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅕ </Text>
+        <Text style={{position: "absolute", left:105, top: 290, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅗ </Text>
+        <Text style={{position: "absolute", left:105, top: 355, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅛ </Text>
+        <Text style={{position: "absolute", left:105, top: 420, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅜ </Text>
+        <Text style={{position: "absolute", left:105, top: 485, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅠ </Text>
+        <Text style={{position: "absolute", left:105, top: 550, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅡ </Text>
+        <Text style={{position: "absolute", left:105, top: 615, fontSize: 40, textAlign:"center", paddingTop: 50, fontWeight: 'bold', opacity: 0.3 }}> ㅣ </Text>
       </ViewShot>
     </View>
     
