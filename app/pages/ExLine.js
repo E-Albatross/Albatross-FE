@@ -29,44 +29,12 @@ const ExLine = () => {
   .m-signature-pad--body {border: none;}
   .m-signature-pad--footer {display: none; margin: 0px;}`;
 
-  //스크린샷 캡쳐 위한 코드
-  const captureRef = useRef();
-
-   const getPhotoUri = async (): Promise<string> => {
-     const uri = await captureRef.current.capture();
-     console.log('👂👂 Image saved to', uri);
-     return uri;
-   };
-
-   const hasAndroidPermission = async () => {
-     const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
-
-     const hasPermission = await PermissionsAndroid.check(permission);
-     if (hasPermission) {
-       return true;
-     }
-
-     const status = await PermissionsAndroid.request(permission);
-     return status === 'granted';
-   };
-
-   const onSave = async () => {
-     if (Platform.OS === 'android' && !(await hasAndroidPermission())) {
-       toast('갤러리 접근 권한이 없어요');
-       return;
-     } 
-     const uri = await getPhotoUri();
-     const result = await CameraRoll.save(uri);
-     console.log('🐤result', result);
- };
-
-
   return (
     <View style={styles.container}>
       {/* 헤더부분 */}
       <View style={styles.headerRow}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('MAIN')} style={styles.iconbutton}> 
-          <Image style={{marginLeft: 10}}source={home}/>
+          <Image style={{marginLeft: 20}}source={home}/>
         </TouchableOpacity>
         <View style={styles.headerSubRow}>
           <TouchableOpacity onPress={handleDraw} style={styles.iconbutton}>
@@ -84,49 +52,48 @@ const ExLine = () => {
         </View>
       </View>
       {/* 캔버스보드 부분 */}
-      <ViewShot ref={captureRef} options={{ format: 'jpg', quality: 0.9 }}>
-        <View style={{ height: 1300, width : 1000, position: 'absolute', left:-420, top: 70}}>
+        <View style={{ height: 1300, width : 1000, position: 'absolute', left:0, top: 70}}>
           <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
         </View>
         {/* 가로줄 */}
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 120}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 170}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 220}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 270}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 320}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 370}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 420}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 470}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 520}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 570}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 620}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 670}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 720}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 770}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 820}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 870}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 920}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 970}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 1020}}/>
-        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-420, top: 1070}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 120}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 170}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 220}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 270}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 320}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 370}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 420}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 470}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 520}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 570}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 620}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 670}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 720}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 770}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 820}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 870}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 920}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 970}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 1020}}/>
+        <View style={{width: '100%', height: 1, backgroundColor: '#C4C4C4', position: "absolute", left:0, top: 1070}}/>
         {/* 세로줄 */}
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-370, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-320, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-270, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-220, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-170, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-120, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-70, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:-20, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 30, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 80, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 130, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 180, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 230, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 280, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 330, top: 70}}/>
-        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left: 380, top: 70}}/>
-      </ViewShot>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:50, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:100, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:150, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:200, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:250, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:300, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:350, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:400, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:450, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:500, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:550, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:600, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:650, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:700, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:750, top: 70}}/>
+        <View style={{height: 1000, width: 1, backgroundColor: '#C4C4C4', position: "absolute", left:800, top: 70}}/>
+      
     </View>
     
   );
