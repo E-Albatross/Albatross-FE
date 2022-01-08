@@ -33,8 +33,7 @@ export default class Profile extends Component {
               fontSize: 20,
               marginTop: 60,
               marginBottom: 10,
-            }}
-          >
+            }}>
             개인정보설정{" "}
           </Text>
         </View>
@@ -44,15 +43,9 @@ export default class Profile extends Component {
             style={{ height: 60 }}
           >
             <Text
-              style={{
-                fontSize: 22,
-                letterSpacing: 2,
-                lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                marginLeft: "3%",
-              }}
-            >
-              비밀번호변경
-            </Text>
+              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
+              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }} > 비밀번호변경 </Text>
           </TouchableOpacity>
           <View style={styles.line}></View>
           <TouchableOpacity
@@ -60,15 +53,9 @@ export default class Profile extends Component {
             style={{ height: 60 }}
           >
             <Text
-              style={{
-                fontSize: 22,
-                letterSpacing: 2,
-                lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                marginLeft: "3%",
-              }}
-            >
-              이메일 변경
-            </Text>
+              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
+              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }} > 이메일 변경 </Text>
           </TouchableOpacity>
         </View>
 
@@ -85,7 +72,31 @@ export default class Profile extends Component {
             기본 값 설정{" "}
           </Text>
         </View>
-        <View style={styles.settingBox}></View>
+        <View style={styles.settingBox}>
+          <View style={styles.settingText}> 
+            <Text
+              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
+              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }} >
+              글자 크기 </Text>
+          </View>
+          <View style={styles.line}></View>
+          <View style={styles.settingText}> 
+            <Text
+              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
+              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }} >
+              폰트 종류 </Text>
+          </View>
+          <View style={styles.line}></View>
+          <View style={styles.settingText}> 
+            <Text
+              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
+              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }} >
+              실시간 검사 </Text>
+          </View>
+        </View>
 
         {/* 미리보기상자 */}
         <View style={styles.previewBox}></View>
@@ -164,15 +175,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#80AE92",
   },
-  literatureRow: {
-    marginTop: 10,
-    marginBottom: 10,
-    width: "85%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   subTitleBox: {
     width: "85%",
     flexDirection: "row",
@@ -201,10 +203,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#C4C4C4",
+  },
+  settingText: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   previewBox: {
     width: "85%",
