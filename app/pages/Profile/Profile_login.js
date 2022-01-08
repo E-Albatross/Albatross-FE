@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import home from "../assets/home.png";
-import literature from "../assets/literature.png";
+import home from "../../assets/home.png";
+import literature from "../../assets/literature.png";
 
 export default class ProfilePage extends Component {
   render() {
@@ -23,6 +23,7 @@ export default class ProfilePage extends Component {
             <Image style={{ marginLeft: 10 }} source={home} />
           </TouchableOpacity>
         </View>
+        <View style={styles.informBox}> </View>
       </View>
     );
   }
@@ -56,5 +57,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  informBox: {
+    width: "80%",
+    height: 200,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
   },
 });

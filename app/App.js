@@ -4,7 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import MainPage from "./pages/MainPage";
 import DrawerPage from "./pages/DrawerPage";
-import ProfilePage from "./pages/ProfilePage";
+import Profile_login from "./pages/Profile/Profile_login";
+import Profile_logout from "./pages/Profile/Profile_logout";
 
 import ExLine from "./pages/ExLine";
 import ExWord from "./pages/ExWord";
@@ -35,8 +36,13 @@ function App() {
           options={{ title: "서랍화면" }}
         />
         <Stack.Screen
-          name="PROFILE"
-          component={ProfilePage}
+          name="PROFILE_LOGIN"
+          component={Profile_login}
+          options={{ title: "프로필화면" }}
+        />
+        <Stack.Screen
+          name="PROFILE_LOGOUT"
+          component={Profile_logout}
           options={{ title: "프로필화면" }}
         />
         <Stack.Screen

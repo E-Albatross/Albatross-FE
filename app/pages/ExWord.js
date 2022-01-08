@@ -80,7 +80,7 @@ const ExWord = ({ navigation }) => {
           height: 1300,
           width: 1000,
           position: "absolute",
-          left: -430,
+          left: 0,
           top: 70,
         }}
       >
@@ -291,7 +291,7 @@ const ExWord = ({ navigation }) => {
       {/* 세로줄 */}
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -301,7 +301,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -311,7 +311,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -331,7 +331,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -351,7 +351,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -361,7 +361,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -371,7 +371,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -381,7 +381,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -391,7 +391,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -401,7 +401,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -411,7 +411,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -421,7 +421,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -431,7 +431,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
@@ -441,7 +441,7 @@ const ExWord = ({ navigation }) => {
       />
       <View
         style={{
-          height: 1000,
+          height: 1500,
           width: 1,
           backgroundColor: "#C4C4C4",
           position: "absolute",
