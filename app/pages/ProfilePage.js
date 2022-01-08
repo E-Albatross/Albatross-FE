@@ -23,29 +23,122 @@ export default class Profile extends Component {
             <Image style={{ marginLeft: 10 }} source={home} />
           </TouchableOpacity>
         </View>
-        <Text
-          style={{
-            color: "#808080",
-            fontSize: 20,
-            marginTop: 60,
-            marginBottom: 10,
-          }}
-        >
-          개인정보설정{" "}
-        </Text>
-        <View style={styles.informBox}></View>
-        <Text
-          style={{
-            color: "#808080",
-            fontSize: 20,
-            marginTop: 30,
-            marginBottom: 10,
-          }}
-        >
-          기본 값 설정{" "}
-        </Text>
+
+        {/* 개인정보설정 상자 */}
+        <View style={styles.subTitleBox}>
+          <Text
+            style={{
+              textAlign: "left",
+              color: "#808080",
+              fontSize: 20,
+              marginTop: 60,
+              marginBottom: 10,
+            }}
+          >
+            개인정보설정{" "}
+          </Text>
+        </View>
+        <View style={styles.informBox}>
+          <TouchableOpacity
+            // onPress={() => }
+            style={{ height: 60 }}
+          >
+            <Text
+              style={{
+                fontSize: 22,
+                letterSpacing: 2,
+                lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                marginLeft: "3%",
+              }}
+            >
+              비밀번호변경
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.line}></View>
+          <TouchableOpacity
+            // onPress={() => }
+            style={{ height: 60 }}
+          >
+            <Text
+              style={{
+                fontSize: 22,
+                letterSpacing: 2,
+                lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                marginLeft: "3%",
+              }}
+            >
+              이메일 변경
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* 기본값설정 상자 */}
+        <View style={styles.subTitleBox}>
+          <Text
+            style={{
+              color: "#808080",
+              fontSize: 20,
+              marginTop: 30,
+              marginBottom: 10,
+            }}
+          >
+            기본 값 설정{" "}
+          </Text>
+        </View>
         <View style={styles.settingBox}></View>
+
+        {/* 미리보기상자 */}
         <View style={styles.previewBox}></View>
+
+        {/* 확인, 로그아웃 상자 */}
+        <View style={styles.ButtonBox}>
+          <TouchableOpacity
+            // onPress={() => }
+            style={{
+              height: 50,
+              width: 200,
+              backgroundColor: "#80AE92",
+              borderRadius: 5,
+              marginRight: 30,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 25,
+                letterSpacing: 2,
+                color: "white",
+                fontWeight: "bold",
+                textAlign: "center",
+                lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }}
+            >
+              확인
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            // onPress={() => }
+            style={{
+              height: 50,
+              width: 200,
+              backgroundColor: "#80AE92",
+              borderRadius: 5,
+              marginLeft: 30,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 25,
+                letterSpacing: 2,
+                color: "white",
+                fontWeight: "bold",
+                textAlign: "center",
+                lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }}
+            >
+              로그아웃
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -80,6 +173,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  subTitleBox: {
+    width: "85%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
   subTitle: {
     color: "#808080",
     fontSize: 18,
@@ -91,8 +189,8 @@ const styles = StyleSheet.create({
     height: "11%",
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: "center",
+    alignItems: "flex-start",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#C4C4C4",
@@ -103,7 +201,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "center",
+    alignItems: "flex-start",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#C4C4C4",
@@ -119,5 +217,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#C4C4C4",
+  },
+  ButtonBox: {
+    width: "100%",
+    height: "15%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  line: {
+    width: "94%",
+    height: 1,
+    backgroundColor: "#C4C4C4",
+    marginLeft: "3%",
   },
 });
