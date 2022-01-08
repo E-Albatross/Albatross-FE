@@ -18,7 +18,7 @@ export default class MainPage extends Component {
       <View style={styles.container}>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("PROFILE_LOGIN")}
+            onPress={() => this.props.navigation.navigate("PROFILE")}
             style={styles.iconbutton}
           >
             <Image source={profile} />
