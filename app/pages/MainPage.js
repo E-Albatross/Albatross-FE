@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   },
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
-    marginTop: 10,
+    marginTop: 30,
     width: "95%",
     display: "flex",
     flexDirection: "row",
