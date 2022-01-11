@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import {
-  Text,
-  View,
-  Button,
-  StyleSheet,
-  Image,
+  Text, View, Button, StyleSheet, Image,
   TouchableOpacity,
 } from "react-native";
 
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
+import Toggle from "../components/Toggle";
 
 export default class Profile extends Component {
   render() {
@@ -95,6 +92,7 @@ export default class Profile extends Component {
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
               }} >
               실시간 검사 </Text>
+              {/* <Toggle/> */}
           </View>
         </View>
 
@@ -168,7 +166,7 @@ const styles = StyleSheet.create({
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
     width: "100%",
-    height: 100,
+    height: 90,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

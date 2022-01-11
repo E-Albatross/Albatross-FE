@@ -5,7 +5,7 @@ const Liter_name = ({name}) => {
 
   return (
     <View style={styles.container}>
-        <Text style={{fontSize: 20, letterSpacing: 15, textAlign:"left"}}> {name} </Text>
+        <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left"}}> {name} </Text>
       <View style={styles.line}/>
       <View style={styles.line}/>
     </View>
@@ -16,18 +16,18 @@ export default Liter_name;
 
 const styles = StyleSheet.create({
     container: {
-        width:"100%",
-        backgroundColor: '#F9F9F9',
+      marginTop: 120,
+        width:"85%",
+        backgroundColor: "transparent",
         flexDirection: "column",
         justifyContent: "flex-start",
+        alignContent:"flex-start",
     },
     line:{
-        width: '30%', 
+        width: '40%', 
         height: 1, 
-        backgroundColor: '#C4C4C4', 
-        position: "absolute", 
-        left:0, 
-        top: 670
+        marginTop: 7,
+        backgroundColor: "#000000",
     },
 });
 

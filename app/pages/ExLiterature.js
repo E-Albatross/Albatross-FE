@@ -111,193 +111,41 @@ const ExLiterature = ({ navigation }) => {
             <Image source={confirm} />
           </TouchableOpacity>
         </View>
-        <Name name={"제목"} />
       </View>
 
+      <Name name={"제목"} />
+      
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
         <View
-          style={{
-            height: 1300,
-            width: 1000,
-            position: "absolute",
-            left: -420,
-            top: 70,
-          }}
-        >
+          style={{ height: 900, width: "85%", position: "absolute", left: "-42%", top: 50, }}>
           <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
         </View>
         {/* 가로줄 */}
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 270,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 320,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 370,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 420,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 470,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 520,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 570,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 620,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 670,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 720,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 770,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 820,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 870,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 920,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 970,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 1020,
-          }}
-        />
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "#C4C4C4",
-            position: "absolute",
-            left: -420,
-            top: 1070,
-          }}
-        />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 100, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 150, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 200, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 250, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 300, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 350, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 400, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 450, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 500, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 550, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 600, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 650, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 700, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 750, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 800, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 850, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 900, }} />
+        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 950, }} />
+
+        {/* 세로줄 */}
+        <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
+        <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
+        
       </ViewShot>
     </View>
   );
