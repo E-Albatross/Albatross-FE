@@ -6,15 +6,14 @@ import {
 
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
-import Toggle from "../components/Toggle";
+import SwitchToggle from "react-native-switch-toggle";
 
-export default class Profile extends Component {
-  render() {
+const Profile = ({ navigation, on }) => {
     return (
       <View style={styles.container}>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("MAIN")}
+            onPress={() => navigation.navigate("MAIN")}
             style={styles.iconbutton}
           >
             <Image style={{ marginLeft: 10 }} source={home} />
@@ -23,22 +22,12 @@ export default class Profile extends Component {
 
         {/* 개인정보설정 상자 */}
         <View style={styles.subTitleBox}>
-          <Text
-            style={{
-              textAlign: "left",
-              color: "#808080",
-              fontSize: 20,
-              marginTop: 60,
-              marginBottom: 10,
-            }}>
-            개인정보설정{" "}
-          </Text>
+          <Text style={{textAlign: "left",color: "#808080",fontSize: 20,marginTop: 60,marginBottom: 10,}}> 개인정보설정{" "}</Text>
         </View>
         <View style={styles.informBox}>
           <TouchableOpacity
             // onPress={() => }
-            style={{ height: 60 }}
-          >
+            style={{ height: 60 }}>
             <Text
               style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
@@ -58,41 +47,38 @@ export default class Profile extends Component {
 
         {/* 기본값설정 상자 */}
         <View style={styles.subTitleBox}>
-          <Text
-            style={{
-              color: "#808080",
-              fontSize: 20,
-              marginTop: 30,
-              marginBottom: 10,
-            }}
-          >
-            기본 값 설정{" "}
-          </Text>
+          <Text style={{color: "#808080",fontSize: 20,marginTop: 30, marginBottom: 10, }} > 기본 값 설정 </Text>
         </View>
         <View style={styles.settingBox}>
           <View style={styles.settingText}> 
-            <Text
-              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
+            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} >
-              글자 크기 </Text>
+              }} > 글자 크기 </Text>
           </View>
           <View style={styles.line}></View>
           <View style={styles.settingText}> 
             <Text
               style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} >
-              폰트 종류 </Text>
+              }} > 폰트 종류 </Text>
+            <TouchableOpacity
+            // onPress={() => }
+            style={{ marginLeft: "3%", lineHeight: 60, }}>
+            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, }} > HS유지체 </Text>                                                      
+          </TouchableOpacity>
           </View>
           <View style={styles.line}></View>
           <View style={styles.settingText}> 
             <Text
-              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
-              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} >
-              실시간 검사 </Text>
-              {/* <Toggle/> */}
+              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", marginTop:"2%", marginRight:"2%" }} > 실시간 검사 </Text>
+            <SwitchToggle
+              switchOn={on}
+              onPress={() => off(!on)}
+              circleColorOff='#FFFFFF'
+              circleColorOn='#FFFFFF'
+              backgroundColorOn='#80AE92'
+              backgroundColorOff='#80AE92'
+            />
           </View>
         </View>
 
@@ -103,55 +89,24 @@ export default class Profile extends Component {
         <View style={styles.ButtonBox}>
           <TouchableOpacity
             // onPress={() => }
-            style={{
-              height: 50,
-              width: 200,
-              backgroundColor: "#80AE92",
-              borderRadius: 5,
-              marginRight: 30,
-            }}
-          >
+            style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight: 30, }} >
             <Text
-              style={{
-                fontSize: 25,
-                letterSpacing: 2,
-                color: "white",
-                fontWeight: "bold",
-                textAlign: "center",
-                lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }}
-            >
-              확인
-            </Text>
+              style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }} > 확인 </Text>
           </TouchableOpacity>
           <TouchableOpacity
             // onPress={() => }
-            style={{
-              height: 50,
-              width: 200,
-              backgroundColor: "#80AE92",
-              borderRadius: 5,
-              marginLeft: 30,
-            }}
-          >
+            style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight: 30, }} >
             <Text
-              style={{
-                fontSize: 25,
-                letterSpacing: 2,
-                color: "white",
-                fontWeight: "bold",
-                textAlign: "center",
-                lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }}
-            >
-              로그아웃
-            </Text>
+              style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+              }} > 로그아웃 </Text>
           </TouchableOpacity>
         </View>
       </View>
     );
-  }
-}
+  };
+
+export default Profile;
 
 const styles = StyleSheet.create({
   // 배경색 넣은 컨테이너
