@@ -20,7 +20,7 @@ export default class DrawerPage extends Component {
             onPress={() => this.props.navigation.navigate("MAIN")}
             style={styles.iconbutton}
           >
-            <Image style={{ marginLeft: 10 }} source={home} />
+            <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
           </TouchableOpacity>
         </View>
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
     width: "100%",
-    height: 100,
+    height: 90,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

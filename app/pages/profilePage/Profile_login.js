@@ -1,14 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   Text, View, Button, StyleSheet, Image,
   TouchableOpacity,
 } from "react-native";
 
-import home from "../assets/home.png";
-import literature from "../assets/literature.png";
-import SwitchToggle from "react-native-switch-toggle";
+import home from "../../assets/home.png";
+import literature from "../../assets/literature.png";
 
-const Profile = ({ navigation, on }) => {
+import SwitchToggle from "react-native-switch-toggle";
+import ToggleSwitch from 'toggle-switch-react-native'
+
+const Profile_login = ({ navigation}) => {
+  const [OnOff, setOnOff] = useState(true);
     return (
       <View style={styles.container}>
         <View style={styles.headerRow}>
@@ -72,8 +75,8 @@ const Profile = ({ navigation, on }) => {
             <Text
               style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", marginTop:"2%", marginRight:"2%" }} > 실시간 검사 </Text>
             <SwitchToggle
-              switchOn={on}
-              onPress={() => off(!on)}
+              switchOn={OnOff}
+              onPress={() => setOnOff(!OnOff)}
               circleColorOff='#FFFFFF'
               circleColorOn='#FFFFFF'
               backgroundColorOn='#80AE92'
@@ -88,25 +91,25 @@ const Profile = ({ navigation, on }) => {
         {/* 확인, 로그아웃 상자 */}
         <View style={styles.ButtonBox}>
           <TouchableOpacity
-            // onPress={() => }
-            style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight: 30, }} >
+            onPress={() => navigation.navigate("MAIN")}
+            style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight:40, }} >
             <Text
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} > 확인 </Text>
+              }} >확인</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            // onPress={() => }
-            style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight: 30, }} >
+            onPress={() => navigation.navigate("PROFILE_LOGOUT")}
+            style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40, }} >
             <Text
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} > 로그아웃 </Text>
+              }} >로그아웃</Text>
           </TouchableOpacity>
         </View>
       </View>
     );
   };
 
-export default Profile;
+export default Profile_login;
 
 const styles = StyleSheet.create({
   // 배경색 넣은 컨테이너
