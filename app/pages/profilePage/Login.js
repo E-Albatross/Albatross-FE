@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor:"#80AE92", 
-    fontSize: 20,
+    fontSize: 22,
   },
 
   textBox: {
