@@ -25,7 +25,9 @@
     "react-native-switch-toggle": "^2.2.1",
     "react-native-view-shot": "^3.1.2",
     "react-native-web": "0.17.1",
-    "react-navigation": "^4.4.4"
+    "react-navigation": "^4.4.4",
+    "toggle-switch-react-native": "^3.3.0",
+    "expo-checkbox": "~2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

@@ -4,9 +4,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import MainPage from "./pages/MainPage";
 import DrawerPage from "./pages/DrawerPage";
-import Profile from "./pages/ProfilePage";
-import Profile_login from "./pages/Profile/Profile_login";
-import Profile_logout from "./pages/Profile/Profile_logout";
+import Profile_login from "./pages/profilePage/Profile_login";
+import Profile_logout from "./pages/profilePage/Profile_logout";
+import Login from "./pages/profilePage/Login";
+import SignIn from "./pages/profilePage/SignIn";
 
 import ExLine from "./pages/ExLine";
 import ExWord from "./pages/ExWord";
@@ -24,9 +25,12 @@ function App() {
         <Stack.Screen name="MAIN" component={MainPage} />
         <Stack.Screen name="CAPTURE" component={ExLiterature} />
         <Stack.Screen name="DRAWER" component={DrawerPage} />
-        <Stack.Screen name="PROFILE" component={Profile} />
+
         <Stack.Screen name="PROFILE_LOGIN" component={Profile_login} />
         <Stack.Screen name="PROFILE_LOGOUT" component={Profile_logout} />
+        <Stack.Screen name="LOGIN" component={Login} />
+        <Stack.Screen name="SIGNIN" component={SignIn} />
+
         <Stack.Screen name="LINE" component={ExLine} />
         <Stack.Screen name="WORD" component={ExWord} />
       </Stack.Navigator>
