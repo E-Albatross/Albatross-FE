@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 
   box: {
     width: "60%",
-    height: 50,
+    height: 60,
     marginTop: 25,
     backgroundColor: "#FFFFFF",
     flexDirection: "row",
