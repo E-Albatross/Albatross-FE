@@ -62,13 +62,22 @@ const SignIn = ({navigation}) => {
             placeholderTextColor={'#80AE92'}
             placeholder="비밀번호 확인"
         />
-        <TextInput
-            style={styles.box}
-            onChangeText={onChangeEMAIL}
-            value={email}
-            placeholderTextColor={'#80AE92'}
-            placeholder="이메일"
-        />
+        <View style={styles.emailBox}>
+          <TextInput
+              style={styles.email}
+              onChangeText={onChangeEMAIL}
+              value={email}
+              placeholderTextColor={'#80AE92'}
+              placeholder="이메일"
+          />
+          <TouchableOpacity
+              // onPress={() => navigation.navigate("PROFILE_LOGIN")}
+              style={{ height: 50, width: "10%", backgroundColor: "#80AE92", borderRadius: 5, marginTop: 25, marginLeft: "2%"}} >
+              <Text
+                style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }} >인증</Text>
+          </TouchableOpacity>
+          </View>
         </View>
 
 
@@ -129,6 +138,28 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor:"#80AE92", 
     fontSize: 22,
+  },
+  email: {
+    width: "60%",
+    height: 60,
+    marginTop: 25,
+    backgroundColor: "#FFFFFF",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor:"#80AE92", 
+    fontSize: 22,
+    marginLeft: "10%",
+  },
+  emailBox: {
+    width: "100%",
+    height: 60,
+    marginTop: 25,
+    marginLeft:"20%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   ButtonBox: {
     width: "100%",
