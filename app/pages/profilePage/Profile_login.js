@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import {
   Text, View, Button, StyleSheet, Image,
-  TouchableOpacity,
+  TouchableOpacity, Modal
 } from "react-native";
 
 import home from "../../assets/home.png";
@@ -10,10 +10,45 @@ import literature from "../../assets/literature.png";
 import SwitchToggle from "react-native-switch-toggle";
 import ToggleSwitch from 'toggle-switch-react-native'
 
-const Profile_login = ({ navigation}) => {
+
+const Profile_login = ({navigation}) => {
   const [OnOff, setOnOff] = useState(true);
+  //모달창
+  const [modalVisible, setModalVisible] = useState(false)
+  const openModal = () => {
+    setModalVisible(true)
+  }
+  const closeModal = () => {
+    setModalVisible(false)
+  }
     return (
       <View style={styles.container}>
+        {/* 모달창 */}
+        <Modal
+        animationType='slide'
+        transparent={true}
+        visible={modalVisible}>
+          <View style={styles.modalContainer}>
+          <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }}> 로그아웃 하시겠습니까?</Text>
+          <View style={styles.modalButtonBox}> 
+          <TouchableOpacity
+              onPress={() => {navigation.navigate("PROFILE_LOGOUT"); setModalVisible(false);} }
+              style={{ height: 50, width: 200, marginRight:40, }}>
+              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }} >YES</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {navigation.navigate("PROFILE_LOGIN"); setModalVisible(false);}}
+              style={{ height: 50, width: 200, marginRight:40, }} >
+              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }} >NO</Text>
+            </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      {/* 모달창 코드 끝 */}
+
         <View style={styles.headerRow}>
           <TouchableOpacity
             onPress={() => navigation.navigate("MAIN")}
@@ -98,7 +133,7 @@ const Profile_login = ({ navigation}) => {
               }} >확인</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate("PROFILE_LOGOUT")}
+            onPress={() => setModalVisible(true)}
             style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40, }} >
             <Text
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
@@ -194,5 +229,24 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "#C4C4C4",
     marginLeft: "3%",
+  },
+  modalContainer: {
+    marginTop: "50%",
+    width: "60%",
+    marginLeft:"20%",
+    height: 200,
+    opacity: 80,
+    backgroundColor: "#80AE92",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalButtonBox: {
+    width: "100%",
+    height: "15%",
+    marginTop: "5%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
