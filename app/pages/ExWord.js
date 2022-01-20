@@ -189,367 +189,44 @@ const ExWord = ({ navigation }) => {
       
 
       {/* 가로줄 */}
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 135,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 200,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 265,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 330,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 395,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 460,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 525,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 590,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 655,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 720,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 785,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 850,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 915,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 980,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 1045,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 1110,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 1165,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 1230,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 1295,
-        }}
-      />
-      <View
-        style={{
-          width: "100%",
-          height: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 0,
-          top: 1360,
-        }}
-      />
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 135,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 200,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 265,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 330,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 395,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 460,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 525,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 590,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 655,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 720,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 785,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 850,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 915,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 980,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 1045,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 1110,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 1175,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 1240,}}/>
+      <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 1305,}}/>
+      
       {/* 세로줄 */}
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 65,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 130,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 195,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1000,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 260,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 325,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1000,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 390,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 455,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 520,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 585,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 650,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 715,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 780,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 845,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 910,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 975,
-          top: 70,
-        }}
-      />
-      <View
-        style={{
-          height: 1500,
-          width: 1,
-          backgroundColor: "#C4C4C4",
-          position: "absolute",
-          left: 1030,
-          top: 70,
-        }}
-      />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 65, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 130, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 195, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 260, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 325, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 390, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 455, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 520, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 585, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 650, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 715, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 780, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 845, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 910, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 975, top: 70, }} />
+      <View style={{ height: 1500, width: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 1030, top: 70, }} />
+      
       {/* 자음 */}
       <Text
         style={{
