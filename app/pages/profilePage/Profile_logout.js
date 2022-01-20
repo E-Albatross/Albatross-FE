@@ -7,11 +7,17 @@ import {
 import home from "../../assets/home.png";
 import literature from "../../assets/literature.png";
 
+//텍스트 슬라이더
+import Slider from '@react-native-community/slider';
+
 import SwitchToggle from "react-native-switch-toggle";
 import ToggleSwitch from 'toggle-switch-react-native'
 
 const Profile_logout = ({ navigation}) => {
   const [OnOff, setOnOff] = useState(true);
+
+  //슬라이더 폰트사이즈
+  const [userFont,setFont] = useState(25); // 초기값을 폰트사이즈 25로 설정
     return (
       <View style={styles.container}>
         <View style={styles.headerRow}>
@@ -57,6 +63,17 @@ const Profile_logout = ({ navigation}) => {
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
               }} > 글자 크기 </Text>
+              <Text style={{ fontSize: 20, letterSpacing: 2, marginLeft: "3%", marginRight: "1%"}}> A </Text>
+              <Slider
+                style={{width: 200, height: 40}}
+                minimumValue={20}
+                maximumValue={30}
+                value={userFont}
+                onValueChange={(value)=>setFont(value)} // 슬라이더 움직일 때 출력값 반환
+                minimumTrackTintColor="#80AE92"
+                maximumTrackTintColor="#80AE92"
+              />
+              <Text style={{ fontSize: 30, letterSpacing: 2, marginLeft: "1%",}}> A </Text>
           </View>
           <View style={styles.line}></View>
           <View style={styles.settingText}> 
@@ -86,7 +103,9 @@ const Profile_logout = ({ navigation}) => {
         </View>
 
         {/* 미리보기상자 */}
-        <View style={styles.previewBox}></View>
+        <View style={styles.previewBox}>
+        <Text style={{fontSize: userFont}}> 이곳에 미리보기 내용이 출력됩니다. </Text>
+        </View>
 
         {/* 확인, 로그아웃 상자 */}
         <View style={styles.ButtonBox}>
@@ -176,7 +195,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
