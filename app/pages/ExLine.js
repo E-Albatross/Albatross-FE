@@ -76,14 +76,8 @@ const ExLine = ({ navigation }) => {
       </View>
       {/* 캔버스보드 부분 */}
       <View
-        style={{
-          height: 1300,
-          width: 1000,
-          position: "absolute",
-          left: 0,
-          top: 70,
-        }}
-      >
+        style={{ height: 1300, width: 1000, position: "absolute", left: 0, top: 70,
+        }} >
         <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
       </View>
       {/* 가로줄 */}
