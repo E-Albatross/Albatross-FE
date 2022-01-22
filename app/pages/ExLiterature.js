@@ -8,7 +8,7 @@ import {
   PermissionsAndroid,
   Platform,
   Image,
-  TouchableOpacity,
+  TouchableOpacity, Modal
 } from "react-native";
 import SignatureScreen from "react-native-signature-canvas";
 
@@ -31,6 +31,16 @@ const ExLiterature = ({ navigation }) => {
   const ref = useRef();
   
   const [Liter, setLiter] = useState("문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다.  문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 여기다가 이제 서버에서 받아온 글씨를 넣으면 되겠지 신난다ㅏㅏㅏ ");
+  const [finish, setFinish] = useState(false); // finish되지 않은 상태로 초기설정
+
+  //모달창
+  const [modalVisible, setModalVisible] = useState(false)
+  const openModal = () => {
+    setModalVisible(true)
+  }
+  const closeModal = () => {
+    setModalVisible(false)
+  }
 
   const handleOK = (signature) => {
     handleOK(signature);
@@ -97,23 +107,57 @@ const ExLiterature = ({ navigation }) => {
           <Image style={{ marginLeft: 20 }} source={home} />
         </TouchableOpacity>
         <View style={styles.headerSubRow}>
-          <TouchableOpacity onPress={handleDraw} style={styles.iconbutton}>
-            <Image source={pen} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleErase} style={styles.iconbutton}>
-            <Image source={erase} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
-            <Image source={arrow} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleRedo} style={styles.iconbutton}>
-            <Image source={arrow2} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onSave} style={styles.iconbutton}>
-            <Image source={confirm} />
-          </TouchableOpacity>
+          { finish == false ?
+            (<>
+              <TouchableOpacity onPress={handleDraw} style={styles.iconbutton}>
+                <Image source={pen} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleErase} style={styles.iconbutton}>
+                <Image source={erase} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
+                <Image source={arrow} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleRedo} style={styles.iconbutton}>
+                <Image source={arrow2} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {{onSave}; setFinish(true);}} style={styles.iconbutton}>
+                <Image source={confirm} />
+              </TouchableOpacity> 
+            </> 
+            ): (
+            <>
+              <TouchableOpacity
+                onPress={() => setModalVisible(true)}
+                style={{ height: 60 }}>
+                <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginLeft: 100}} > 다운로드 </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+              onPress={() => navigation.navigate("MAIN")}
+              style={{ height: 60 }}>
+              <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginRight: 20}} > 확인 </Text>
+            </TouchableOpacity>
+          </>)
+        }
+          
         </View>
       </View>
+
+      {/* 모달창 */}
+      <Modal animationType='slide' transparent={true} visible={modalVisible}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalHeaderRow}> 
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginLeft: 10}} > 취소 </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginRight: 10}} > 저장 </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.modalPage}></View>
+        </View>
+      </Modal>
+      {/* 모달창 코드 끝 */}
 
       <Name name={"제목"} />
       
@@ -194,5 +238,31 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#80AE92",
+  },
+  modalContainer: {
+    width: "80%",
+    height: "75%",
+    top: "15%",
+    left: "10%",
+    borderWidth: 0.5,
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+  },
+  modalHeaderRow: {
+    width: "100%",
+    height: "8%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  modalPage: {
+    width: "100%",
+    height: "30%",
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F7F8F7",
   },
 });
