@@ -29,6 +29,8 @@ import Name from "../components/ExLiterature/Liter_name";
 
 const ExLiterature = ({ navigation }) => {
   const ref = useRef();
+  
+  const [Liter, setLiter] = useState("문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다.  문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 여기다가 이제 서버에서 받아온 글씨를 넣으면 되겠지 신난다ㅏㅏㅏ ");
 
   const handleOK = (signature) => {
     handleOK(signature);
@@ -49,7 +51,7 @@ const ExLiterature = ({ navigation }) => {
     ref.current.erase();
   };
 
-  const style = `.m-signature-pad { border: none; margin-top: 0px; margin-left: 0px; height: 1300px;} 
+  const style = `.m-signature-pad { border: none; box-shadow: none; margin-top: 0px; margin-left: 0px; height: 1300px;} 
   .m-signature-pad--body {border: none;}
   .m-signature-pad--footer {display: none; margin: 0px;}`;
 
@@ -145,6 +147,8 @@ const ExLiterature = ({ navigation }) => {
         {/* 세로줄 */}
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
+
+        <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {Liter}  </Text>
         
       </ViewShot>
     </View>
