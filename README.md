@@ -1,5 +1,12 @@
 # Albatross-FE-re
 
+사용한 기술 스택 )
+
+<img src="https://img.shields.io/badge/React-FE2E2E?style=flat-square&logo=ReactNative&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/HTML-FE9A2E?style=flat-square&logo=HTML&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/CSS-FA5858?style=flat-square&logo=CSS&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/JavaScript-F7D358?style=flat-square&logo=JavaScript&logoColor=white"/></a>
+
 페이지 디자인 )
 
 1. 메인페이지 & 줄긋기연습 & 자음모음연습 & 내 서랍
