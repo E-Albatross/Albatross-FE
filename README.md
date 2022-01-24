@@ -1,4 +1,4 @@
-# Albatross-FE-re
+# Albatross-FE
 
 사용한 기술 스택 )
 
