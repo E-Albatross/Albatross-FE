@@ -2,7 +2,7 @@
 
 사용한 기술 스택 )
 
-<img src="https://img.shields.io/badge/ReactNative-FE2E2E?style=flat-square&logo=ReactNative&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/ReactNative-FE2E2E?style=flat-square&logo=React&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/HTML-FE9A2E?style=flat-square&logo=HTML&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/CSS-FA5858?style=flat-square&logo=CSS&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/JavaScript-F7D358?style=flat-square&logo=JavaScript&logoColor=white"/></a>
