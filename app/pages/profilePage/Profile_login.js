@@ -115,7 +115,7 @@ const Profile_login = ({navigation}) => {
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
               }} > 폰트 종류 </Text>
             <TouchableOpacity
-            // onPress={() => }
+            onPress={() => navigation.navigate("FONTPAGE")}
             style={{ marginLeft: "3%", lineHeight: 60, }}>
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, }} > HS유지체 </Text>                                                      
           </TouchableOpacity>
