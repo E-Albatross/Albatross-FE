@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -12,19 +12,33 @@ import drawer from "../assets/MainPage/drawer.png";
 import profile from "../assets/MainPage/profile.png";
 import literature from "../assets/MainPage/literature.png";
 
-export default class MainPage extends Component {
-  render() {
+import { Font } from 'expo';
+
+const MainPage = ({navigation}) => {
+
+  const [isReady, setIsReady] = useState(true);
+ 
+  useEffect(async () => {
+      await Font.loadAsync({
+        'NotoSansKR-Light': require('../assets/fonts/NotoSansKR-Light.ttf'),
+      });
+      setIsReady(true);
+  }, []);
+  
     return (
+      
       <View style={styles.container}>
+        {isReady && (
+          <>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("PROFILE_LOGIN")}
+            onPress={() => navigation.navigate("PROFILE_LOGIN")}
             style={styles.iconbutton}
           >
             <Image source={profile} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("DRAWER")}
+            onPress={() => navigation.navigate("DRAWER")}
             style={styles.iconbutton}
           >
             <Image source={drawer} />
@@ -38,7 +52,7 @@ export default class MainPage extends Component {
             marginLeft: 30,
             marginBottom: 100,
             letterSpacing: 15,
-            fontFamily: "NotoSansKR-Regular",
+            fontFamily: "NotoSansKR-Light",
           }}
         >
           바른글씨{" "}
@@ -46,7 +60,7 @@ export default class MainPage extends Component {
 
         <View style={styles.practiceRow}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("LINE")}
+            onPress={() => navigation.navigate("LINE")}
             style={{
               height: 130,
               width: "45%",
@@ -69,7 +83,7 @@ export default class MainPage extends Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("WORD")}
+            onPress={() => navigation.navigate("WORD")}
             style={{
               height: 130,
               width: "45%",
@@ -101,19 +115,19 @@ export default class MainPage extends Component {
         <View style={styles.literatureRow}>
           {/* 여기서부터는 따로 js파일 작업 필요. 일단 복붙으로 처리 */}
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
+            onPress={() => navigation.navigate("CAPTURE")}
             style={styles.iconbutton}
           >
             <Image source={literature} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
+            onPress={() => navigation.navigate("CAPTURE")}
             style={styles.iconbutton}
           >
             <Image source={literature} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
+            onPress={() => navigation.navigate("CAPTURE")}
             style={styles.iconbutton}
           >
             <Image source={literature} />
@@ -128,28 +142,31 @@ export default class MainPage extends Component {
         <View style={styles.literatureRow}>
           {/* 여기서부터는 따로 js파일 작업 필요. 일단 복붙으로 처리 */}
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
+            onPress={() => navigation.navigate("CAPTURE")}
             style={styles.iconbutton}
           >
             <Image source={literature} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
+            onPress={() => navigation.navigate("CAPTURE")}
             style={styles.iconbutton}
           >
             <Image source={literature} />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
+            onPress={() => navigation.navigate("CAPTURE")}
             style={styles.iconbutton}
           >
             <Image source={literature} />
           </TouchableOpacity>
         </View>
+        </>
+        )}
       </View>
     );
-  }
 }
+
+export default MainPage;
 
 const styles = StyleSheet.create({
   // 배경색 넣은 컨테이너
