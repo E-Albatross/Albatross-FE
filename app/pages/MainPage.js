@@ -38,6 +38,7 @@ export default class MainPage extends Component {
             marginLeft: 30,
             marginBottom: 100,
             letterSpacing: 15,
+            fontFamily: "NotoSansKR-Regular",
           }}
         >
           바른글씨{" "}
