@@ -59,7 +59,7 @@ const FontPage = ({navigation}) => {
             
             <View style={styles.FontRow}>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
-                    <Text style={{ fontSize: 30, fontFamily: "SUIT-Regular"}}>수트체</Text>
+                    <Text style={{ fontSize: 30,fontFamily: "SUIT-Regular"}}>수트체</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
                     <Text style={{ fontSize: 30, fontFamily: "KyoboHandwriting2019"}}>교보손글씨체</Text>
@@ -83,7 +83,7 @@ const FontPage = ({navigation}) => {
 
             <View style={styles.FontRow}>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
-                    <Text style={{ fontSize: 30, fontFamily: "ImcreSoojin_Regular"}}>아임크리수진체</Text>
+                    <Text style={{ fontSize: 30, fontFamily: "ImcreSoojin_Regular"}}>아임크리체</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
                     <Text style={{ fontSize: 30, fontFamily: "BMJUA"}}>주아체</Text>
@@ -133,16 +133,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#80AE92",
   },
-
   FontRow: {
     marginTop: "5%",
     width: "90%",
     height: 90,
-    display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent:"space-between",
     alignItems: "center",
   },
-
-  
 });
