@@ -7,22 +7,34 @@ import {
 
 import home from "../../assets/home.png";
 
-import { Font } from 'expo';
+import * as Font from "expo-font";
 
 const FontPage = ({navigation}) => {
     const [isReady, setIsReady] = useState(true);
 
-    const [Font, setFont] = useState("NotoSansKR-Light"); // 원래는 서버에서 받아옴. 임의로 설정
+    // const [Font, setFont] = useState("NotoSansKR-Light"); // 원래는 서버에서 받아옴. 임의로 설정
  
     useEffect(async () => {
         await Font.loadAsync({
-            'NotoSansKR-Light': require('../../assets/fonts/NotoSansKR-Light.ttf'),
+            'SF_HambakSnow': require('../../assets/fonts/SF_HambakSnow.ttf'),
+            'ImcreSoojin_Regular': require('../../assets/fonts/ImcreSoojin_Regular.ttf'),
             'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
+
             'CWDangamAsac-Bold': require('../../assets/fonts/CWDangamAsac-Bold.ttf'),
             'HSYuji-Regular': require('../../assets/fonts/HSYuji-Regular.ttf'),
             'SBAggroB': require('../../assets/fonts/SBAggroB.ttf'),
-            'SF_HambakSnow': require('../../assets/fonts/SF_HambakSnow.ttf'),
 
+            'SUIT-Regular': require('../../assets/fonts/SUIT-Regular.ttf'),
+            'KyoboHandwriting2019': require('../../assets/fonts/KyoboHandwriting2019.ttf'),
+            'EliceDigitalBaeum': require('../../assets/fonts/EliceDigitalBaeum.ttf'),
+
+            'CookieRun-Regular': require('../../assets/fonts/CookieRun-Regular.ttf'),
+            'Cafe24Ssurroundair': require('../../assets/fonts/Cafe24Ssurroundair.ttf'),
+            'YUniverse-L': require('../../assets/fonts/YUniverse-L.ttf'),
+
+            'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
+
+            
         });
         setIsReady(true);
     }, []);
@@ -44,28 +56,53 @@ const FontPage = ({navigation}) => {
                     <Text style={{ fontSize: 25, letterSpacing: 2,  fontWeight: "bold", marginRight: 10, marginTop: 20, color: "white",}} > 취소 </Text>
                 </TouchableOpacity>
             </View>
-
+            
             <View style={styles.FontRow}>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
-                    <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Light"}}>얇은 노토산스</Text>
+                    <Text style={{ fontSize: 30, fontFamily: "SUIT-Regular"}}>수트체</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
-                    <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Regular"}}>보통 노토산스</Text>
+                    <Text style={{ fontSize: 30, fontFamily: "KyoboHandwriting2019"}}>교보손글씨체</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
-                    <Text style={{ fontSize: 30, fontFamily: "CWDangamAsac-Bold"}}>창원단감이삭체</Text>
+                    <Text style={{ fontSize: 30, fontFamily: "EliceDigitalBaeum"}}>앨리스체</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.FontRow}>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
-                    <Text style={{ fontSize: 30, fontFamily: "HSYuji-Regular"}}>HS유지체</Text>
+                    <Text style={{ fontSize: 30, fontFamily: "CookieRun-Regular"}}>쿠키런체</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
-                    <Text style={{ fontSize: 30, fontFamily: "SBAggroB"}}>어그로체B</Text>
+                    <Text style={{ fontSize: 30, fontFamily: "Cafe24Ssurroundair"}}>카페24체</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                    <Text style={{ fontSize: 30, fontFamily: "YUniverse-L"}}>Y유니버스체</Text>
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.FontRow}>
+                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                    <Text style={{ fontSize: 30, fontFamily: "ImcreSoojin_Regular"}}>아임크리수진체</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                    <Text style={{ fontSize: 30, fontFamily: "BMJUA"}}>주아체</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                    <Text style={{ fontSize: 30, fontFamily: "HSYuji-Regular"}}>HS유지체</Text>
+                </TouchableOpacity>
+                
+            </View>
+
+            <View style={styles.FontRow}>
+                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                    <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Regular"}}>노토산스</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
                     <Text style={{ fontSize: 30, fontFamily: "SF_HambakSnow"}}>함박눈체</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                    <Text style={{ fontSize: 30, fontFamily: "SBAggroB"}}>어그로체B</Text>
                 </TouchableOpacity>
             </View>
         </>
@@ -99,7 +136,7 @@ const styles = StyleSheet.create({
 
   FontRow: {
     marginTop: "5%",
-    width: "80%",
+    width: "90%",
     height: 90,
     display: "flex",
     flexDirection: "row",
