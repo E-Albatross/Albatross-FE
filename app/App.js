@@ -9,6 +9,8 @@ import Profile_logout from "./pages/profilePage/Profile_logout";
 import Login from "./pages/profilePage/Login";
 import SignIn from "./pages/profilePage/SignIn";
 
+import CaptureSign from "./components/CaptureSign";
+
 import FontPage from "./pages/profilePage/FontPage";
 import FontsList from "./assets/fonts/FontsList";
 
@@ -38,6 +40,8 @@ function App() {
 
         <Stack.Screen name="LINE" component={ExLine} />
         <Stack.Screen name="WORD" component={ExWord} />
+
+        <Stack.Screen name="CAPTURESIGN" component={CaptureSign} />
       </Stack.Navigator>
     </NavigationContainer>
   );

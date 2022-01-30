@@ -23,39 +23,21 @@ import Name from "../components/ExLiterature/Liter_name";
 const ExLiterature = ({ navigation }) => {
   const ref = useRef();
   
-  const [Liter, setLiter] = useState("문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다.  문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 여기다가 이제 서버에서 받아온 글씨를 넣으면 되겠지 신난다ㅏㅏㅏ ");
+  const Liter = "문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다.  문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 여기다가 이제 서버에서 받아온 글씨를 넣으면 되겠지 신난다ㅏㅏㅏ ";
   const [finish, setFinish] = useState(false); // finish되지 않은 상태로 초기설정
 
   //모달창
-  const [modalVisible, setModalVisible] = useState(false)
-  const openModal = () => {
-    setModalVisible(true)
-  }
-  const closeModal = () => {
-    setModalVisible(false)
-  }
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const handleOK = (signature) => {
-    handleOK(signature);
-  };
-  const handleClear = () => {
-    ref.current.clearSignature();
-  };
-  const handleUndo = () => {
-    ref.current.undo();
-  };
-  const handleRedo = () => {
-    ref.current.redo();
-  };
-  const handleDraw = () => {
-    ref.current.draw();
-  };
-  const handleErase = () => {
-    ref.current.erase();
-  };
+  const handleOK = (signature) => { handleOK(signature); };
+  const handleClear = () => { ref.current.clearSignature(); };
+  const handleUndo = () => { ref.current.undo(); };
+  const handleRedo = () => { ref.current.redo(); };
+  const handleDraw = () => { ref.current.draw(); };
+  const handleErase = () => { ref.current.erase(); };
 
   const style = `.m-signature-pad { border: none; box-shadow: none; margin-top: 0px; margin-left: 0px; height: 1300px;} 
-  .m-signature-pad--body {border: none; opacity: 80;}
+  .m-signature-pad--body {border: none; opacity: 80; backgroundColor: #F9F9F9;}
   .m-signature-pad--footer {display: none; margin: 0px;}`;
 
   //스크린샷 캡쳐 위한 코드
@@ -114,7 +96,8 @@ const ExLiterature = ({ navigation }) => {
               <TouchableOpacity onPress={handleRedo} style={styles.iconbutton}>
                 <Image source={arrow2} />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => {{onSave}; setFinish(true);}} style={styles.iconbutton}>
+              {/* //; setFinish(true); */}
+              <TouchableOpacity onPress={onSave} style={styles.iconbutton}>
                 <Image source={confirm} />
               </TouchableOpacity> 
             </> 
@@ -132,7 +115,6 @@ const ExLiterature = ({ navigation }) => {
             </TouchableOpacity>
           </>)
         }
-          
         </View>
       </View>
 
@@ -156,7 +138,28 @@ const ExLiterature = ({ navigation }) => {
       
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
-        
+
+      <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center", alignItems: "center", }} >
+        <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {Liter}  </Text>
+        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 100, }}>
+          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
+        </View>
+        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 250, }}>
+          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
+        </View>
+        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 400, }}>
+          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
+        </View>
+        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 550, }}>
+          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
+        </View>
+        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 700, }}>
+          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
+        </View>
+        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 850, }}>
+          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
+        </View>
+
         {/* 가로줄 */}
         <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
         <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 100, }} />
@@ -182,14 +185,8 @@ const ExLiterature = ({ navigation }) => {
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
 
-        <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {Liter}  </Text>
-        
-        <View
-          style={{ height: 900, width: "85%", position: "absolute", left: "-42%", top: 50, }}>
-          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
-        </View>
-        
-      </ViewShot>
+      
+        </View></ViewShot>
     </View>
   );
 };

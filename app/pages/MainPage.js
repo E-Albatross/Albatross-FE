@@ -18,12 +18,12 @@ const MainPage = ({navigation}) => {
 
   const [isReady, setIsReady] = useState(true);
  
-  useEffect(async () => {
-      await Font.loadAsync({
-        'NotoSansKR-Light': require('../assets/fonts/NotoSansKR-Light.ttf'),
-      });
-      setIsReady(true);
-  }, []);
+  // useEffect(async () => {
+  //     await Font.loadAsync({
+  //       'NotoSansKR-Light': require('../assets/fonts/NotoSansKR-Light.ttf'),
+  //     });
+  //     setIsReady(true);
+  // }, []);
   
     return (
       
@@ -52,7 +52,7 @@ const MainPage = ({navigation}) => {
             marginLeft: 30,
             marginBottom: 100,
             letterSpacing: 15,
-            fontFamily: "NotoSansKR-Light",
+            // fontFamily: "NotoSansKR-Light",
           }}
         >
           바른글씨{" "}
@@ -115,7 +115,7 @@ const MainPage = ({navigation}) => {
         <View style={styles.literatureRow}>
           {/* 여기서부터는 따로 js파일 작업 필요. 일단 복붙으로 처리 */}
           <TouchableOpacity
-            onPress={() => navigation.navigate("CAPTURE")}
+            onPress={() => navigation.navigate("CAPTURESIGN")}
             style={styles.iconbutton}
           >
             <Image source={literature} />
