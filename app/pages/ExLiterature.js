@@ -19,11 +19,16 @@ import confirm from "../assets/confirm.png";
 
 //컴포넌트
 import Name from "../components/ExLiterature/Liter_name";
+import literList from "../components/ExLiterature/literList";
 
-const ExLiterature = ({ navigation }) => {
+const ExLiterature = ({ navigation, route}) => {
   const ref = useRef();
-  
-  const Liter = "문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 문학작품을 시험 중입니다.  문학작품을 시험 중입니다. 문학작품을 시험 중입니다. 여기다가 이제 서버에서 받아온 글씨를 넣으면 되겠지 신난다ㅏㅏㅏ ";
+
+  // category: "new",
+  // id: s.id,
+  const category = route.params.category;
+  const id = route.params.id;
+
   const [finish, setFinish] = useState(false); // finish되지 않은 상태로 초기설정
 
   //모달창
@@ -139,8 +144,11 @@ const ExLiterature = ({ navigation }) => {
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
 
-      <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center", alignItems: "center", }} >
-        <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {Liter}  </Text>
+      <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center", 
+      alignItems: "center", }} >
+
+      <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {id} </Text>   
+
         <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 100, }}>
           <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
         </View>
@@ -185,8 +193,8 @@ const ExLiterature = ({ navigation }) => {
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
 
-      
-        </View></ViewShot>
+        </View>
+        </ViewShot>
     </View>
   );
 };

@@ -1,16 +1,13 @@
 import React, { Component, useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  Button,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
+import { Text, View, Button, StyleSheet, Image,
+  TouchableOpacity, ScrollView,
 } from "react-native";
 
 import drawer from "../assets/MainPage/drawer.png";
 import profile from "../assets/MainPage/profile.png";
 import literature from "../assets/MainPage/literature.png";
+
+import literList from "../components/ExLiterature/literList";
 
 import { Font } from 'expo';
 
@@ -112,54 +109,40 @@ const MainPage = ({navigation}) => {
           <View style={styles.line}></View>
         </View>
 
+        <ScrollView style={styles.scrollView}> 
         <View style={styles.literatureRow}>
-          {/* 여기서부터는 따로 js파일 작업 필요. 일단 복붙으로 처리 */}
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CAPTURESIGN")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
+        {literList.new.map(s=>(
+            <TouchableOpacity key={s.id}
+              onPress={() => navigation.navigate("CAPTURE",{
+                category: "new",
+                id: s.id,
+              })}
+              style={styles.iconbutton} >
+              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+            </TouchableOpacity>
+          ))}
         </View>
+        </ScrollView>
 
         <View style={styles.wordRow}>
           <Text style={{ color: "#C4C4C4" }}> Best </Text>
           <View style={styles.line}></View>
         </View>
 
+        <ScrollView style={styles.scrollView}> 
         <View style={styles.literatureRow}>
-          {/* 여기서부터는 따로 js파일 작업 필요. 일단 복붙으로 처리 */}
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
+        {literList.new.map(s=>(
+            <TouchableOpacity key={s.id}
+              onPress={() => navigation.navigate("CAPTURE",{
+                category: "best",
+                id: s.id,
+              })}
+              style={styles.iconbutton} >
+              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+            </TouchableOpacity>
+          ))}
         </View>
+        </ScrollView>
         </>
         )}
       </View>
@@ -223,5 +206,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  scrollView: {
+    marginTop: 10,
+    marginBottom: 10,
+    width: "85%",
+    display: "flex",
+    flexDirection: "row",
   },
 });
