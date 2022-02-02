@@ -4,16 +4,13 @@ import { StyleSheet, View, Text,
 } from "react-native";
 
 import markIcon from "../../assets/markIcon.png";
-import markList from "./markList";
+import mList_best from "./mList_best";
 
 // {id:1, xPos: 100, yPos: 100, text: "글자크기를 키워보세요!"},
-const Mark = (select) => {
+const Mark = (id)=> {
   // 느낌표 마크 모달창
   const [markModal, setMarkModal] = useState(false);
 
-    useEffect(() => {
-        setSelectedCards(markList[select]);
-    }, [select]);
     return (
       <View style={styles.container}>
           {markList.first.map(s=>(

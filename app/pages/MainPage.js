@@ -116,6 +116,7 @@ const MainPage = ({navigation}) => {
               onPress={() => navigation.navigate("CAPTURE",{
                 category: "new",
                 id: s.id,
+                text: s.text,
               })}
               style={styles.iconbutton} >
               <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
@@ -136,6 +137,7 @@ const MainPage = ({navigation}) => {
               onPress={() => navigation.navigate("CAPTURE",{
                 category: "best",
                 id: s.id,
+                text: s.text,
               })}
               style={styles.iconbutton} >
               <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />

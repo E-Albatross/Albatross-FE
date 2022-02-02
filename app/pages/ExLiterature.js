@@ -20,6 +20,11 @@ import confirm from "../assets/confirm.png";
 //컴포넌트
 import Name from "../components/ExLiterature/Liter_name";
 import literList from "../components/ExLiterature/literList";
+import mList_new from "../components/ExLiterature/mList_new";
+import mList_best from "../components/ExLiterature/mList_best";
+
+import MarkNew from "../components/ExLiterature/MarkNew";
+import MarkBest from "../components/ExLiterature/MarkBest";
 
 const ExLiterature = ({ navigation, route}) => {
   const ref = useRef();
@@ -28,6 +33,7 @@ const ExLiterature = ({ navigation, route}) => {
   // id: s.id,
   const category = route.params.category;
   const id = route.params.id;
+  const text = route.params.text;
 
   const [finish, setFinish] = useState(false); // finish되지 않은 상태로 초기설정
 
@@ -147,7 +153,7 @@ const ExLiterature = ({ navigation, route}) => {
       <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center", 
       alignItems: "center", }} >
 
-      <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {id} </Text>   
+      <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text>   
 
         <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 100, }}>
           <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
@@ -192,6 +198,8 @@ const ExLiterature = ({ navigation, route}) => {
         {/* 세로줄 */}
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
         <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
+        {/* {category==="new"? <MarkNew id={id}/>:null} */}
+        
 
         </View>
         </ViewShot>
