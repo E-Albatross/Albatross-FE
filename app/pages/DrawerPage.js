@@ -11,13 +11,14 @@ import {
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
 
-export default class DrawerPage extends Component {
-  render() {
+import literList from "../components/ExLiterature/literList";
+
+const DrawerPage = ({navigation}) => {
     return (
       <View style={styles.container}>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("MAIN")}
+            onPress={() => navigation.navigate("MAIN")}
             style={styles.iconbutton}
           >
             <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
@@ -38,30 +39,23 @@ export default class DrawerPage extends Component {
         </Text>
 
         <View style={styles.literatureRow}>
-          {/* 여기서부터는 따로 js파일 작업 필요. 일단 복붙으로 처리 */}
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("CAPTURE")}
-            style={styles.iconbutton}
-          >
-            <Image source={literature} />
-          </TouchableOpacity>
+        {literList.new.map(s=>(
+            <TouchableOpacity key={s.id}
+              onPress={() => navigation.navigate("CAPTURE",{
+                category: "new",
+                id: s.id,
+                text: s.text,
+              })}
+              style={styles.iconbutton} >
+              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
     );
-  }
 }
+
+export default DrawerPage;
 
 const styles = StyleSheet.create({
   // 배경색 넣은 컨테이너
@@ -91,5 +85,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  grid:{
+
   },
 });
