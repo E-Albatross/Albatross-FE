@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 
 import home from "../assets/home.png";
@@ -38,19 +39,26 @@ const DrawerPage = ({navigation}) => {
           내 서랍{" "}
         </Text>
 
-        <View style={styles.literatureRow}>
-        {literList.new.map(s=>(
-            <TouchableOpacity key={s.id}
+        <FlatList
+        data={literList.new}
+        columnWrapperStyle={{
+          marginBottom: 20,
+        }}
+        renderItem={({item}) => 
+            <TouchableOpacity key={item.id}
               onPress={() => navigation.navigate("CAPTURE",{
                 category: "new",
-                id: s.id,
-                text: s.text,
+                id: item.id,
+                text: item.text,
               })}
               style={styles.iconbutton} >
               <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
             </TouchableOpacity>
-          ))}
-        </View>
+      }
+        keyExtractor={(item, index) => index}
+        numColumns={3}
+      />
+          
       </View>
     );
 }
