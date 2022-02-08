@@ -4,6 +4,7 @@ import { StyleSheet, View, Button, Text,
   Image, TouchableOpacity,
 } from "react-native";
 import SignatureScreen from "react-native-signature-canvas";
+import { Canvas, CanvasRef, DrawingTool } from '@benjeau/react-native-draw';
 
 //스크린샷
 import ViewShot, { captureScreen } from "react-native-view-shot";
@@ -21,18 +22,16 @@ import Word from "../components/Word";
 
 
 const ExWord = ({ navigation }) => {
-  
-  const ref = useRef();
-  const handleOK = (signature) => { handleOK(signature); };
-  const handleClear = () => { ref.current.clearSignature(); };
-  const handleUndo = () => { ref.current.undo(); };
-  const handleRedo = () => { ref.current.redo(); };
-  const handleDraw = () => { ref.current.draw(); };
-  const handleErase = () => { ref.current.erase(); };
-
-  const style = `.m-signature-pad { border: none; margin-top: 0px; margin-left: 0px; height: 1300px;} 
-  .m-signature-pad--body {border: none;}
-  .m-signature-pad--footer {display: none; margin: 0px;}`;
+  //draw
+  const canvasRef = useRef();
+  const [tool, setTool] = useState(DrawingTool.Brush);
+  const handleUndo = () => { canvasRef.current?.undo(); };
+  const handleClear = () => { canvasRef.current?.clear(); };
+  const handleToggleEraser = () => {
+    setTool((prev) =>
+      prev === DrawingTool.Brush ? DrawingTool.Eraser : DrawingTool.Brush
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -45,24 +44,16 @@ const ExWord = ({ navigation }) => {
           <Image style={{ marginLeft: 20 }} source={home} />
         </TouchableOpacity>
         <View style={styles.headerSubRow}>
-          <TouchableOpacity onPress={handleDraw} style={styles.iconbutton}>
-            <Image source={pen} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleErase} style={styles.iconbutton}>
-            <Image source={erase} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
-            <Image source={arrow} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleRedo} style={styles.iconbutton}>
-            <Image source={arrow2} />
-          </TouchableOpacity>
+              <TouchableOpacity onPress={handleToggleEraser} style={styles.iconbutton}>
+                 { tool === DrawingTool.Brush ? 
+                 <Image source={erase} /> : <Image source={pen}/>}
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
+                <Image source={arrow} />
+              </TouchableOpacity>
         </View>
       </View>
-      {/* 캔버스보드 부분 */}
-      <View style={{ height: 1300, width: 1000, position: "absolute", left: 0, top: 70,}} >
-        <SignatureScreen ref={ref} onOK={handleOK} webStyle={style}/>
-      </View>
+    
 
       {/* 가로줄 */}
       <View style={{width: "100%", height: 1, backgroundColor: "#C4C4C4", position: "absolute", left: 0, top: 135,}}/>
@@ -119,20 +110,20 @@ const ExWord = ({ navigation }) => {
       <Text style={{ position: "absolute", left: 15, top: 810, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", }}>ㅍ</Text>
       <Text style={{ position: "absolute", left: 15, top: 875, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", }}>ㅎ</Text>
 
-      <Text style={{ position: "absolute", left: 80, top: 30, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㄱ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 95, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㄴ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 160, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㄷ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 225, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㄹ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 290, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅁ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 355, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅂ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 420, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅅ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 485, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅇ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 550, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅈ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 615, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅊ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 680, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅋ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 745, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅌ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 810, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅍ</Text>
-      <Text style={{ position: "absolute", left: 80, top: 875, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅎ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 30, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㄱ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 95, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㄴ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 160, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㄷ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 225, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㄹ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 290, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅁ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 355, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅂ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 420, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅅ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 485, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅇ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 550, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅈ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 615, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅊ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 680, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅋ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 745, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅌ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 810, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅍ</Text>
+      <Text style={{ position: "absolute", left: 80, top: 875, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅎ</Text>
 
       {/* 모음 */}
       <Text style={{ position: "absolute", left: 405, top: 30, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", }}>ㅏ</Text>
@@ -146,17 +137,27 @@ const ExWord = ({ navigation }) => {
       <Text style={{ position: "absolute", left: 405, top: 550, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", }}>ㅡ</Text>
       <Text style={{ position: "absolute", left: 405, top: 615, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", }}>ㅣ</Text>
 
-      <Text style={{ position: "absolute", left: 470, top: 30, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅏ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 95, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅑ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 160, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅓ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 225, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅕ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 290, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅗ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 355, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅛ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 420, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅜ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 485, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅠ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 550, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅡ</Text>
-      <Text style={{ position: "absolute", left: 470, top: 615, fontSize: 40, textAlign: "center", paddingTop: 50, fontWeight: "bold", opacity: 0.3,}}>ㅣ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 30, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅏ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 95, fontSize: 40, textAlign: "center", paddingTop: 50, opacity: 0.3,}}>ㅑ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 160, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅓ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 225, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅕ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 290, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅗ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 355, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅛ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 420, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅜ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 485, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅠ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 550, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅡ</Text>
+      <Text style={{ position: "absolute", left: 470, top: 615, fontSize: 40, textAlign: "center", paddingTop: 50,  opacity: 0.3,}}>ㅣ</Text>
 
+      {/* 캔버스보드 부분 */}
+      <View style={{ height: 1300, width: 1000, position: "absolute", left: 0, top: 70,}} >
+      <Canvas
+            ref={canvasRef}
+            color="black"
+            tool={tool}
+            eraserSize={5}
+            style={{ backgroundColor: 'transparent', height: 1300, width: 1000, position: "absolute" }}
+          />
+      </View>
       
     </View>
   );
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#80AE92",
   },
   headerSubRow: {
-    width: "35%",
+    width: "15%",
     marginRight: 20,
     height: 70,
     display: "flex",
