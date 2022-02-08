@@ -3,7 +3,9 @@ import { StyleSheet, View, Button, Text,
   SafeAreaView, PermissionsAndroid, Platform,
   Image, TouchableOpacity, Modal
 } from "react-native";
+//ㅋㅐㄴ버스
 import SignatureScreen from "react-native-signature-canvas";
+import { Canvas, CanvasRef, DrawingTool } from '@benjeau/react-native-draw';
 
 //스크린샷
 import ViewShot, { captureScreen } from "react-native-view-shot";
@@ -27,8 +29,6 @@ import MarkNew from "../components/ExLiterature/MarkNew";
 import MarkBest from "../components/ExLiterature/MarkBest";
 
 const ExLiterature = ({ navigation, route}) => {
-  const ref = useRef();
-
   // category: "new",
   // id: s.id,
   const category = route.params.category;
@@ -40,16 +40,16 @@ const ExLiterature = ({ navigation, route}) => {
   //모달창
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleOK = (signature) => { handleOK(signature); };
-  const handleClear = () => { ref.current.clearSignature(); };
-  const handleUndo = () => { ref.current.undo(); };
-  const handleRedo = () => { ref.current.redo(); };
-  const handleDraw = () => { ref.current.draw(); };
-  const handleErase = () => { ref.current.erase(); };
-
-  const style = `.m-signature-pad { border: none; box-shadow: none; margin-top: 0px; margin-left: 0px; height: 1300px;} 
-  .m-signature-pad--body {border: none; opacity: 80; backgroundColor: #F9F9F9;}
-  .m-signature-pad--footer {display: none; margin: 0px;}`;
+  //draw
+  const canvasRef = useRef();
+  const [tool, setTool] = useState(DrawingTool.Brush);
+  const handleUndo = () => { canvasRef.current?.undo(); };
+  const handleClear = () => { canvasRef.current?.clear(); };
+  const handleToggleEraser = () => {
+    setTool((prev) =>
+      prev === DrawingTool.Brush ? DrawingTool.Eraser : DrawingTool.Brush
+    );
+  };
 
   //스크린샷 캡쳐 위한 코드
   const captureRef = useRef();
@@ -95,17 +95,12 @@ const ExLiterature = ({ navigation, route}) => {
         <View style={styles.headerSubRow}>
           { finish == false ?
             (<>
-              <TouchableOpacity onPress={handleDraw} style={styles.iconbutton}>
-                <Image source={pen} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handleErase} style={styles.iconbutton}>
-                <Image source={erase} />
+               <TouchableOpacity onPress={handleToggleEraser} style={styles.iconbutton}>
+                 { tool === DrawingTool.Brush ? 
+                 <Image source={erase} /> : <Image source={pen}/>}
               </TouchableOpacity>
               <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
                 <Image source={arrow} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handleRedo} style={styles.iconbutton}>
-                <Image source={arrow2} />
               </TouchableOpacity>
               {/* //; setFinish(true); */}
               <TouchableOpacity onPress={onSave} style={styles.iconbutton}>
@@ -149,59 +144,45 @@ const ExLiterature = ({ navigation, route}) => {
       
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
+        <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
+          <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
+          <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
+          <Canvas
+            ref={canvasRef}
+            height={900}
+            width={900}
+            color="black"
+            tool={tool}
+            eraserSize={5}
+            style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%" }}
+          />
 
-      <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center", 
-      alignItems: "center", }} >
+            {/* 가로줄 */}
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 100, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 150, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 200, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 250, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 300, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 350, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 400, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 450, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 500, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 550, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 600, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 650, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 700, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 750, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 800, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 850, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 900, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 950, }} />
 
-      <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text>   
-
-        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 100, }}>
-          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
-        </View>
-        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 250, }}>
-          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
-        </View>
-        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 400, }}>
-          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
-        </View>
-        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 550, }}>
-          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
-        </View>
-        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 700, }}>
-          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
-        </View>
-        <View style={{ height: 100, width: "85%", position: "absolute", left: "-42%", top: 850, }}>
-          <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
-        </View>
-
-        {/* 가로줄 */}
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 100, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 150, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 200, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 250, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 300, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 350, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 400, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 450, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 500, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 550, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 600, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 650, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 700, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 750, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 800, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 850, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 900, }} />
-        <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 950, }} />
-
-        {/* 세로줄 */}
-        <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
-        <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
-        {/* {category==="new"? <MarkNew id={id}/>:null} */}
-        
-
-        </View>
+            {/* 세로줄 */}
+            <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
+            <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
+            {/* {category==="new"? <MarkNew id={id}/>:null} */}
+          </View>
         </ViewShot>
     </View>
   );
@@ -238,7 +219,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   headerSubRow: {
-    width: "35%",
+    width: "25%",
     marginRight: 20,
     height: 70,
     display: "flex",
