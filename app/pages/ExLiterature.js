@@ -25,10 +25,7 @@ import literList from "../components/ExLiterature/literList";
 
 //ㄴㅡ끼ㅁ표 모모달
 import markIcon from "../assets/markIcon.png";
-import mList_new from "../components/ExLiterature/mList_new";
-import mList_best from "../components/ExLiterature/mList_best";
-import MarkNew from "../components/ExLiterature/MarkNew";
-import MarkBest from "../components/ExLiterature/MarkBest";
+import markList from "../components/ExLiterature/markList";
 
 const ExLiterature = ({ navigation, route}) => {
   // category: "new",
@@ -162,12 +159,11 @@ const ExLiterature = ({ navigation, route}) => {
             </Modal>
       {/* 모달창 코드 끝 */}
 
-      <Name name={"제목"} />
+      <Name name={id} />
       
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
         <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-        <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: -50, lineHeight: 150, width: "85%"}}> {id} </Text> 
           <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
           <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
           <Canvas
@@ -205,7 +201,7 @@ const ExLiterature = ({ navigation, route}) => {
             <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
             <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
 
-            {mList_new.first.map((s)=>(
+            {markList.mark.map((s)=>(
             <TouchableOpacity key={s.id} style={styles.iconbutton}
             onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
                 <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
