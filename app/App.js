@@ -28,7 +28,7 @@ function App() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="MAIN" component={MainPage} />
-        <Stack.Screen name="CAPTURE" component={ExLiterature} />
+        <Stack.Screen name="LITER" component={ExLiterature} />
         <Stack.Screen name="DRAWER" component={DrawerPage} />
 
         <Stack.Screen name="PROFILE_LOGIN" component={Profile_login} />

@@ -113,7 +113,7 @@ const MainPage = ({navigation}) => {
         <View style={styles.literatureRow}>
         {literList.new.map(s=>(
             <TouchableOpacity key={s.id}
-              onPress={() => navigation.navigate("CAPTURE",{
+              onPress={() => navigation.navigate("LITER",{
                 category: "new",
                 id: s.id,
                 text: s.text,
@@ -132,9 +132,9 @@ const MainPage = ({navigation}) => {
 
         <ScrollView style={styles.scrollView}> 
         <View style={styles.literatureRow}>
-        {literList.new.map(s=>(
+        {literList.best.map(s=>(
             <TouchableOpacity key={s.id}
-              onPress={() => navigation.navigate("CAPTURE",{
+              onPress={() => navigation.navigate("LITER",{
                 category: "best",
                 id: s.id,
                 text: s.text,
