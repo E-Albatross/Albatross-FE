@@ -5,12 +5,13 @@ import markIcon from "../../assets/markIcon.png";
 import mList_new from "./mList_new";
 
 // {id:1, xPos: 100, yPos: 100, text: "글자크기를 키워보세요!"},
-const markNew = (id)=> {
+const MarkNew = (id)=> {
   // 느낌표 마크 모달창
   const [markModal, setMarkModal] = useState(false);
+  const literId = id;
     return (
       <View style={styles.container}>
-          {mList_new.first.map(s=>(
+          {mList_new.first.map((s)=>(
             <TouchableOpacity key={s.id} style={styles.iconbutton}>
               {/* onPress={() => setModalVisible(true)} */}
                 <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
@@ -31,7 +32,7 @@ const markNew = (id)=> {
     );
   };
   
-  export default markNew;
+  export default MarkNew;
   
   const styles = StyleSheet.create({
     container: {

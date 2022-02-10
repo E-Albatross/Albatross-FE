@@ -22,9 +22,11 @@ import confirm from "../assets/confirm.png";
 //컴포넌트
 import Name from "../components/ExLiterature/Liter_name";
 import literList from "../components/ExLiterature/literList";
+
+//ㄴㅡ끼ㅁ표 모모달
+import markIcon from "../assets/markIcon.png";
 import mList_new from "../components/ExLiterature/mList_new";
 import mList_best from "../components/ExLiterature/mList_best";
-
 import MarkNew from "../components/ExLiterature/MarkNew";
 import MarkBest from "../components/ExLiterature/MarkBest";
 
@@ -35,10 +37,16 @@ const ExLiterature = ({ navigation, route}) => {
   const id = route.params.id;
   const text = route.params.text;
 
-  const [finish, setFinish] = useState(false); // finish되지 않은 상태로 초기설정
+  // id를 first, second, third
+
+
+  // finish되지 않은 상태로 초기설정
+  const [finish, setFinish] = useState(false);
 
   //모달창
   const [modalVisible, setModalVisible] = useState(false);
+  const [markModal, setMarkModal] = useState(false);
+  const [markModalText, setMarkModalText] = useState("빈칸");
 
   //draw
   const canvasRef = useRef();
@@ -77,9 +85,13 @@ const ExLiterature = ({ navigation, route}) => {
       toast("갤러리 접근 권한이 없어요");
       return;
     }
+    setFinish(true);
+    console.log(finish);
+
     const uri = await getPhotoUri();
     const result = await CameraRoll.save(uri);
     console.log("🐤result", result);
+    
   };
 
   return (
@@ -93,7 +105,7 @@ const ExLiterature = ({ navigation, route}) => {
           <Image style={{ marginLeft: 20 }} source={home} />
         </TouchableOpacity>
         <View style={styles.headerSubRow}>
-          { finish == false ?
+          { finish === false ?
             (<>
                <TouchableOpacity onPress={handleToggleEraser} style={styles.iconbutton}>
                  { tool === DrawingTool.Brush ? 
@@ -102,7 +114,6 @@ const ExLiterature = ({ navigation, route}) => {
               <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
                 <Image source={arrow} />
               </TouchableOpacity>
-              {/* //; setFinish(true); */}
               <TouchableOpacity onPress={onSave} style={styles.iconbutton}>
                 <Image source={confirm} />
               </TouchableOpacity> 
@@ -138,6 +149,17 @@ const ExLiterature = ({ navigation, route}) => {
           <View style={styles.modalPage}></View>
         </View>
       </Modal>
+
+      <Modal animationType='slide' transparent={true} visible={markModal}>
+              <View style={styles.markModalContainer}>
+                <View style={styles.markModalText}> 
+                  <Text style={{ fontSize: 20, letterSpacing: 2, textAlign: "center", marginTop:"13%"}} > {markModalText} </Text> 
+                </View>
+                  <TouchableOpacity onPress={() => setMarkModal(false)} style={{marginBottom: 1, width: "100%", height: "20%", backgroundColor: "#80AE92", borderRadius: 10,}}>
+                      <Text style={{ fontSize: 20, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", }} > 확인 </Text>
+                  </TouchableOpacity>
+              </View>
+            </Modal>
       {/* 모달창 코드 끝 */}
 
       <Name name={"제목"} />
@@ -145,8 +167,9 @@ const ExLiterature = ({ navigation, route}) => {
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
         <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-          <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
-          <Text style={{ fontSize: 25, letterSpacing: 5, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
+        <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: -50, lineHeight: 150, width: "85%"}}> {id} </Text> 
+          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
+          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
           <Canvas
             ref={canvasRef}
             height={900}
@@ -181,7 +204,13 @@ const ExLiterature = ({ navigation, route}) => {
             {/* 세로줄 */}
             <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
             <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
-            {/* {category==="new"? <MarkNew id={id}/>:null} */}
+
+            {mList_new.first.map((s)=>(
+            <TouchableOpacity key={s.id} style={styles.iconbutton}
+            onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
+                <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
+            </TouchableOpacity>
+            ))}
           </View>
         </ViewShot>
     </View>
@@ -220,7 +249,7 @@ const styles = StyleSheet.create({
   },
   headerSubRow: {
     width: "25%",
-    marginRight: 20,
+    marginRight: 50,
     height: 70,
     display: "flex",
     flexDirection: "row",
@@ -230,10 +259,10 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     width: "80%",
-    height: "75%",
-    top: "15%",
+    height: "80%",
+    top: "11%",
     left: "10%",
-    borderWidth: 0.5,
+    borderWidth: 0.3,
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
@@ -248,10 +277,28 @@ const styles = StyleSheet.create({
   modalPage: {
     width: "100%",
     height: "30%",
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
+    borderTopWidth: 0.3,
+    borderRightWidth: 0.3,
+    borderBottomWidth: 0.3,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#F7F8F7",
+  },
+  markModalContainer: {
+    width: "60%",
+    height: "15%",
+    top: "42.5%",
+    left: "20%",
+    borderWidth: 0.5,
+    borderRadius: 10,
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+  },
+  markModalText: {
+    width: "100%",
+    height: "80%",
+    flexDirection: "column",
+    alignItems: "center",
   },
 });
