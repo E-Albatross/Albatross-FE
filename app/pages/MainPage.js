@@ -109,7 +109,7 @@ const MainPage = ({navigation}) => {
           <View style={styles.line}></View>
         </View>
 
-        <ScrollView style={styles.scrollView}> 
+        <ScrollView style={styles.scrollView} indicatorStyle={"white"}> 
         <View style={styles.literatureRow}>
         {literList.new.map(s=>(
             <TouchableOpacity key={s.id}
@@ -130,7 +130,7 @@ const MainPage = ({navigation}) => {
           <View style={styles.line}></View>
         </View>
 
-        <ScrollView style={styles.scrollView}> 
+        <ScrollView style={styles.scrollView} indicatorStyle={"white"}> 
         <View style={styles.literatureRow}>
         {literList.best.map(s=>(
             <TouchableOpacity key={s.id}
