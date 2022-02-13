@@ -27,7 +27,7 @@ import literList from "../components/ExLiterature/literList";
 import markIcon from "../assets/markIcon.png";
 import markList from "../components/ExLiterature/markList";
 
-const ExLiterature = ({ navigation, route}) => {
+const ExLiteratureNew = ({ navigation, route}) => {
   // category: "new",
   // id: s.id,
   const category = route.params.category;
@@ -101,9 +101,10 @@ const ExLiterature = ({ navigation, route}) => {
         >
           <Image style={{ marginLeft: 20 }} source={home} />
         </TouchableOpacity>
-        <View style={styles.headerSubRow}>
-          { finish === false ?
+        
+          { finish === true ?
             (<>
+            <View style={styles.headerSubRow}>
                <TouchableOpacity onPress={handleToggleEraser} style={styles.iconbutton}>
                  { tool === DrawingTool.Brush ? 
                  <Image source={erase} /> : <Image source={pen}/>}
@@ -114,9 +115,11 @@ const ExLiterature = ({ navigation, route}) => {
               <TouchableOpacity onPress={onSave} style={styles.iconbutton}>
                 <Image source={confirm} />
               </TouchableOpacity> 
+              </View>
             </> 
             ): (
             <>
+            <View style={styles.headerSubRow}>
               <TouchableOpacity
                 onPress={() => setModalVisible(true)}
                 style={{ height: 60 }}>
@@ -127,9 +130,10 @@ const ExLiterature = ({ navigation, route}) => {
               style={{ height: 60 }}>
               <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginRight: 20}} > 확인 </Text>
             </TouchableOpacity>
+            </View>
           </>)
         }
-        </View>
+        
       </View>
 
       {/* 모달창 */}
@@ -164,8 +168,8 @@ const ExLiterature = ({ navigation, route}) => {
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
         <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
-          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
+          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
+          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
           <Canvas
             ref={canvasRef}
             height={900}
@@ -213,7 +217,7 @@ const ExLiterature = ({ navigation, route}) => {
   );
 };
 
-export default ExLiterature;
+export default ExLiteratureNew;
 
 const styles = StyleSheet.create({
   container: {
@@ -234,6 +238,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#80AE92",
+  },
+  titleRow: {
+    width: "100%",
+    height: 70,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   name: {
     width: "100%",
