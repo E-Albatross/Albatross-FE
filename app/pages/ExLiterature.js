@@ -102,7 +102,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
           <Image style={{ marginLeft: 20 }} source={home} />
         </TouchableOpacity>
         
-          { finish === true ?
+          { finish === false ?
             (<>
             <View style={styles.headerSubRow}>
                <TouchableOpacity onPress={handleToggleEraser} style={styles.iconbutton}>
