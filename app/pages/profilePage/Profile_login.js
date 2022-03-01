@@ -1,28 +1,18 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
-  Text, View, Button, StyleSheet, Image,
+  Text, View, StyleSheet, Image,
   TouchableOpacity, Modal
 } from "react-native";
 
 import home from "../../assets/home.png";
-import literature from "../../assets/literature.png";
 
 //텍스트 슬라이더
 import Slider from '@react-native-community/slider';
 
-import SwitchToggle from "react-native-switch-toggle";
-import ToggleSwitch from 'toggle-switch-react-native';
-
 const Profile_login = ({navigation}) => {
-  const [OnOff, setOnOff] = useState(true);
   //모달창
   const [modalVisible, setModalVisible] = useState(false)
-  const openModal = () => {
-    setModalVisible(true)
-  }
-  const closeModal = () => {
-    setModalVisible(false)
-  }
+
   //슬라이더 폰트사이즈
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [userFont,setFont] = useState("NotoSansKR-Light"); // 초기 폰트 설정
