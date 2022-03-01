@@ -24,7 +24,8 @@ const Profile_login = ({navigation}) => {
     setModalVisible(false)
   }
   //슬라이더 폰트사이즈
-  const [userFont,setFont] = useState(25); // 초기값을 폰트사이즈 25로 설정
+  const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+  const [userFont,setFont] = useState("NotoSansKR-Light"); // 초기 폰트 설정
     return (
       <View style={styles.container}>
         {/* 모달창 */}
@@ -91,7 +92,7 @@ const Profile_login = ({navigation}) => {
         <View style={styles.subTitleBox}>
           <Text style={{color: "#808080",fontSize: 20,marginTop: 30, marginBottom: 10, }} > 기본 값 설정 </Text>
         </View>
-        <View style={styles.settingBox}>
+        <View style={styles.informBox}>
           <View style={styles.settingText}> 
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
@@ -101,8 +102,8 @@ const Profile_login = ({navigation}) => {
                 style={{width: 200, height: 40}}
                 minimumValue={20}
                 maximumValue={30}
-                value={userFont}
-                onValueChange={(value)=>setFont(value)} // 슬라이더 움직일 때 출력값 반환
+                value={userSize}
+                onValueChange={(value)=>setSize(value)} // 슬라이더 움직일 때 출력값 반환
                 minimumTrackTintColor="#80AE92"
                 maximumTrackTintColor="#80AE92"
               />
@@ -120,24 +121,11 @@ const Profile_login = ({navigation}) => {
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, }} > HS유지체 </Text>                                                      
           </TouchableOpacity>
           </View>
-          <View style={styles.line}></View>
-          <View style={styles.settingText}> 
-            <Text
-              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", marginTop:"2%", marginRight:"2%" }} > 실시간 검사 </Text>
-            <SwitchToggle
-              switchOn={OnOff}
-              onPress={() => setOnOff(!OnOff)}
-              circleColorOff='#FFFFFF'
-              circleColorOn='#FFFFFF'
-              backgroundColorOn='#80AE92'
-              backgroundColorOff='#80AE92'
-            />
-          </View>
         </View>
 
         {/* 미리보기상자 */}
         <View style={styles.previewBox}>
-          <Text style={{fontSize: userFont}}> 이곳에 미리보기 내용이 출력됩니다. </Text>
+          <Text style={{fontSize: userSize}}> 이곳에 미리보기 내용이 출력됩니다. </Text>
         </View>
 
         {/* 확인, 로그아웃 상자 */}
