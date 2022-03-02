@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text, View, StyleSheet, Image,
   TouchableOpacity, Modal
 } from "react-native";
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import home from "../../assets/home.png";
 
@@ -14,8 +16,29 @@ const Profile_login = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false)
 
   //슬라이더 폰트사이즈
+  // const preSize = route.params.userSize;
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [userFont,setFont] = useState("NotoSansKR-Light"); // 초기 폰트 설정
+
+  // 유저 사이즈 앱에 저장
+  const saveSize= async (userSize) => {
+    try {
+      await AsyncStorage.setItem('userSize', String(userSize))
+      console.log(String(userSize));
+    } catch (e) {
+      // saving error
+    }
+  }
+
+  useEffect(() => {
+    AsyncStorage.getItem('userSize').then((size)=>{
+      if(size!=null){
+        setSize(Number(size));
+        console.log(size);
+      } else setSize(25);
+    })
+  },[]);
+
     return (
       <View style={styles.container}>
         {/* 모달창 */}
@@ -121,7 +144,7 @@ const Profile_login = ({navigation}) => {
         {/* 확인, 로그아웃 상자 */}
         <View style={styles.ButtonBox}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("MAIN")}
+            onPress={() => {navigation.navigate("MAIN"); saveSize(userSize);}}
             style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight:40, }} >
             <Text
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.

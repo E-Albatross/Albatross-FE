@@ -12,7 +12,6 @@ import literList from "../components/ExLiterature/literList";
 import { Font } from 'expo';
 
 const MainPage = ({navigation}) => {
-
   const [isReady, setIsReady] = useState(true);
  
   // useEffect(async () => {
