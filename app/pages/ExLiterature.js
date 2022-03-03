@@ -1,8 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, Text,
   PermissionsAndroid, Platform,
   Image, TouchableOpacity, Modal
 } from "react-native";
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //캔버스
 import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
@@ -28,9 +30,20 @@ import markList from "../components/ExLiterature/markList";
 const ExLiteratureNew = ({ navigation, route}) => {
   // category: "new",
   // id: s.id,
+  const category = route.params.category;
   const id = route.params.id;
   const text = route.params.text;
-  const userSize = route.params.userSize;
+
+  const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+
+  useEffect(() => {
+    AsyncStorage.getItem('userSize').then((size)=>{
+      if(size!=null){
+        setSize(Number(size));
+        console.log(size);
+      } else setSize(25);
+    })
+  },[]);
 
   // id를 first, second, third
 
@@ -93,7 +106,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
       {/* 헤더부분 */}
       <View style={styles.headerRow}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("MAIN", {userSize: userSize})}
+          onPress={() => navigation.navigate("MAIN")}
           style={styles.iconbutton}
         >
           <Image style={{ marginLeft: 20 }} source={home} />
@@ -123,7 +136,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
                 <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginLeft: 100}} > 다운로드 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-              onPress={() => navigation.navigate("MAIN", {userSize: userSize})}
+              onPress={() => navigation.navigate("MAIN")}
               style={{ height: 60 }}>
               <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginRight: 20}} > 확인 </Text>
             </TouchableOpacity>
