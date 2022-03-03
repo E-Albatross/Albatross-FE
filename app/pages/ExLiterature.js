@@ -1,14 +1,16 @@
-import React, { useState, Component, useRef } from "react";
-import { StyleSheet, View, Button, Text,
-  SafeAreaView, PermissionsAndroid, Platform,
+import React, { useState, useRef, useEffect } from "react";
+import { StyleSheet, View, Text,
+  PermissionsAndroid, Platform,
   Image, TouchableOpacity, Modal
 } from "react-native";
-//ㅋㅐㄴ버스
-import SignatureScreen from "react-native-signature-canvas";
-import { Canvas, CanvasRef, DrawingTool } from '@benjeau/react-native-draw';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+//캔버스
+import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
 
 //스크린샷
-import ViewShot, { captureScreen } from "react-native-view-shot";
+import ViewShot from "react-native-view-shot";
 import CameraRoll from "@react-native-community/cameraroll";
 
 //이미지 파일들
@@ -16,12 +18,10 @@ import home from "../assets/home.png";
 import pen from "../assets/pen.png";
 import erase from "../assets/erase.png";
 import arrow from "../assets/arrow.png";
-import arrow2 from "../assets/arrow2.png";
 import confirm from "../assets/confirm.png";
 
 //컴포넌트
 import Name from "../components/ExLiterature/Liter_name";
-import literList from "../components/ExLiterature/literList";
 
 //ㄴㅡ끼ㅁ표 모모달
 import markIcon from "../assets/markIcon.png";
@@ -33,6 +33,17 @@ const ExLiteratureNew = ({ navigation, route}) => {
   const category = route.params.category;
   const id = route.params.id;
   const text = route.params.text;
+
+  const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+
+  useEffect(() => {
+    AsyncStorage.getItem('userSize').then((size)=>{
+      if(size!=null){
+        setSize(Number(size));
+        console.log(size);
+      } else setSize(25);
+    })
+  },[]);
 
   // id를 first, second, third
 
@@ -49,7 +60,6 @@ const ExLiteratureNew = ({ navigation, route}) => {
   const canvasRef = useRef();
   const [tool, setTool] = useState(DrawingTool.Brush);
   const handleUndo = () => { canvasRef.current?.undo(); };
-  const handleClear = () => { canvasRef.current?.clear(); };
   const handleToggleEraser = () => {
     setTool((prev) =>
       prev === DrawingTool.Brush ? DrawingTool.Eraser : DrawingTool.Brush
@@ -102,7 +112,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
           <Image style={{ marginLeft: 20 }} source={home} />
         </TouchableOpacity>
         
-          { finish === true ?
+          { finish === false ?
             (<>
             <View style={styles.headerSubRow}>
                <TouchableOpacity onPress={handleToggleEraser} style={styles.iconbutton}>
@@ -168,8 +178,8 @@ const ExLiteratureNew = ({ navigation, route}) => {
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
         <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
-          <Text style={{ fontSize: 25, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
+          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
+          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
           <Canvas
             ref={canvasRef}
             height={900}

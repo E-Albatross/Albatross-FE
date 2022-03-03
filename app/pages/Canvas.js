@@ -11,7 +11,6 @@ const Canvas = ({ onOK }) => {
   const ref = useRef();
 
   const handleOK = (signature) => { onOK(signature); };
-  const handleClear = () => { ref.current.clearSignature(); };
   const handleUndo = () => { ref.current.undo(); };
   const handleRedo = () => { ref.current.redo(); };
   const handleDraw = () => { ref.current.draw(); };

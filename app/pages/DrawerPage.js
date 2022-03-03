@@ -1,12 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import {
-  Text,
-  View,
-  Button,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList,
+  Text, View, StyleSheet, Image,
+  TouchableOpacity, FlatList,
 } from "react-native";
 
 import home from "../assets/home.png";
@@ -46,13 +41,13 @@ const DrawerPage = ({navigation}) => {
         }}
         renderItem={({item}) => 
             <TouchableOpacity key={item.id}
-              onPress={() => navigation.navigate("CAPTURE",{
-                category: "new",
-                id: item.id,
-                text: item.text,
-              })}
+              // onPress={() => navigation.navigate("CAPTURE",{
+              //   category: "new",
+              //   id: item.id,
+              //   text: item.text,
+              // })}
               style={styles.iconbutton} >
-              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+              <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
             </TouchableOpacity>
       }
         keyExtractor={(item, index) => index}
@@ -93,8 +88,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  grid:{
-
   },
 });

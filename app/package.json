@@ -12,6 +12,7 @@
   "dependencies": {
     "@benjeau/react-native-draw": "^0.7.0",
     "@benjeau/react-native-draw-extras": "^0.1.0",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/cameraroll": "^4.1.2",
     "@react-native-community/slider": "^4.1.12",
     "@react-native-picker/picker": "^2.2.1",
@@ -34,6 +35,8 @@
     "react-native-view-shot": "^3.1.2",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
     "toggle-switch-react-native": "^3.3.0"
   },
   "devDependencies": {
