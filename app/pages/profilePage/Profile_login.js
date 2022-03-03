@@ -3,39 +3,83 @@ import {
   Text, View, StyleSheet, Image,
   TouchableOpacity, Modal
 } from "react-native";
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import home from "../../assets/home.png";
+import { Font } from 'expo';
 
 //텍스트 슬라이더
 import Slider from '@react-native-community/slider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+import home from "../../assets/home.png";
+
+
 
 const Profile_login = ({navigation}) => {
   //모달창
   const [modalVisible, setModalVisible] = useState(false)
 
-  //슬라이더 폰트사이즈
-  // const preSize = route.params.userSize;
+  // 유저 폰트 사이즈
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
-  const [userFont,setFont] = useState("NotoSansKR-Light"); // 초기 폰트 설정
 
   // 유저 사이즈 앱에 저장
   const saveSize= async (userSize) => {
     try {
       await AsyncStorage.setItem('userSize', String(userSize))
-      console.log(String(userSize));
     } catch (e) {
       // saving error
     }
   }
 
+  // 유저 사이즈 가져옴
   useEffect(() => {
     AsyncStorage.getItem('userSize').then((size)=>{
       if(size!=null){
         setSize(Number(size));
-        console.log(size);
       } else setSize(25);
+    })
+  },[]);
+
+  // 폰트 정보 가져오기
+  useEffect(async () => {
+    await Font.loadAsync({
+        'SF_HambakSnow': require('../../assets/fonts/SF_HambakSnow.ttf'),
+        'ImcreSoojin_Regular': require('../../assets/fonts/ImcreSoojin_Regular.ttf'),
+        'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
+
+        'CWDangamAsac-Bold': require('../../assets/fonts/CWDangamAsac-Bold.ttf'),
+        'HSYuji-Regular': require('../../assets/fonts/HSYuji-Regular.ttf'),
+        'SBAggroB': require('../../assets/fonts/SBAggroB.ttf'),
+
+        'SUIT-Regular': require('../../assets/fonts/SUIT-Regular.ttf'),
+        'KyoboHandwriting2019': require('../../assets/fonts/KyoboHandwriting2019.ttf'),
+        'EliceDigitalBaeum': require('../../assets/fonts/EliceDigitalBaeum.ttf'),
+
+        'CookieRun-Regular': require('../../assets/fonts/CookieRun-Regular.ttf'),
+        'Cafe24Ssurroundair': require('../../assets/fonts/Cafe24Ssurroundair.ttf'),
+        'YUniverse-L': require('../../assets/fonts/YUniverse-L.ttf'),
+
+        'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
+    });
+}, []);
+
+  const [userFont,setFont] = useState("함박눈체"); // 초기 폰트 설정
+  const [fontPath,setPath] = useState("SF_HambakSnow"); // 초기 폰트 설정
+
+  // 폰트 경로 가져옴
+  useEffect(() => {
+    AsyncStorage.getItem('userFont').then((font)=>{
+      if(font!=null){
+        setFont(font);
+      }
+    })
+  },[]);
+
+  //폰트 이름 가져옴
+  useEffect(() => {
+    AsyncStorage.getItem('fontPath').then((font)=>{
+      if(font!=null){
+        setPath(font);
+      }
     })
   },[]);
 
@@ -131,14 +175,14 @@ const Profile_login = ({navigation}) => {
             <TouchableOpacity
             onPress={() => navigation.navigate("FONTPAGE")}
             style={{ marginLeft: "3%", lineHeight: 60, }}>
-            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, }} > HS유지체 </Text>                                                      
+            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, fontFamily: fontPath }} > {userFont}</Text>                                                      
           </TouchableOpacity>
           </View>
         </View>
 
         {/* 미리보기상자 */}
         <View style={styles.previewBox}>
-          <Text style={{fontSize: userSize}}> 이곳에 미리보기 내용이 출력됩니다. </Text>
+          <Text style={{fontSize: userSize, fontFamily: fontPath}}> 가나다라마바사아자차카타파하 </Text>
         </View>
 
         {/* 확인, 로그아웃 상자 */}

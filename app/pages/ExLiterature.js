@@ -36,12 +36,47 @@ const ExLiteratureNew = ({ navigation, route}) => {
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
 
+  // 폰트 정보 가져오기
+  useEffect(async () => {
+    await Font.loadAsync({
+        'SF_HambakSnow': require('../assets/fonts/SF_HambakSnow.ttf'),
+        'ImcreSoojin_Regular': require('../assets/fonts/ImcreSoojin_Regular.ttf'),
+        'NotoSansKR-Regular': require('../assets/fonts/NotoSansKR-Regular.ttf'),
+
+        'CWDangamAsac-Bold': require('../assets/fonts/CWDangamAsac-Bold.ttf'),
+        'HSYuji-Regular': require('../assets/fonts/HSYuji-Regular.ttf'),
+        'SBAggroB': require('../assets/fonts/SBAggroB.ttf'),
+
+        'SUIT-Regular': require('../assets/fonts/SUIT-Regular.ttf'),
+        'KyoboHandwriting2019': require('../assets/fonts/KyoboHandwriting2019.ttf'),
+        'EliceDigitalBaeum': require('../assets/fonts/EliceDigitalBaeum.ttf'),
+
+        'CookieRun-Regular': require('../assets/fonts/CookieRun-Regular.ttf'),
+        'Cafe24Ssurroundair': require('../assets/fonts/Cafe24Ssurroundair.ttf'),
+        'YUniverse-L': require('../assets/fonts/YUniverse-L.ttf'),
+
+        'BMJUA': require('../assets/fonts/YUniverse-L.ttf'),
+    });
+}, []);
+
+
   useEffect(() => {
     AsyncStorage.getItem('userSize').then((size)=>{
       if(size!=null){
         setSize(Number(size));
         console.log(size);
       } else setSize(25);
+    })
+  },[]);
+
+  const [fontPath,setPath] = useState("SF_HambakSnow"); // 초기 폰트 설정
+
+  //폰트 경로 가져옴
+  useEffect(() => {
+    AsyncStorage.getItem('fontPath').then((font)=>{
+      if(font!=null){
+        setPath(font);
+      }
     })
   },[]);
 
@@ -178,8 +213,8 @@ const ExLiteratureNew = ({ navigation, route}) => {
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
         <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%"}}> {text} </Text> 
-          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", color:"#C4C4C4",top:50}}> {text} </Text> 
+          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
           <Canvas
             ref={canvasRef}
             height={900}

@@ -1,19 +1,18 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Text, View, Button, StyleSheet, Image, 
-  TextInput,
+  Text, View, StyleSheet, Image,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import home from "../../assets/home.png";
 
-import * as Font from "expo-font";
+import { Font } from 'expo';
 
 const FontPage = ({navigation}) => {
+
     const [isReady, setIsReady] = useState(true);
 
-    // const [Font, setFont] = useState("NotoSansKR-Light"); // 원래는 서버에서 받아옴. 임의로 설정
- 
     useEffect(async () => {
         await Font.loadAsync({
             'SF_HambakSnow': require('../../assets/fonts/SF_HambakSnow.ttf'),
@@ -38,6 +37,24 @@ const FontPage = ({navigation}) => {
         });
         setIsReady(true);
     }, []);
+    
+
+    // 폰트 한글 이름 저장
+    const saveFont = async (userFont) => {
+        try {
+        await AsyncStorage.setItem('userFont', userFont)
+        } catch (e) {
+        // saving error
+        }
+    }
+    // 폰트 경로 저장
+    const savePath = async (fontPath) => {
+        try {
+        await AsyncStorage.setItem('fontPath', fontPath)
+        } catch (e) {
+        // saving error
+        }
+    }
 
     return (
       <View style={styles.container}>
@@ -58,50 +75,50 @@ const FontPage = ({navigation}) => {
             </View>
             
             <View style={styles.FontRow}>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("수트체"); savePath("SUIT-Regular");}}> 
                     <Text style={{ fontSize: 30,fontFamily: "SUIT-Regular"}}>수트체</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("교보손글씨체"); savePath("KyoboHandwriting2019");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "KyoboHandwriting2019"}}>교보손글씨체</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("앨리스체"); savePath("EliceDigitalBaeum");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "EliceDigitalBaeum"}}>앨리스체</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.FontRow}>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("쿠키런체"); savePath("CookieRun-Regular");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "CookieRun-Regular"}}>쿠키런체</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("카페24체"); savePath("Cafe24Ssurroundair");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "Cafe24Ssurroundair"}}>카페24체</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("Y유니버스체"); savePath("YUniverse-L");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "YUniverse-L"}}>Y유니버스체</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.FontRow}>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("아임크리체"); savePath("ImcreSoojin_Regular");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "ImcreSoojin_Regular"}}>아임크리체</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("주아체"); savePath("BMJUA");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "BMJUA"}}>주아체</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("HS유지체"); savePath("HSYuji-Regular");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "HSYuji-Regular"}}>HS유지체</Text>
                 </TouchableOpacity>
                 
             </View>
 
             <View style={styles.FontRow}>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("노토산스"); savePath("NotoSansKR-Regular");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Regular"}}>노토산스</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("함박눈체"); savePath("SF_HambakSnow");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "SF_HambakSnow"}}>함박눈체</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("PROFILE_LOGIN")}> 
+                <TouchableOpacity onPress={() => {navigation.navigate("PROFILE_LOGIN"); saveFont("어그로체B"); savePath("SBAggroB");}}> 
                     <Text style={{ fontSize: 30, fontFamily: "SBAggroB"}}>어그로체B</Text>
                 </TouchableOpacity>
             </View>
