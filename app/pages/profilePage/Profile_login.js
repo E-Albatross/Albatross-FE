@@ -3,12 +3,11 @@ import {
   Text, View, StyleSheet, Image,
   TouchableOpacity, Modal
 } from "react-native";
-import { Font } from 'expo';
+import * as Font from "expo-font";
 
 //텍스트 슬라이더
 import Slider from '@react-native-community/slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 import home from "../../assets/home.png";
 
@@ -20,6 +19,7 @@ const Profile_login = ({navigation}) => {
 
   // 유저 폰트 사이즈
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+  
 
   // 유저 사이즈 앱에 저장
   const saveSize= async (userSize) => {
@@ -60,6 +60,7 @@ const Profile_login = ({navigation}) => {
 
         'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
     });
+    setIsReady(true);
 }, []);
 
   const [userFont,setFont] = useState("함박눈체"); // 초기 폰트 설정

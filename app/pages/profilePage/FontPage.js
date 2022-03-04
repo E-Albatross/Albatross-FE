@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import home from "../../assets/home.png";
 
-import { Font } from 'expo';
+import * as Font from "expo-font";
 
 const FontPage = ({navigation}) => {
 

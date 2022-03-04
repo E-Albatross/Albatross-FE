@@ -27,6 +27,8 @@ import Name from "../components/ExLiterature/Liter_name";
 import markIcon from "../assets/markIcon.png";
 import markList from "../components/ExLiterature/markList";
 
+import * as Font from "expo-font";
+
 const ExLiteratureNew = ({ navigation, route}) => {
   // category: "new",
   // id: s.id,
