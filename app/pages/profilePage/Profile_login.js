@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Text, View, StyleSheet, Image,
-  TouchableOpacity, Modal,  ScrollView,
+  TouchableOpacity, Modal,  ScrollView, TextInput
 } from "react-native";
 import * as Font from "expo-font";
 
@@ -16,6 +16,10 @@ const Profile_login = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [fontVisible, setFontVisible] = useState(false)
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+
+  const [pw, onChangePW] = useState(null);
+  const [newPw, onChangeNewpw] = useState(null);
+  const [newPw2, onChangeNewpw2] = useState(null);
   
 
   // 유저 사이즈 앱에 저장
@@ -194,14 +198,32 @@ const savePath = async (fontPath) => {
           <Text style={{textAlign: "left",color: "#808080",fontSize: 20,marginTop: 60,marginBottom: 10,}}> 비밀번호 변경 </Text>
         </View>
         <View style={styles.informBox}>
+          <View style={styles.rowBox}>
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
               }} > 현재 비밀번호 </Text>
+              <TextInput style={styles.box}
+                onChangeText={onChangePW}
+                value={pw}
+             />
+          </View>
           <View style={styles.line}></View>
-          <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
+          <View style={styles.rowBox}>
+            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
               }} > 새 비밀번호 </Text>
+              <TextInput style={styles.box}
+                onChangeText={onChangeNewpw}
+                value={newPw}
+             />
+          </View>
           <View style={styles.line}></View>
-          <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
+          <View style={styles.rowBox}>
+            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
               }} > 새 비밀번호 확인 </Text>
+              <TextInput style={styles.box}
+                onChangeText={onChangeNewpw2}
+                value={newPw2}
+             />
+          </View>
         </View>
 
         {/* 기본값설정 상자 */}
@@ -370,5 +392,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#C4C4C4"
+  },
+  rowBox: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  box: {
+    width: "50%",
+    height: "75%",
+    backgroundColor: "#FFFFFF",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginRight:"15%",
+    borderWidth: 1,
+    borderColor:"#80AE92", 
+    fontSize: 22,
   },
 });
