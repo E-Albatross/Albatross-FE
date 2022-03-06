@@ -108,7 +108,8 @@ const savePath = async (fontPath) => {
         <Modal
         animationType='slide'
         transparent={true}
-        visible={modalVisible}>
+        visible={modalVisible}
+        closeOnTouchOutside={true}>
           <View style={styles.modalContainer}>
           <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
                 }}> 로그아웃 하시겠습니까?</Text>
@@ -133,7 +134,8 @@ const savePath = async (fontPath) => {
         <Modal
         animationType='slide'
         transparent={true}
-        visible={fontVisible}>
+        visible={fontVisible}
+        closeOnTouchOutside={true}>
           
           <View style={styles.FontContainer}>
           <ScrollView contentContainerStyle={{justifyContent: "center", alignItems: "center"}}
@@ -216,6 +218,7 @@ const savePath = async (fontPath) => {
              />
           </View>
           <View style={styles.line}></View>
+          <View style={styles.buttonBox}>
           <View style={styles.rowBox}>
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
               }} > 새 비밀번호 확인 </Text>
@@ -224,6 +227,14 @@ const savePath = async (fontPath) => {
                 value={newPw2}
              />
           </View>
+          <TouchableOpacity
+              style={{ height: 40, width: 70, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: "2%"}} >
+              <Text
+                style={{ fontSize: 22, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 40
+                }} >확인 </Text>
+          </TouchableOpacity>
+          </View>
+          
         </View>
 
         {/* 기본값설정 상자 */}
@@ -386,27 +397,32 @@ const styles = StyleSheet.create({
     marginLeft:"25%",
     height: "50%",
     opacity: 1,
-    backgroundColor: "#F7F8F7",
+    backgroundColor: "#F9F9F9",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#C4C4C4"
   },
-  rowBox: {
+  buttonBox: {
     width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  rowBox: {
+    width: "85%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
   box: {
-    width: "50%",
-    height: "75%",
+    width: "60%",
+    height: 40,
     backgroundColor: "#FFFFFF",
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    marginRight:"15%",
+    marginRight:"1%",
     borderWidth: 1,
     borderColor:"#80AE92", 
     fontSize: 22,
