@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Text, View, StyleSheet, Image,
-  TouchableOpacity, Modal
+  TouchableOpacity, Modal,  ScrollView,
 } from "react-native";
 import * as Font from "expo-font";
 
@@ -11,11 +11,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import home from "../../assets/home.png";
 
-
-
 const Profile_login = ({navigation}) => {
   //모달창
   const [modalVisible, setModalVisible] = useState(false)
+  // 폰트 모달창
+  const [fontVisible, setFontVisible] = useState(false)
 
   // 유저 폰트 사이즈
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
@@ -65,6 +65,7 @@ const Profile_login = ({navigation}) => {
 
   const [userFont,setFont] = useState("함박눈체"); // 초기 폰트 설정
   const [fontPath,setPath] = useState("SF_HambakSnow"); // 초기 폰트 설정
+  const [buttonFlag, setFlag] = useState(1);
 
   // 폰트 경로 가져옴
   useEffect(() => {
@@ -73,7 +74,7 @@ const Profile_login = ({navigation}) => {
         setFont(font);
       }
     })
-  },[]);
+  },[buttonFlag]);
 
   //폰트 이름 가져옴
   useEffect(() => {
@@ -82,11 +83,27 @@ const Profile_login = ({navigation}) => {
         setPath(font);
       }
     })
-  },[]);
+  },[buttonFlag]);
+
+  const saveFont = async (userFont) => {
+    try {
+    await AsyncStorage.setItem('userFont', userFont)
+    } catch (e) {
+    // saving error
+    }
+}
+// 폰트 경로 저장
+const savePath = async (fontPath) => {
+    try {
+    await AsyncStorage.setItem('fontPath', fontPath)
+    } catch (e) {
+    // saving error
+    }
+}
 
     return (
       <View style={styles.container}>
-        {/* 모달창 */}
+        {/* 로그아웃모달창 */}
         <Modal
         animationType='slide'
         transparent={true}
@@ -110,6 +127,60 @@ const Profile_login = ({navigation}) => {
             </View>
           </View>
         </Modal>
+
+        {/* 폰트설정창 */}
+        <Modal
+        animationType='slide'
+        transparent={true}
+        visible={fontVisible}>
+          
+          <View style={styles.FontContainer}>
+          <ScrollView contentContainerStyle={{justifyContent: "center", alignItems: "center"}}
+                      centerContent={true} indicatorStyle={"white"}>
+            <TouchableOpacity onPress={() => {saveFont("수트체"); savePath("SUIT-Regular");setFlag(buttonFlag+1); setFontVisible(false);}}> 
+                <Text style={{ fontSize: 30,fontFamily: "SUIT-Regular", marginTop: 30, marginBottom: 30}}>수트체</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {saveFont("교보손글씨체"); savePath("KyoboHandwriting2019");setFlag(buttonFlag+1); setFontVisible(false);}}> 
+                <Text style={{ fontSize: 30, fontFamily: "KyoboHandwriting2019",  marginBottom: 30}}>교보손글씨체</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {saveFont("앨리스체"); savePath("EliceDigitalBaeum");setFlag(buttonFlag+1); setFontVisible(false);}}> 
+                <Text style={{ fontSize: 30, fontFamily: "EliceDigitalBaeum",  marginBottom: 30}}>앨리스체</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("아임크리체"); savePath("ImcreSoojin_Regular");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "ImcreSoojin_Regular",  marginBottom: 30}}>아임크리체</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("주아체"); savePath("BMJUA");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "BMJUA",  marginBottom: 30}}>주아체</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("HS유지체"); savePath("HSYuji-Regular");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "HSYuji-Regular",  marginBottom: 30}}>HS유지체</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false);saveFont("쿠키런체"); savePath("CookieRun-Regular");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "CookieRun-Regular", marginBottom: 30}}>쿠키런체</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("카페24체"); savePath("Cafe24Ssurroundair");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "Cafe24Ssurroundair", marginBottom: 30}}>카페24체</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("Y유니버스체"); savePath("YUniverse-L");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "YUniverse-L", marginBottom: 30}}>Y유니버스체</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("노토산스"); savePath("NotoSansKR-Regular");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Regular", marginBottom: 30}}>노토산스</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("함박눈체"); savePath("SF_HambakSnow");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "SF_HambakSnow", marginBottom: 30}}>함박눈체</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("어그로체B"); savePath("SBAggroB");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "SBAggroB", marginBottom: 30}}>어그로체B</Text>
+            </TouchableOpacity>
+            </ScrollView>
+          </View>
+          
+        </Modal>
+        
       {/* 모달창 코드 끝 */}
 
         <View style={styles.headerRow}>
@@ -174,7 +245,7 @@ const Profile_login = ({navigation}) => {
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
               }} > 폰트 종류 </Text>
             <TouchableOpacity
-            onPress={() => navigation.navigate("FONTPAGE")}
+            onPress={() => {setFontVisible(true);}}
             style={{ marginLeft: "3%", lineHeight: 60, }}>
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, fontFamily: fontPath }} > {userFont}</Text>                                                      
           </TouchableOpacity>
@@ -298,7 +369,7 @@ const styles = StyleSheet.create({
     width: "60%",
     marginLeft:"20%",
     height: 200,
-    opacity: 80,
+    opacity: 0.9,
     backgroundColor: "#80AE92",
     flexDirection: "column",
     justifyContent: "center",
@@ -311,5 +382,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  FontContainer: {
+    marginTop: "25%",
+    width: "50%",
+    marginLeft:"25%",
+    height: "50%",
+    opacity: 1,
+    backgroundColor: "#F7F8F7",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#C4C4C4"
   },
 });
