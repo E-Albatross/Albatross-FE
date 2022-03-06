@@ -15,6 +15,9 @@ const Profile_login = ({navigation}) => {
   //모달창
   const [modalVisible, setModalVisible] = useState(false)
   const [fontVisible, setFontVisible] = useState(false)
+  const [modifyVisible, setModifyVisible] = useState(false)
+  const [confirmVisible, setConfirmVisible] = useState(false)
+
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
 
   const [pw, onChangePW] = useState(null);
@@ -66,7 +69,6 @@ const Profile_login = ({navigation}) => {
 
   const [userFont,setFont] = useState("함박눈체"); // 초기 폰트 설정
   const [fontPath,setPath] = useState("SF_HambakSnow"); // 초기 폰트 설정
-  const [buttonFlag, setFlag] = useState(1);
 
   // 폰트 경로 가져옴
   useEffect(() => {
@@ -75,7 +77,7 @@ const Profile_login = ({navigation}) => {
         setFont(font);
       }
     })
-  },[buttonFlag]);
+  },[]);
 
   //폰트 이름 가져옴
   useEffect(() => {
@@ -84,7 +86,7 @@ const Profile_login = ({navigation}) => {
         setPath(font);
       }
     })
-  },[buttonFlag]);
+  },[]);
 
   const saveFont = async (userFont) => {
     try {
@@ -140,48 +142,92 @@ const savePath = async (fontPath) => {
           <View style={styles.FontContainer}>
           <ScrollView contentContainerStyle={{justifyContent: "center", alignItems: "center"}}
                       centerContent={true} indicatorStyle={"white"}>
-            <TouchableOpacity onPress={() => {saveFont("수트체"); savePath("SUIT-Regular");setFlag(buttonFlag+1); setFontVisible(false);}}> 
+            <TouchableOpacity onPress={() => {setFont("수트체"); setPath("SUIT-Regular");setFontVisible(false);}}> 
                 <Text style={{ fontSize: 30,fontFamily: "SUIT-Regular", marginTop: 30, marginBottom: 30}}>수트체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {saveFont("교보손글씨체"); savePath("KyoboHandwriting2019");setFlag(buttonFlag+1); setFontVisible(false);}}> 
+            <TouchableOpacity onPress={() => {setFont("교보손글씨체"); setPath("KyoboHandwriting2019");setFontVisible(false);}}> 
                 <Text style={{ fontSize: 30, fontFamily: "KyoboHandwriting2019",  marginBottom: 30}}>교보손글씨체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {saveFont("앨리스체"); savePath("EliceDigitalBaeum");setFlag(buttonFlag+1); setFontVisible(false);}}> 
+            <TouchableOpacity onPress={() => {setFont("앨리스체"); setPath("EliceDigitalBaeum");setFontVisible(false);}}> 
                 <Text style={{ fontSize: 30, fontFamily: "EliceDigitalBaeum",  marginBottom: 30}}>앨리스체</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("아임크리체"); savePath("ImcreSoojin_Regular");}}> 
+            <TouchableOpacity onPress={() => { setFontVisible(false); setFont("아임크리체"); setPath("ImcreSoojin_Regular");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "ImcreSoojin_Regular",  marginBottom: 30}}>아임크리체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("주아체"); savePath("BMJUA");}}> 
+            <TouchableOpacity onPress={() => { setFontVisible(false); setFont("주아체"); setPath("BMJUA");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "BMJUA",  marginBottom: 30}}>주아체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("HS유지체"); savePath("HSYuji-Regular");}}> 
+            <TouchableOpacity onPress={() => { setFontVisible(false); setFont("HS유지체"); setPath("HSYuji-Regular");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "HSYuji-Regular",  marginBottom: 30}}>HS유지체</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false);saveFont("쿠키런체"); savePath("CookieRun-Regular");}}> 
+            <TouchableOpacity onPress={() => { setFontVisible(false);setFont("쿠키런체"); setPath("CookieRun-Regular");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "CookieRun-Regular", marginBottom: 30}}>쿠키런체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("카페24체"); savePath("Cafe24Ssurroundair");}}> 
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("카페24체"); setPath("Cafe24Ssurroundair");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "Cafe24Ssurroundair", marginBottom: 30}}>카페24체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("Y유니버스체"); savePath("YUniverse-L");}}> 
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("Y유니버스체"); setPath("YUniverse-L");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "YUniverse-L", marginBottom: 30}}>Y유니버스체</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("노토산스"); savePath("NotoSansKR-Regular");}}> 
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("노토산스"); setPath("NotoSansKR-Regular");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Regular", marginBottom: 30}}>노토산스</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("함박눈체"); savePath("SF_HambakSnow");}}> 
+            <TouchableOpacity onPress={() => { setFontVisible(false); setFont("함박눈체"); setPath("SF_HambakSnow");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "SF_HambakSnow", marginBottom: 30}}>함박눈체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setFlag(buttonFlag+1); setFontVisible(false); saveFont("어그로체B"); savePath("SBAggroB");}}> 
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("어그로체B"); setPath("SBAggroB");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "SBAggroB", marginBottom: 30}}>어그로체B</Text>
             </TouchableOpacity>
             </ScrollView>
           </View>
           
+        </Modal>
+
+        {/* 비밀번호 변경? */}
+        <Modal
+        animationType='slide'
+        transparent={true}
+        visible={modifyVisible}
+        closeOnTouchOutside={true}>
+          <View style={styles.modalContainer}>
+          <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }}> 비밀번호를 변경하시겠습니까?</Text>
+          <View style={styles.modalButtonBox}> 
+          <TouchableOpacity
+              onPress={() => { setModifyVisible(false); setConfirmVisible(true);} }
+              style={{ height: 50, width: 200, marginRight:40, }}>
+              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }} >YES</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { setModifyVisible(false);}}
+              style={{ height: 50, width: 200, marginRight:40, }} >
+              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }} >NO</Text>
+            </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        {/* 비밀번호 변경 확인 */}
+        <Modal
+        animationType='slide'
+        transparent={true}
+        visible={confirmVisible}
+        closeOnTouchOutside={true}>
+          <View style={styles.modalContainer}>
+          <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, 
+                }}> 비밀번호가 변경되었습니다.</Text>
+          <TouchableOpacity
+              onPress={() => { setConfirmVisible(false);} }
+              style={{ height: 50, width: 200, marginRight:40, marginTop: "5%"}}>
+              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50,
+                }} >YES</Text>
+            </TouchableOpacity>
+          </View>
         </Modal>
         
       {/* 모달창 코드 끝 */}
@@ -228,6 +274,7 @@ const savePath = async (fontPath) => {
              />
           </View>
           <TouchableOpacity
+              onPress={() => setModifyVisible(true)}
               style={{ height: 40, width: 70, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: "2%"}} >
               <Text
                 style={{ fontSize: 22, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 40
@@ -280,11 +327,11 @@ const savePath = async (fontPath) => {
         {/* 확인, 로그아웃 상자 */}
         <View style={styles.ButtonBox}>
           <TouchableOpacity
-            onPress={() => {navigation.navigate("MAIN"); saveSize(userSize);}}
+            onPress={() => {navigation.navigate("MAIN"); saveSize(userSize); saveFont(userFont); savePath(fontPath);}}
             style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight:40, }} >
             <Text
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} >확인</Text>
+              }} >저장</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setModalVisible(true)}
