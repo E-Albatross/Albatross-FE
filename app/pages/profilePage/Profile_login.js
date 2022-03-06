@@ -14,10 +14,7 @@ import home from "../../assets/home.png";
 const Profile_login = ({navigation}) => {
   //모달창
   const [modalVisible, setModalVisible] = useState(false)
-  // 폰트 모달창
   const [fontVisible, setFontVisible] = useState(false)
-
-  // 유저 폰트 사이즈
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   
 
@@ -194,27 +191,17 @@ const savePath = async (fontPath) => {
 
         {/* 개인정보설정 상자 */}
         <View style={styles.subTitleBox}>
-          <Text style={{textAlign: "left",color: "#808080",fontSize: 20,marginTop: 60,marginBottom: 10,}}> 개인정보설정{" "}</Text>
+          <Text style={{textAlign: "left",color: "#808080",fontSize: 20,marginTop: 60,marginBottom: 10,}}> 비밀번호 변경 </Text>
         </View>
         <View style={styles.informBox}>
-          <TouchableOpacity
-            // onPress={() => }
-            style={{ height: 60 }}>
-            <Text
-              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
-              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} > 비밀번호변경 </Text>
-          </TouchableOpacity>
+            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
+              }} > 현재 비밀번호 </Text>
           <View style={styles.line}></View>
-          <TouchableOpacity
-            // onPress={() => }
-            style={{ height: 60 }}
-          >
-            <Text
-              style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
-              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} > 이메일 변경 </Text>
-          </TouchableOpacity>
+          <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
+              }} > 새 비밀번호 </Text>
+          <View style={styles.line}></View>
+          <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
+              }} > 새 비밀번호 확인 </Text>
         </View>
 
         {/* 기본값설정 상자 */}
@@ -313,22 +300,10 @@ const styles = StyleSheet.create({
   },
   informBox: {
     width: "85%",
-    height: "11%",
     backgroundColor: "#FFFFFF",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#C4C4C4",
-  },
-  settingBox: {
-    width: "85%",
-    height: "17%",
-    backgroundColor: "#FFFFFF",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#C4C4C4",
