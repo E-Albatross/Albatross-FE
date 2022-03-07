@@ -57,7 +57,6 @@ const Profile_logout = ({ navigation}) => {
 
         'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
     });
-    setIsReady(true);
 }, []);
 
   const [userFont,setFont] = useState("함박눈체"); // 초기 폰트 설정

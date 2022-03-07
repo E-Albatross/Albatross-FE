@@ -66,7 +66,6 @@ const ExLiteratureNew = ({ navigation, route}) => {
     AsyncStorage.getItem('userSize').then((size)=>{
       if(size!=null){
         setSize(Number(size));
-        console.log(size);
       } else setSize(25);
     })
   },[]);
@@ -106,7 +105,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
   //스크린샷 캡쳐 위한 코드
   const captureRef = useRef();
 
-  const getPhotoUri = async (): Promise<string> => {
+  const getPhotoUri = async () => {
     const uri = await captureRef.current.capture();
     console.log("👂👂 Image saved to", uri);
     return uri;
@@ -130,12 +129,10 @@ const ExLiteratureNew = ({ navigation, route}) => {
       return;
     }
     setFinish(true);
-    console.log(finish);
 
     const uri = await getPhotoUri();
     const result = await CameraRoll.save(uri);
     console.log("🐤result", result);
-    
   };
 
   return (
@@ -201,10 +198,10 @@ const ExLiteratureNew = ({ navigation, route}) => {
       <Modal animationType='slide' transparent={true} visible={markModal}>
               <View style={styles.markModalContainer}>
                 <View style={styles.markModalText}> 
-                  <Text style={{ fontSize: 20, letterSpacing: 2, textAlign: "center", marginTop:"13%"}} > {markModalText} </Text> 
+                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"13%"}} > {markModalText} </Text> 
                 </View>
-                  <TouchableOpacity onPress={() => setMarkModal(false)} style={{marginBottom: 1, width: "100%", height: "20%", backgroundColor: "#80AE92", borderRadius: 10,}}>
-                      <Text style={{ fontSize: 20, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", }} > 확인 </Text>
+                  <TouchableOpacity onPress={() => setMarkModal(false)} style={{marginBottom: 1, width: "100%", height: "25%", backgroundColor: "#80AE92"}}>
+                      <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", }} > 확인 </Text>
                   </TouchableOpacity>
               </View>
             </Modal>
@@ -228,29 +225,26 @@ const ExLiteratureNew = ({ navigation, route}) => {
           />
 
             {/* 가로줄 */}
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 100, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 150, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 200, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 250, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 300, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 350, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 400, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 450, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 500, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 550, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 600, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 650, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 700, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 750, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 800, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 850, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 900, }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 950, }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "10%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "15%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "20%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "25%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "30%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "35%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "40%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "45%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "50%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "55%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "60%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "65%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "70%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "75%", }} />
+            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "80%", }} />
 
             {/* 세로줄 */}
-            <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 50, }} />
-            <View style={{ height: 900, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: 50, }} />
+            <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%"}} />
+            <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "5%" }} />
 
             {markList.mark.map((s)=>(
             <TouchableOpacity key={s.id} style={styles.iconbutton}
@@ -328,23 +322,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  modalPage: {
-    width: "100%",
-    height: "30%",
-    borderTopWidth: 0.3,
-    borderRightWidth: 0.3,
-    borderBottomWidth: 0.3,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#F7F8F7",
-  },
   markModalContainer: {
     width: "60%",
     height: "15%",
     top: "42.5%",
     left: "20%",
     borderWidth: 0.5,
-    borderRadius: 10,
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#FFFFFF",

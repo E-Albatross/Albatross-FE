@@ -16,7 +16,7 @@ export default Liter_name;
 
 const styles = StyleSheet.create({
     container: {
-      marginTop: 120,
+      marginTop: "16%",
         width:"85%",
         backgroundColor: "transparent",
         flexDirection: "column",
