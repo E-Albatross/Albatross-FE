@@ -12,6 +12,7 @@ import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
 //스크린샷
 import ViewShot from "react-native-view-shot";
 import CameraRoll from "@react-native-community/cameraroll";
+import * as MediaLibrary from 'expo-media-library';
 
 //이미지 파일들
 import home from "../assets/home.png";
@@ -23,7 +24,7 @@ import confirm from "../assets/confirm.png";
 //컴포넌트
 import Name from "../components/ExLiterature/Liter_name";
 
-//ㄴㅡ끼ㅁ표 모모달
+//느낌표 모달
 import markIcon from "../assets/markIcon.png";
 import markList from "../components/ExLiterature/markList";
 
@@ -37,6 +38,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
   const text = route.params.text;
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+  const [isReady, setReady]= useState(false);
 
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -59,6 +61,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
 
         'BMJUA': require('../assets/fonts/YUniverse-L.ttf'),
     });
+    setReady(true);
 }, []);
 
 
@@ -137,6 +140,8 @@ const ExLiteratureNew = ({ navigation, route}) => {
 
   return (
     <View style={styles.container}>
+      {isReady && (
+        <>
       {/* 헤더부분 */}
       <View style={styles.headerRow}>
         <TouchableOpacity
@@ -254,6 +259,8 @@ const ExLiteratureNew = ({ navigation, route}) => {
             ))}
           </View>
         </ViewShot>
+        </>
+        )}
     </View>
   );
 };

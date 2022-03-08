@@ -36,6 +36,8 @@ const Profile_logout = ({ navigation}) => {
     })
   },[]);
 
+  const [isReady, setReady]= useState(false);
+
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
@@ -57,6 +59,7 @@ const Profile_logout = ({ navigation}) => {
 
         'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
     });
+    setReady(true);
 }, []);
 
   const [userFont,setFont] = useState("함박눈체"); // 초기 폰트 설정
@@ -97,6 +100,8 @@ const savePath = async (fontPath) => {
 
     return (
       <View style={styles.container}>
+        {isReady && (
+        <>
         {/* 로그아웃모달창 */}
         <Modal
         animationType='slide'
@@ -243,6 +248,8 @@ const savePath = async (fontPath) => {
               }} >로그인</Text>
           </TouchableOpacity>
         </View>
+        </>
+        )}
       </View>
     );
   };
