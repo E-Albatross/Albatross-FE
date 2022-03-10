@@ -272,12 +272,18 @@ const ExLiteratureNew = ({ navigation, route}) => {
             <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%"}} />
             <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "5%" }} />
 
-            {markList.mark.map((s)=>(
-            <TouchableOpacity key={s.id} style={styles.iconbutton}
-            onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
-                <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
-            </TouchableOpacity>
-            ))}
+            { finish === false ? (
+              <>
+              </>) 
+              :(<>
+                {markList.mark.map((s)=>(
+                  <TouchableOpacity key={s.id} style={styles.iconbutton}
+                  onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
+                      <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
+                  </TouchableOpacity>
+                  ))}
+                </>
+            )}
           </View>
         </ViewShot>
         </>
