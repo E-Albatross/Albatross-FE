@@ -23,6 +23,7 @@ import confirm from "../assets/confirm.png";
 
 //컴포넌트
 import Name from "../components/ExLiterature/Liter_name";
+import Score from "../components/ExLiterature/Score";
 
 //느낌표 모달
 import markIcon from "../assets/markIcon.png";
@@ -39,6 +40,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
+  const [score, setScore] = useState(80);
 
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -107,10 +109,12 @@ const ExLiteratureNew = ({ navigation, route}) => {
 
   //스크린샷 캡쳐 위한 코드
   const captureRef = useRef();
+  const [photoUri, setUri] = useState(null);
 
   const getPhotoUri = async () => {
     const uri = await captureRef.current.capture();
     console.log("👂👂 Image saved to", uri);
+    setUri(uri);
     return uri;
   };
 
@@ -161,7 +165,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
               <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
                 <Image source={arrow} />
               </TouchableOpacity>
-              <TouchableOpacity onPress={onSave} style={styles.iconbutton}>
+              <TouchableOpacity onPress={() => {onSave(); setTool(null);} } style={styles.iconbutton}>
                 <Image source={confirm} />
               </TouchableOpacity> 
               </View>
@@ -185,9 +189,10 @@ const ExLiteratureNew = ({ navigation, route}) => {
         
       </View>
 
-      {/* 모달창 */}
+      {/* 다운로드 모달창 */}
       <Modal animationType='slide' transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
+
           <View style={styles.modalHeaderRow}> 
             <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginLeft: 10}} > 취소 </Text>
@@ -196,7 +201,12 @@ const ExLiteratureNew = ({ navigation, route}) => {
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginRight: 10}} > 저장 </Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.modalPage}></View>
+
+          <Image 
+            style={{width:"80%", height:"80%", marginTop:"20%"}}
+            source={{uri:photoUri}} 
+          />
+
         </View>
       </Modal>
 
@@ -212,7 +222,18 @@ const ExLiteratureNew = ({ navigation, route}) => {
             </Modal>
       {/* 모달창 코드 끝 */}
 
-      <Name name={id} />
+      { finish === false ? (
+      <>
+      <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginTop: 70}}> 
+        <Name name={id} />
+        </View>
+      </>) 
+      :( 
+      <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginTop: 70}}> 
+        <Name name={id} />
+        <Score score={score}/> 
+      </View>
+      )}
       
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>

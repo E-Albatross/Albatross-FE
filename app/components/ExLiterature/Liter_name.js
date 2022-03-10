@@ -16,15 +16,15 @@ export default Liter_name;
 
 const styles = StyleSheet.create({
     container: {
-      marginTop: "16%",
-        width:"85%",
+        marginTop: "7%",
+        width:"50%",
         backgroundColor: "transparent",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignContent:"flex-start",
     },
     line:{
-        width: '40%', 
+        width: '80%', 
         height: 1, 
         marginTop: 7,
         backgroundColor: "#000000",
