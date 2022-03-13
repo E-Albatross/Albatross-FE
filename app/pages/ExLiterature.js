@@ -109,13 +109,21 @@ const ExLiteratureNew = ({ navigation, route}) => {
 
   //스크린샷 캡쳐 위한 코드
   const captureRef = useRef();
+  const galleryRef = useRef();
   const [photoUri, setUri] = useState(null);
+  const [galleryUri, setGallery] = useState(null);
 
   const getPhotoUri = async () => {
+    // uri 주소 가져오기
     const uri = await captureRef.current.capture();
-    console.log("👂👂 Image saved to", uri);
+    const uri2 = await galleryRef.current.capture();
+    // 로그 찍기
+    console.log("👂👂 uri : ", uri);
+    console.log("👂👂 gallery uri : ", uri2);
+    // 주소 저장하기
     setUri(uri);
-    return uri;
+    setGallery(uri2);
+    return uri2;
   };
 
   const hasAndroidPermission = async () => {
@@ -192,7 +200,6 @@ const ExLiteratureNew = ({ navigation, route}) => {
       {/* 다운로드 모달창 */}
       <Modal animationType='slide' transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
-
           <View style={styles.modalHeaderRow}> 
             <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginLeft: 10}} > 취소 </Text>
@@ -203,88 +210,89 @@ const ExLiteratureNew = ({ navigation, route}) => {
           </View>
 
           <Image 
-            style={{width:"80%", height:"80%", marginTop:"20%"}}
-            source={{uri:photoUri}} 
+            style={{width:"85%", height:"80%", marginTop:"5%"}}
+            source={{uri:galleryUri}} 
           />
 
         </View>
       </Modal>
 
-      <Modal animationType='slide' transparent={true} visible={markModal}>
+        <Modal animationType='slide' transparent={true} visible={markModal}>
               <View style={styles.markModalContainer}>
                 <View style={styles.markModalText}> 
-                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"13%"}} > {markModalText} </Text> 
+                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"11%"}} > {markModalText} </Text> 
                 </View>
                   <TouchableOpacity onPress={() => setMarkModal(false)} style={{marginBottom: 1, width: "100%", height: "25%", backgroundColor: "#80AE92"}}>
                       <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", }} > 확인 </Text>
                   </TouchableOpacity>
               </View>
-            </Modal>
+        </Modal>
       {/* 모달창 코드 끝 */}
-
-      { finish === false ? (
-      <>
-      <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginTop: 70}}> 
-        <Name name={id} />
+      
+      <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{ marginTop: 70}}>
+        { finish === false ? (
+        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+          <Name name={id} />
         </View>
-      </>) 
-      :( 
-      <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginTop: 70}}> 
-        <Name name={id} />
-        <Score score={score}/> 
-      </View>
-      )}
+        ) 
+        :( 
+        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+          <Name name={id} />
+          <Score score={score}/> 
+        </View>
+        )}
       
       {/* 캔버스보드 부분 */}
-      <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
-        <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath}}> {text} </Text> 
-          <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
-          <Canvas
-            ref={canvasRef}
-            height={900}
-            width={900}
-            color="black"
-            tool={tool}
-            eraserSize={5}
-            style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%" }}
-          />
+        <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
+          <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
+            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
+            <Canvas
+              ref={canvasRef}
+              height={900}
+              width={900}
+              color="black"
+              tool={tool}
+              eraserSize={5}
+              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%" }}
+            />
 
-            {/* 가로줄 */}
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "10%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "15%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "20%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "25%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "30%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "35%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "40%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "45%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "50%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "55%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "60%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "65%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "70%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "75%", }} />
-            <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "80%", }} />
+              {/* 가로줄 */}
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "10%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "15%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "20%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "25%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "30%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "35%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "40%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "45%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "50%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "55%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "60%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "65%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "70%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "75%", }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "80%", }} />
 
-            {/* 세로줄 */}
-            <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%"}} />
-            <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "5%" }} />
+              {/* 세로줄 */}
+              <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%"}} />
+              <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "5%" }} />
 
-            { finish === false ? (
-              <>
-              </>) 
-              :(<>
-                {markList.mark.map((s)=>(
-                  <TouchableOpacity key={s.id} style={styles.iconbutton}
-                  onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
-                      <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
-                  </TouchableOpacity>
-                  ))}
-                </>
-            )}
-          </View>
+              { finish === false ? (
+                <>
+                </>) 
+                :(<>
+                  {markList.mark.map((s)=>(
+                    <TouchableOpacity key={s.id} style={styles.iconbutton}
+                    onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
+                        <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
+                    </TouchableOpacity>
+                    ))}
+                  </>
+              )}
+            </View>
+          </ViewShot>
         </ViewShot>
         </>
         )}
@@ -347,7 +355,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.3,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#F9F9F9",
   },
   modalHeaderRow: {
     width: "100%",
@@ -359,7 +367,7 @@ const styles = StyleSheet.create({
   markModalContainer: {
     width: "60%",
     height: "15%",
-    top: "42.5%",
+    top: "35%",
     left: "20%",
     borderWidth: 0.5,
     flexDirection: "column",

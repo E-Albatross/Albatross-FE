@@ -5,7 +5,7 @@ const Liter_name = ({name}) => {
 
   return (
     <View style={styles.container}>
-        <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left"}}> {name} </Text>
+        <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left", }}> {name} </Text>
       <View style={styles.line}/>
       <View style={styles.line}/>
     </View>
