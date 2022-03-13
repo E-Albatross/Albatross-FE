@@ -1,15 +1,15 @@
 const myLiter={
     first: [
-        { id:"1", url:"" },
-        { id:"2", url:"" },
-        { id:"3", url:"" },
-        { id:"4", url:"" },
-        { id:"5", url:"" },
-        { id:"6", url:"" },
-        { id:"7", url:"" },
-        { id:"8", url:"" },
-        { id:"9", url:"" },
-        { id:"10", url:"" },
+        { id:"1", url:"", score: 45 },
+        { id:"2", url:"", score: 55 },
+        { id:"3", url:"", score: 70 },
+        { id:"4", url:"", score: 63 },
+        { id:"5", url:"", score: 65 },
+        { id:"6", url:"", score: 80 },
+        { id:"7", url:"", score: 90 },
+        { id:"8", url:"", score: 83 },
+        { id:"9", url:"", score: 87 },
+        { id:"10", url:"", score: 95 },
     ],
 }
 

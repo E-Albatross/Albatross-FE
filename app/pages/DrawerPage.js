@@ -24,14 +24,14 @@ const DrawerPage = ({navigation}) => {
     backgroundGradientToOpacity: 0.5,
     color: (opacity = 5) => `rgba(0, 70, 42, ${opacity})`,
     strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5,
+    barPercentage: 1,
     useShadowColorFromDataset: false // optional
   };
 
   const data = {
     datasets: [
       {
-        data: [45, 55, 70, 65, 80, 85],
+        data: myLiter.first.map(s=>( s.score )),
         color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
         strokeWidth: 5 // optional
       }
