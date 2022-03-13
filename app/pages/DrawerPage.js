@@ -63,15 +63,12 @@ const DrawerPage = ({navigation}) => {
           <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, }} > 
           내 서랍 </Text>
           
-          <ScrollView contentContainerStyle={{justifyContent: "center", alignItems: "center"}}
-        centerContent={true} indicatorStyle={"white"}
-        nestedScrollEnabled ={true}>
-          
             <FlatList
             data={myLiter.first}
             columnWrapperStyle={{
               marginBottom: 20,
             }}
+            indicatorStyle={"white"}
             nestedScrollEnabled ={true}
             renderItem={({item}) => 
                 <TouchableOpacity key={item.id}
@@ -87,8 +84,6 @@ const DrawerPage = ({navigation}) => {
             keyExtractor={(item, index) => index}
             numColumns={3}
           />
-        
-        </ScrollView>
 
       </View>
     );
