@@ -1,15 +1,44 @@
 import React from "react";
 import {
   Text, View, StyleSheet, Image,
-  TouchableOpacity, FlatList,
+  TouchableOpacity, ScrollView,
+  Dimensions
 } from "react-native";
+
+import { FlatList } from 'react-native-gesture-handler';
 
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
 
-import literList from "../components/ExLiterature/literList";
+import myLiter from "../components/myLiter";
+
+import { LineChart } from "react-native-chart-kit";
 
 const DrawerPage = ({navigation}) => {
+  const screenWidth = Dimensions.get("window").width;
+
+  const chartConfig = {
+    backgroundGradientFrom: "#80AE92",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#80AE92",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 5) => `rgba(0, 70, 42, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 0.5,
+    useShadowColorFromDataset: false // optional
+  };
+
+  const data = {
+    datasets: [
+      {
+        data: [45, 55, 70, 65, 80, 85],
+        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+        strokeWidth: 5 // optional
+      }
+    ],
+    legend: ["내 점수"] // optional
+  };
+
     return (
       <View style={styles.container}>
         <View style={styles.headerRow}>
@@ -21,39 +50,46 @@ const DrawerPage = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <Text
-          style={{
-            fontSize: 30,
-            marginTop: 60,
-            marginLeft: 15,
-            marginBottom: 60,
-            letterSpacing: 10,
-          }}
-        >
-          {" "}
-          내 서랍{" "}
-        </Text>
+          {/* <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, }} > 
+          내 점수 </Text> */}
 
-        <FlatList
-        data={literList.new}
-        columnWrapperStyle={{
-          marginBottom: 20,
-        }}
-        renderItem={({item}) => 
-            <TouchableOpacity key={item.id}
-              // onPress={() => navigation.navigate("CAPTURE",{
-              //   category: "new",
-              //   id: item.id,
-              //   text: item.text,
-              // })}
-              style={styles.iconbutton} >
-              <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
-            </TouchableOpacity>
-      }
-        keyExtractor={(item, index) => index}
-        numColumns={3}
-      />
+          <LineChart
+            data={data}
+            width={screenWidth-200}
+            height={200}
+            chartConfig={chartConfig}
+          />
+
+          <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, }} > 
+          내 서랍 </Text>
           
+          <ScrollView contentContainerStyle={{justifyContent: "center", alignItems: "center"}}
+        centerContent={true} indicatorStyle={"white"}
+        nestedScrollEnabled ={true}>
+          
+            <FlatList
+            data={myLiter.first}
+            columnWrapperStyle={{
+              marginBottom: 20,
+            }}
+            nestedScrollEnabled ={true}
+            renderItem={({item}) => 
+                <TouchableOpacity key={item.id}
+                  // onPress={() => navigation.navigate("CAPTURE",{
+                  //   category: "new",
+                  //   id: item.id,
+                  //   text: item.text,
+                  // })}
+                  style={styles.iconbutton} >
+                  <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
+                </TouchableOpacity>
+          }
+            keyExtractor={(item, index) => index}
+            numColumns={3}
+          />
+        
+        </ScrollView>
+
       </View>
     );
 }
@@ -70,15 +106,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
+
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
     width: "100%",
-    height: 90,
+    height: 70,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#80AE92",
+    marginBottom: 45,
   },
   literatureRow: {
     marginTop: 10,
