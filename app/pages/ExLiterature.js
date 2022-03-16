@@ -11,8 +11,9 @@ import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
 
 //스크린샷
 import ViewShot from "react-native-view-shot";
-import CameraRoll from "@react-native-community/cameraroll";
-import * as MediaLibrary from 'expo-media-library';
+import { Camera } from 'expo-camera';
+import * as Permissions from 'expo-permissions';
+import * as MediaLibrary from 'expo-media-library'
 
 //이미지 파일들
 import home from "../assets/home.png";
@@ -85,11 +86,15 @@ const ExLiteratureNew = ({ navigation, route}) => {
       }
     })
   },[]);
+  
+  // 갤러리 허가
+  // useEffect(() => {
+  //   (async () => {
+  //     const { status } = await Camera.requestCameraPermissionsAsync();
+  //     setHasPermission(status === 'granted');
+  //   })();
+  // }, []);
 
-  // id를 first, second, third
-
-
-  // finish되지 않은 상태로 초기설정
   const [finish, setFinish] = useState(false);
 
   //모달창
@@ -114,40 +119,51 @@ const ExLiteratureNew = ({ navigation, route}) => {
   const [galleryUri, setGallery] = useState(null);
 
   const getPhotoUri = async () => {
-    // uri 주소 가져오기
-    const uri = await captureRef.current.capture();
-    const uri2 = await galleryRef.current.capture();
-    // 로그 찍기
-    console.log("👂👂 uri : ", uri);
-    console.log("👂👂 gallery uri : ", uri2);
-    // 주소 저장하기
-    setUri(uri);
-    setGallery(uri2);
-    return uri2;
+     try{
+      const server = await captureRef.current.capture();
+      const gallery = await galleryRef.current.capture();
+      // console.log("👂👂 uri : ", server);
+      // console.log("👂👂 gallery uri : ", gallery);
+      setUri(server);
+      setGallery(gallery);
+
+      return gallery;
+
+     } catch(err){
+      console.log("uri를 가져오는데 실패함!")
+     }
+    
   };
+  // 갤러리 권한 주기
+  // const requestPermisison = async () => {
+  //   const types = await Camera.getAvailableCameraTypesAsync();
+  //   console.log(types);
+  // };
 
-  const hasAndroidPermission = async () => {
-    const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+  // useEffect(() => {
+  //   requestPermisison();
+  // }, []);
 
-    const hasPermission = await PermissionsAndroid.check(permission);
-    if (hasPermission) {
-      return true;
-    }
-
-    const status = await PermissionsAndroid.request(permission);
-    return status === "granted";
-  };
+  // 갤러리 권한 주기
+  MediaLibrary.requestPermissionsAsync();
+  const [status, requestPermission] = MediaLibrary.usePermissions();
 
   const onSave = async () => {
-    if (Platform.OS === "android" && !(await hasAndroidPermission())) {
-      toast("갤러리 접근 권한이 없어요");
-      return;
-    }
-    setFinish(true);
+    try{
+      let uri = await getPhotoUri();
+      setFinish(true);
+      console.log(status);
 
-    const uri = await getPhotoUri();
-    const result = await CameraRoll.save(uri);
-    console.log("🐤result", result);
+      MediaLibrary.getPermissionsAsync().then((data) => {
+        if (data.status === 'granted') {
+          MediaLibrary.saveToLibraryAsync(uri);
+          console.log("갤러리 저장에 성공함!");
+        }
+      });
+    
+     } catch(err){
+       console.log("갤러리에 저장하는데에 실패함!");
+     }
   };
 
   return (
