@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, Text,
-  PermissionsAndroid, Platform,
   Image, TouchableOpacity, Modal
 } from "react-native";
 
@@ -14,6 +13,7 @@ import ViewShot from "react-native-view-shot";
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library'
+import ReactNativeZoomableView from '@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 //이미지 파일들
 import home from "../assets/home.png";
@@ -124,11 +124,11 @@ const ExLiteratureNew = ({ navigation, route}) => {
       const gallery = await galleryRef.current.capture();
       setUri(server);
       setGallery(gallery);
-      console.log(photoUri);
-      console.log(galleryUri);
+      console.log("서버에 저장할 uri : ", photoUri);
+      console.log("갤러리에 저장할 uri : ", galleryUri);
 
      } catch(err){
-      console.log("uri를 가져오는데 실패함!")
+      console.log("uri를 가져오는데 실패함!");
      }
   };
 
@@ -253,6 +253,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
       
       {/* 캔버스보드 부분 */}
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
+          
           <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
             <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath}}> {text} </Text> 
             <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 

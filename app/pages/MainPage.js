@@ -3,7 +3,7 @@ import { Text, View, Button, StyleSheet, Image,
   TouchableOpacity, ScrollView,
 } from "react-native";
 
-import drawer from "../assets/MainPage/drawer.png";
+import drawer from "../assets/MainPage/apps.png";
 import profile from "../assets/MainPage/profile.png";
 import literature from "../assets/MainPage/literature.png";
 
@@ -29,15 +29,13 @@ const MainPage = ({navigation}) => {
         <View style={styles.headerRow}>
           <TouchableOpacity
             onPress={() => navigation.navigate("PROFILE_LOGIN")}
-            style={styles.iconbutton}
           >
-            <Image source={profile} />
+            <Image source={profile} style={{width: 60, height: 60}} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate("DRAWER")}
-            style={styles.iconbutton}
           >
-            <Image source={drawer} />
+            <Image source={drawer} style={{width: 90, height: 90}} />
           </TouchableOpacity>
         </View>
 

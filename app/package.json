@@ -12,6 +12,7 @@
   "dependencies": {
     "@benjeau/react-native-draw": "^0.7.0",
     "@benjeau/react-native-draw-extras": "^0.1.0",
+    "@openspacelabs/react-native-zoomable-view": "^2.0.0",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/cameraroll": "^4.1.2",
     "@react-native-community/slider": "^4.1.12",
@@ -20,6 +21,7 @@
     "@react-navigation/stack": "^6.0.11",
     "chart.js": "^3.7.1",
     "expo": "~44.0.0",
+    "expo-camera": "~12.1.2",
     "expo-cameraroll": "^1.1.0",
     "expo-checkbox": "~2.0.0",
     "expo-font": "~10.0.4",
@@ -46,8 +48,7 @@
     "react-navigation": "^4.4.4",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
-    "toggle-switch-react-native": "^3.3.0",
-    "expo-camera": "~12.1.2"
+    "toggle-switch-react-native": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
