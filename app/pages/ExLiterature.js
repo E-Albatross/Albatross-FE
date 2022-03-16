@@ -137,7 +137,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
 
   const onCheck = async () => { // 검사버튼 눌렀을 때
     try{
-      getPhotoUri();
+      await getPhotoUri();
       setFinish(true);
     
      } catch(err){
