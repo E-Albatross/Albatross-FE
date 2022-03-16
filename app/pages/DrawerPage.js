@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   Text, View, StyleSheet, Image,
   TouchableOpacity, ScrollView,
@@ -9,12 +9,24 @@ import { FlatList } from 'react-native-gesture-handler';
 
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
-
 import myLiter from "../components/myLiter";
 
 import { LineChart } from "react-native-chart-kit";
 
+import * as Font from "expo-font";
+
 const DrawerPage = ({navigation}) => {
+  const [isReady, setIsReady] = useState(true);
+
+  useEffect(async () => {
+    await Font.loadAsync({
+        'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
+    });
+    setIsReady(true);
+  }, []);
+
+  const fontPath = "SeoulHangangL"; // 초기 폰트 설정
+
   const screenWidth = Dimensions.get("window").width;
 
   const chartConfig = {
@@ -41,6 +53,8 @@ const DrawerPage = ({navigation}) => {
 
     return (
       <View style={styles.container}>
+        {isReady && (
+          <>
         <View style={styles.headerRow}>
           <TouchableOpacity
             onPress={() => navigation.navigate("MAIN")}
@@ -60,7 +74,7 @@ const DrawerPage = ({navigation}) => {
             chartConfig={chartConfig}
           />
 
-          <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, }} > 
+          <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
           내 서랍 </Text>
           
             <FlatList
@@ -72,11 +86,7 @@ const DrawerPage = ({navigation}) => {
             nestedScrollEnabled ={true}
             renderItem={({item}) => 
                 <TouchableOpacity key={item.id}
-                  // onPress={() => navigation.navigate("CAPTURE",{
-                  //   category: "new",
-                  //   id: item.id,
-                  //   text: item.text,
-                  // })}
+                  // onPress={() => navigation.navigate()}
                   style={styles.iconbutton} >
                   <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
                 </TouchableOpacity>
@@ -84,7 +94,8 @@ const DrawerPage = ({navigation}) => {
             keyExtractor={(item, index) => index}
             numColumns={3}
           />
-
+          </>
+          )}
       </View>
     );
 }
