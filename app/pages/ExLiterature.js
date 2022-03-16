@@ -115,48 +115,41 @@ const ExLiteratureNew = ({ navigation, route}) => {
   //스크린샷 캡쳐 위한 코드
   const captureRef = useRef();
   const galleryRef = useRef();
-  const [photoUri, setUri] = useState(null);
-  const [galleryUri, setGallery] = useState(null);
+  const [photoUri, setUri] = useState(null); // 서버에 넘겨줄 스크린샷
+  const [galleryUri, setGallery] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
 
-  const getPhotoUri = async () => {
+  const getPhotoUri = async () => { // 스크린샷 두개 세팅
      try{
       const server = await captureRef.current.capture();
       const gallery = await galleryRef.current.capture();
-      // console.log("👂👂 uri : ", server);
-      // console.log("👂👂 gallery uri : ", gallery);
       setUri(server);
       setGallery(gallery);
-
-      return gallery;
+      console.log(photoUri);
+      console.log(galleryUri);
 
      } catch(err){
       console.log("uri를 가져오는데 실패함!")
      }
-    
   };
-  // 갤러리 권한 주기
-  // const requestPermisison = async () => {
-  //   const types = await Camera.getAvailableCameraTypesAsync();
-  //   console.log(types);
-  // };
-
-  // useEffect(() => {
-  //   requestPermisison();
-  // }, []);
 
   // 갤러리 권한 주기
   MediaLibrary.requestPermissionsAsync();
-  const [status, requestPermission] = MediaLibrary.usePermissions();
 
-  const onSave = async () => {
+  const onCheck = async () => { // 검사버튼 눌렀을 때
     try{
-      let uri = await getPhotoUri();
+      getPhotoUri();
       setFinish(true);
-      console.log(status);
+    
+     } catch(err){
+       console.log("검사에 실패함!");
+     }
+  };
 
+  const onSave = async () => { // 저장 버튼 눌렀을 때
+    try{
       MediaLibrary.getPermissionsAsync().then((data) => {
         if (data.status === 'granted') {
-          MediaLibrary.saveToLibraryAsync(uri);
+          MediaLibrary.saveToLibraryAsync(galleryUri);
           console.log("갤러리 저장에 성공함!");
         }
       });
@@ -189,7 +182,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
               <TouchableOpacity onPress={handleUndo} style={styles.iconbutton}>
                 <Image source={arrow} />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => {onSave(); setTool(null);} } style={styles.iconbutton}>
+              <TouchableOpacity onPress={() => {onCheck(); setTool(null);} } style={styles.iconbutton}>
                 <Image source={confirm} />
               </TouchableOpacity> 
               </View>
@@ -220,7 +213,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
             <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginLeft: 10}} > 취소 </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => setModalVisible(false)}>
+            <TouchableOpacity onPress={() => {setModalVisible(false); onSave();}}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginRight: 10}} > 저장 </Text>
             </TouchableOpacity>
           </View>
@@ -245,7 +238,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
         </Modal>
       {/* 모달창 코드 끝 */}
       
-      <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{ marginTop: 70}}>
+      <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70}}>
         { finish === false ? (
         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
           <Name name={id} />
