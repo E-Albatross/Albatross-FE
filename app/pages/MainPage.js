@@ -12,7 +12,7 @@ import literList from "../components/ExLiterature/literList";
 import * as Font from "expo-font";
 
 const MainPage = ({navigation}) => {
-  const [isReady, setIsReady] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(async () => {
     await Font.loadAsync({
@@ -67,6 +67,7 @@ const MainPage = ({navigation}) => {
                 fontWeight: "bold",
                 textAlign: "center",
                 paddingTop: 50,
+                fontFamily: fontPath,
               }}>
               {" "}
               줄 긋기 연습{" "}
@@ -89,6 +90,7 @@ const MainPage = ({navigation}) => {
                 fontWeight: "bold",
                 textAlign: "center",
                 paddingTop: 50,
+                fontFamily: fontPath,
               }}
             >
               {" "}

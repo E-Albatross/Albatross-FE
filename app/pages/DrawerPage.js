@@ -16,7 +16,7 @@ import { LineChart } from "react-native-chart-kit";
 import * as Font from "expo-font";
 
 const DrawerPage = ({navigation}) => {
-  const [isReady, setIsReady] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(async () => {
     await Font.loadAsync({
