@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, Text,
-  Image, TouchableOpacity, Modal
+  Image, TouchableOpacity, Modal, ScrollView,
 } from "react-native";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,7 +13,6 @@ import ViewShot from "react-native-view-shot";
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library'
-import ReactNativeZoomableView from '@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 //이미지 파일들
 import home from "../assets/home.png";
@@ -23,7 +22,6 @@ import arrow from "../assets/arrow.png";
 import confirm from "../assets/confirm.png";
 
 //컴포넌트
-import Name from "../components/ExLiterature/Liter_name";
 import Score from "../components/ExLiterature/Score";
 
 //느낌표 모달
@@ -158,6 +156,10 @@ const ExLiteratureNew = ({ navigation, route}) => {
        console.log("갤러리에 저장하는데에 실패함!");
      }
   };
+  
+  // 가로줄 마진
+  const top=["5%", "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%", "50%", 
+  "55%", "60%", "65%", "70%", "75%", "80%"];
 
   return (
     <View style={styles.container}>
@@ -206,6 +208,8 @@ const ExLiteratureNew = ({ navigation, route}) => {
         
       </View>
 
+      
+
       {/* 다운로드 모달창 */}
       <Modal animationType='slide' transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
@@ -241,17 +245,26 @@ const ExLiteratureNew = ({ navigation, route}) => {
       <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70}}>
         { finish === false ? (
         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
-          <Name name={id} />
+          <View style={styles.nameContainer}>
+            <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {id} </Text>
+            <View style={styles.line}/>
+            <View style={styles.line}/>
+          </View>
         </View>
         ) 
         :( 
         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
-          <Name name={id} />
+          <View style={styles.nameContainer}>
+            <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {id} </Text>
+            <View style={styles.line}/>
+            <View style={styles.line}/>
+          </View>
           <Score score={score}/> 
         </View>
         )}
       
       {/* 캔버스보드 부분 */}
+      
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
           
           <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
@@ -266,24 +279,11 @@ const ExLiteratureNew = ({ navigation, route}) => {
               eraserSize={5}
               style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%" }}
             />
-
-              {/* 가로줄 */}
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "10%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "15%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "20%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "25%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "30%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "35%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "40%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "45%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "50%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "55%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "60%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "65%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "70%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "75%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "80%", }} />
+            
+            {/* 가로줄 */}
+            {top.map(s=>(
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: `${s}`}}/>
+            ))}
 
               {/* 세로줄 */}
               <View style={{ height: "75%", width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "5%"}} />
@@ -339,13 +339,19 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  name: {
-    width: "100%",
-    height: 70,
-    position: "absolute",
-    marginTop: 100,
-    flexDirection: "row",
+  nameContainer: {
+    marginTop: "7%",
+    width:"50%",
+    backgroundColor: "transparent",
+    flexDirection: "column",
     justifyContent: "flex-start",
+    alignContent:"flex-start",
+  },
+  line:{
+      width: '80%', 
+      height: 1, 
+      marginTop: 7,
+      backgroundColor: "#000000",
   },
   headerSubRow: {
     width: "25%",
@@ -356,6 +362,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#80AE92",
+  },
+  line:{
+    width: '80%', 
+    height: 1, 
+    marginTop: 7,
+    backgroundColor: "#000000",
   },
   modalContainer: {
     width: "80%",
