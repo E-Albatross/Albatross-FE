@@ -17,6 +17,7 @@ import FontsList from "./assets/fonts/FontsList";
 import ExLine from "./pages/ExLine";
 import ExWord from "./pages/ExWord";
 import ExLiterature from "./pages/ExLiterature";
+import SubLiter from "./pages/SubLiter";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ function App() {
         <Stack.Screen name="MAIN" component={MainPage} />
         <Stack.Screen name="LITER" component={ExLiterature} />
         <Stack.Screen name="DRAWER" component={DrawerPage} />
+        <Stack.Screen name="SUBLITER" component={SubLiter} />
 
         <Stack.Screen name="PROFILE_LOGIN" component={Profile_login} />
         <Stack.Screen name="PROFILE_LOGOUT" component={Profile_logout} />

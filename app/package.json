@@ -42,6 +42,7 @@
     "react-native-search-bar": "^3.5.1",
     "react-native-signature-canvas": "^4.3.0",
     "react-native-svg": "^12.1.1",
+    "react-native-swiper": "^1.6.0",
     "react-native-switch-toggle": "^2.2.1",
     "react-native-view-shot": "^3.1.2",
     "react-native-web": "0.17.1",
