@@ -10,10 +10,7 @@ import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
 
 //스크린샷
 import ViewShot from "react-native-view-shot";
-import { Camera } from 'expo-camera';
-import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library'
-import ReactNativeZoomableView from '@openspacelabs/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 //이미지 파일들
 import home from "../assets/home.png";
@@ -31,8 +28,6 @@ import markIcon from "../assets/markIcon.png";
 import markList from "../components/ExLiterature/markList";
 
 import * as Font from "expo-font";
-
-
 
 const SubLiter= ({navigation, id, text}) => {
 
@@ -244,8 +239,8 @@ const SubLiter= ({navigation, id, text}) => {
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
           
           <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath}}> {text} </Text> 
-            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-41.5%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
               height={900}
