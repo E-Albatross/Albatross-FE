@@ -19,8 +19,6 @@ import erase from "../assets/erase.png";
 import arrow from "../assets/arrow.png";
 import confirm from "../assets/confirm.png";
 
-//컴포넌트
-import Name from "../components/ExLiterature/Liter_name";
 import Score from "../components/ExLiterature/Score";
 
 //느낌표 모달
@@ -224,16 +222,24 @@ const SubLiter= ({navigation, id, text}) => {
       
       <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70}}>
         { finish === false ? (
-        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
-          <Name name={id} />
-        </View>
-        ) 
-        :( 
-        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
-          <Name name={id} />
-          <Score score={score}/> 
-        </View>
-        )}
+         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+         <View style={styles.nameContainer}>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {id} </Text>
+           <View style={styles.line}/>
+           <View style={styles.line}/>
+         </View>
+       </View>
+       ) 
+       :( 
+       <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+         <View style={styles.nameContainer}>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {id} </Text>
+           <View style={styles.line}/>
+           <View style={styles.line}/>
+         </View>
+         <Score score={score}/> 
+       </View>
+       )}
       
       {/* 캔버스보드 부분 */}
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
@@ -322,6 +328,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  nameContainer: {
+    marginTop: "7%",
+    width:"50%",
+    backgroundColor: "transparent",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignContent:"flex-start",
+  },
+  line:{
+      width: '80%', 
+      height: 1, 
+      marginTop: 7,
+      backgroundColor: "#000000",
   },
   name: {
     width: "100%",
