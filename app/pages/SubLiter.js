@@ -19,8 +19,6 @@ import erase from "../assets/erase.png";
 import arrow from "../assets/arrow.png";
 import confirm from "../assets/confirm.png";
 
-//컴포넌트
-import Name from "../components/ExLiterature/Liter_name";
 import Score from "../components/ExLiterature/Score";
 
 //느낌표 모달
@@ -38,27 +36,27 @@ const SubLiter= ({navigation, id, text}) => {
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
-        'SF_HambakSnow': require('../assets/fonts/SF_HambakSnow.ttf'),
-        'ImcreSoojin_Regular': require('../assets/fonts/ImcreSoojin_Regular.ttf'),
         'NotoSansKR-Regular': require('../assets/fonts/NotoSansKR-Regular.ttf'),
-
         'CWDangamAsac-Bold': require('../assets/fonts/CWDangamAsac-Bold.ttf'),
-        'HSYuji-Regular': require('../assets/fonts/HSYuji-Regular.ttf'),
-        'SBAggroB': require('../assets/fonts/SBAggroB.ttf'),
-
         'SUIT-Regular': require('../assets/fonts/SUIT-Regular.ttf'),
+
         'KyoboHandwriting2019': require('../assets/fonts/KyoboHandwriting2019.ttf'),
         'EliceDigitalBaeum': require('../assets/fonts/EliceDigitalBaeum.ttf'),
-
-        'CookieRun-Regular': require('../assets/fonts/CookieRun-Regular.ttf'),
         'Cafe24Ssurroundair': require('../assets/fonts/Cafe24Ssurroundair.ttf'),
-        'YUniverse-L': require('../assets/fonts/YUniverse-L.ttf'),
 
+        'YUniverse-L': require('../assets/fonts/YUniverse-L.ttf'),
         'BMJUA': require('../assets/fonts/YUniverse-L.ttf'),
+
+        'ACCchildrenheart': require('../assets/fonts/ACCchildrenheart.ttf'),
+        'GangwonEduAllLight': require('../assets/fonts/GangwonEduAllLight.ttf'),
+        'KOTRA_SONGEULSSI-Medium': require('../assets/fonts/KOTRA_SONGEULSSI-Medium.ttf'),
+
+        'MaruBuri-SemiBold': require('../assets/fonts/MaruBuri-SemiBold.ttf'),
+        'NanumBaReunHiPi': require('../assets/fonts/NanumBaReunHiPi.ttf'),
+        'NanumPen': require('../assets/fonts/NanumPen.ttf'),
     });
     setReady(true);
-}, []);
-
+  }, []);
 
   useEffect(() => {
     AsyncStorage.getItem('userSize').then((size)=>{
@@ -224,16 +222,24 @@ const SubLiter= ({navigation, id, text}) => {
       
       <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70}}>
         { finish === false ? (
-        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
-          <Name name={id} />
-        </View>
-        ) 
-        :( 
-        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
-          <Name name={id} />
-          <Score score={score}/> 
-        </View>
-        )}
+         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+         <View style={styles.nameContainer}>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {id} </Text>
+           <View style={styles.line}/>
+           <View style={styles.line}/>
+         </View>
+       </View>
+       ) 
+       :( 
+       <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+         <View style={styles.nameContainer}>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {id} </Text>
+           <View style={styles.line}/>
+           <View style={styles.line}/>
+         </View>
+         <Score score={score}/> 
+       </View>
+       )}
       
       {/* 캔버스보드 부분 */}
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
@@ -243,12 +249,12 @@ const SubLiter= ({navigation, id, text}) => {
             <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
-              height={900}
-              width={900}
+              height={"75%"}
+              width={"75%"}
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%" }}
+              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%", borderWidth: 2, top: "5%",  }}
             />
 
               {/* 가로줄 */}
@@ -322,6 +328,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  nameContainer: {
+    marginTop: "7%",
+    width:"50%",
+    backgroundColor: "transparent",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignContent:"flex-start",
+  },
+  line:{
+      width: '80%', 
+      height: 1, 
+      marginTop: 7,
+      backgroundColor: "#000000",
   },
   name: {
     width: "100%",

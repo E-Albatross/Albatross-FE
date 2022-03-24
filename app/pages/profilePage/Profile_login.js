@@ -48,23 +48,24 @@ const Profile_login = ({navigation}) => {
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
-        'SF_HambakSnow': require('../../assets/fonts/SF_HambakSnow.ttf'),
-        'ImcreSoojin_Regular': require('../../assets/fonts/ImcreSoojin_Regular.ttf'),
         'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
-
         'CWDangamAsac-Bold': require('../../assets/fonts/CWDangamAsac-Bold.ttf'),
-        'HSYuji-Regular': require('../../assets/fonts/HSYuji-Regular.ttf'),
-        'SBAggroB': require('../../assets/fonts/SBAggroB.ttf'),
-
         'SUIT-Regular': require('../../assets/fonts/SUIT-Regular.ttf'),
+
         'KyoboHandwriting2019': require('../../assets/fonts/KyoboHandwriting2019.ttf'),
         'EliceDigitalBaeum': require('../../assets/fonts/EliceDigitalBaeum.ttf'),
-
-        'CookieRun-Regular': require('../../assets/fonts/CookieRun-Regular.ttf'),
         'Cafe24Ssurroundair': require('../../assets/fonts/Cafe24Ssurroundair.ttf'),
-        'YUniverse-L': require('../../assets/fonts/YUniverse-L.ttf'),
 
+        'YUniverse-L': require('../../assets/fonts/YUniverse-L.ttf'),
         'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
+
+        'ACCchildrenheart': require('../../assets/fonts/ACCchildrenheart.ttf'),
+        'GangwonEduAllLight': require('../../assets/fonts/GangwonEduAllLight.ttf'),
+        'KOTRA_SONGEULSSI-Medium': require('../../assets/fonts/KOTRA_SONGEULSSI-Medium.ttf'),
+
+        'MaruBuri-SemiBold': require('../../assets/fonts/MaruBuri-SemiBold.ttf'),
+        'NanumBaReunHiPi': require('../../assets/fonts/NanumBaReunHiPi.ttf'),
+        'NanumPen': require('../../assets/fonts/NanumPen.ttf'),
     });
     setReady(true);
 }, []);
@@ -155,20 +156,11 @@ const savePath = async (fontPath) => {
             <TouchableOpacity onPress={() => {setFont("앨리스체"); setPath("EliceDigitalBaeum");setFontVisible(false);}}> 
                 <Text style={{ fontSize: 30, fontFamily: "EliceDigitalBaeum",  marginBottom: 30}}>앨리스체</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => { setFontVisible(false); setFont("아임크리체"); setPath("ImcreSoojin_Regular");}}> 
-                <Text style={{ fontSize: 30, fontFamily: "ImcreSoojin_Regular",  marginBottom: 30}}>아임크리체</Text>
-            </TouchableOpacity>
+            
             <TouchableOpacity onPress={() => { setFontVisible(false); setFont("주아체"); setPath("BMJUA");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "BMJUA",  marginBottom: 30}}>주아체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { setFontVisible(false); setFont("HS유지체"); setPath("HSYuji-Regular");}}> 
-                <Text style={{ fontSize: 30, fontFamily: "HSYuji-Regular",  marginBottom: 30}}>HS유지체</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => { setFontVisible(false);setFont("쿠키런체"); setPath("CookieRun-Regular");}}> 
-                <Text style={{ fontSize: 30, fontFamily: "CookieRun-Regular", marginBottom: 30}}>쿠키런체</Text>
-            </TouchableOpacity>
+            
             <TouchableOpacity onPress={() => {setFontVisible(false); setFont("카페24체"); setPath("Cafe24Ssurroundair");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "Cafe24Ssurroundair", marginBottom: 30}}>카페24체</Text>
             </TouchableOpacity>
@@ -179,12 +171,31 @@ const savePath = async (fontPath) => {
             <TouchableOpacity onPress={() => {setFontVisible(false); setFont("노토산스"); setPath("NotoSansKR-Regular");}}> 
                 <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Regular", marginBottom: 30}}>노토산스</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { setFontVisible(false); setFont("함박눈체"); setPath("SF_HambakSnow");}}> 
-                <Text style={{ fontSize: 30, fontFamily: "SF_HambakSnow", marginBottom: 30}}>함박눈체</Text>
+
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("어린이마음고운체"); setPath("ACCchildrenheart");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "ACCchildrenheart", marginBottom: 30}}>어린이마음고운체</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("어그로체B"); setPath("SBAggroB");}}> 
-                <Text style={{ fontSize: 30, fontFamily: "SBAggroB", marginBottom: 30}}>어그로체B</Text>
+
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("강원교육모두체"); setPath("GangwonEduAllLight");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "GangwonEduAllLight", marginBottom: 30}}>강원교육모두체</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("코토라체"); setPath("KOTRA_SONGEULSSI-Medium");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "KOTRA_SONGEULSSI-Medium", marginBottom: 30}}>코토라체</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("마루부리"); setPath("MaruBuri-SemiBold");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "MaruBuri-SemiBold", marginBottom: 30}}>마루부리</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("바른히피"); setPath("NanumBaReunHiPi");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "NanumBaReunHiPi", marginBottom: 30}}>바른히피</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {setFontVisible(false); setFont("나눔손글씨 펜체"); setPath("NanumPen");}}> 
+                <Text style={{ fontSize: 30, fontFamily: "NanumPen", marginBottom: 30}}>나눔손글씨 펜체</Text>
+            </TouchableOpacity>
+            
             </ScrollView>
           </View>
           

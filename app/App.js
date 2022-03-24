@@ -11,7 +11,6 @@ import SignIn from "./pages/profilePage/SignIn";
 
 import CaptureSign from "./components/CaptureSign";
 
-import FontPage from "./pages/profilePage/FontPage";
 import FontsList from "./assets/fonts/FontsList";
 
 import ExLine from "./pages/ExLine";
@@ -37,7 +36,6 @@ function App() {
         <Stack.Screen name="PROFILE_LOGOUT" component={Profile_logout} />
         <Stack.Screen name="LOGIN" component={Login} />
         <Stack.Screen name="SIGNIN" component={SignIn} />
-        <Stack.Screen name="FONTPAGE" component={FontPage} />
         <Stack.Screen name="FONTSLIST" component={FontsList} />
 
         <Stack.Screen name="LINE" component={ExLine} />

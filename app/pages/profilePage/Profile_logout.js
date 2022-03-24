@@ -41,23 +41,24 @@ const Profile_logout = ({ navigation}) => {
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
-        'SF_HambakSnow': require('../../assets/fonts/SF_HambakSnow.ttf'),
-        'ImcreSoojin_Regular': require('../../assets/fonts/ImcreSoojin_Regular.ttf'),
         'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
-
         'CWDangamAsac-Bold': require('../../assets/fonts/CWDangamAsac-Bold.ttf'),
-        'HSYuji-Regular': require('../../assets/fonts/HSYuji-Regular.ttf'),
-        'SBAggroB': require('../../assets/fonts/SBAggroB.ttf'),
-
         'SUIT-Regular': require('../../assets/fonts/SUIT-Regular.ttf'),
+
         'KyoboHandwriting2019': require('../../assets/fonts/KyoboHandwriting2019.ttf'),
         'EliceDigitalBaeum': require('../../assets/fonts/EliceDigitalBaeum.ttf'),
-
-        'CookieRun-Regular': require('../../assets/fonts/CookieRun-Regular.ttf'),
         'Cafe24Ssurroundair': require('../../assets/fonts/Cafe24Ssurroundair.ttf'),
-        'YUniverse-L': require('../../assets/fonts/YUniverse-L.ttf'),
 
+        'YUniverse-L': require('../../assets/fonts/YUniverse-L.ttf'),
         'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
+
+        'ACCchildrenheart': require('../../assets/fonts/ACCchildrenheart.ttf'),
+        'GangwonEduAllLight': require('../../assets/fonts/GangwonEduAllLight.ttf'),
+        'KOTRA_SONGEULSSI-Medium': require('../../assets/fonts/KOTRA_SONGEULSSI-Medium.ttf'),
+
+        'MaruBuri-SemiBold': require('../../assets/fonts/MaruBuri-SemiBold.ttf'),
+        'NanumBaReunHiPi': require('../../assets/fonts/NanumBaReunHiPi.ttf'),
+        'NanumPen': require('../../assets/fonts/NanumPen.ttf'),
     });
     setReady(true);
 }, []);
