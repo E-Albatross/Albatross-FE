@@ -9,7 +9,7 @@
 
 <br>
 
-![image](https://user-images.githubusercontent.com/65931227/150703538-d9b38b40-1ba7-45c8-88f3-78ed399952db.png)
+<img src = "https://user-images.githubusercontent.com/65931227/150703538-d9b38b40-1ba7-45c8-88f3-78ed399952db.png" width="50%">
 
 <br>
 
