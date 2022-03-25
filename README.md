@@ -1,5 +1,10 @@
 # Albatross-FE
 
+## 📌 Introduce
+
+딥러닝을 활용한 글씨연습어플, 바른글씨를 React-Native를 이용해 개발하였습니다.
+그 개발 과정과 오류 해결 과정은 https://velog.io/@0909oje/series/React-Native 에서 찾아볼 수 있습니다.
+
 ## 📌 Stacks
 
 <img src="https://img.shields.io/badge/ReactNative-FE2E2E?style=flat-square&logo=React&logoColor=white"/></a>
