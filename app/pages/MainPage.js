@@ -3,24 +3,25 @@ import { Text, View, Button, StyleSheet, Image,
   TouchableOpacity, ScrollView,
 } from "react-native";
 
-import drawer from "../assets/MainPage/drawer.png";
+import drawer from "../assets/MainPage/apps.png";
 import profile from "../assets/MainPage/profile.png";
 import literature from "../assets/MainPage/literature.png";
 
 import literList from "../components/ExLiterature/literList";
 
-import { Font } from 'expo';
+import * as Font from "expo-font";
 
 const MainPage = ({navigation}) => {
+  const [isReady, setIsReady] = useState(false);
 
-  const [isReady, setIsReady] = useState(true);
- 
-  // useEffect(async () => {
-  //     await Font.loadAsync({
-  //       'NotoSansKR-Light': require('../assets/fonts/NotoSansKR-Light.ttf'),
-  //     });
-  //     setIsReady(true);
-  // }, []);
+  useEffect(async () => {
+    await Font.loadAsync({
+        'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
+    });
+    setIsReady(true);
+}, []);
+
+  const fontPath = "SeoulHangangL"; // 초기 폰트 설정
   
     return (
       
@@ -30,30 +31,24 @@ const MainPage = ({navigation}) => {
         <View style={styles.headerRow}>
           <TouchableOpacity
             onPress={() => navigation.navigate("PROFILE_LOGIN")}
-            style={styles.iconbutton}
           >
-            <Image source={profile} />
+            <Image source={profile} style={{width: 60, height: 60}} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate("DRAWER")}
-            style={styles.iconbutton}
           >
-            <Image source={drawer} />
+            <Image source={drawer} style={{width: 90, height: 90}} />
           </TouchableOpacity>
         </View>
 
-        <Text
-          style={{
+        <Text style={{
             fontSize: 30,
-            marginTop: 60,
+            marginTop: 20,
             marginLeft: 30,
-            marginBottom: 100,
+            marginBottom: 80,
             letterSpacing: 15,
-            // fontFamily: "NotoSansKR-Light",
-          }}
-        >
-          바른글씨{" "}
-        </Text>
+            fontFamily : fontPath,
+          }} >바른글씨</Text>
 
         <View style={styles.practiceRow}>
           <TouchableOpacity
@@ -63,8 +58,7 @@ const MainPage = ({navigation}) => {
               width: "45%",
               backgroundColor: "#80AE92",
               borderRadius: 10,
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontSize: 20,
@@ -73,8 +67,8 @@ const MainPage = ({navigation}) => {
                 fontWeight: "bold",
                 textAlign: "center",
                 paddingTop: 50,
-              }}
-            >
+                fontFamily: fontPath,
+              }}>
               {" "}
               줄 긋기 연습{" "}
             </Text>
@@ -96,6 +90,7 @@ const MainPage = ({navigation}) => {
                 fontWeight: "bold",
                 textAlign: "center",
                 paddingTop: 50,
+                fontFamily: fontPath,
               }}
             >
               {" "}

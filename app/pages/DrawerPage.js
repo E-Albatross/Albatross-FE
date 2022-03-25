@@ -1,22 +1,60 @@
-import React, { Component } from "react";
+import React, {useState, useEffect} from "react";
 import {
-  Text,
-  View,
-  Button,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList,
+  Text, View, StyleSheet, Image,
+  TouchableOpacity, ScrollView,
+  Dimensions
 } from "react-native";
+
+import { FlatList } from 'react-native-gesture-handler';
 
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
+import myLiter from "../components/myLiter";
 
-import literList from "../components/ExLiterature/literList";
+import { LineChart } from "react-native-chart-kit";
+
+import * as Font from "expo-font";
 
 const DrawerPage = ({navigation}) => {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(async () => {
+    await Font.loadAsync({
+        'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
+    });
+    setIsReady(true);
+  }, []);
+
+  const fontPath = "SeoulHangangL"; // 초기 폰트 설정
+
+  const screenWidth = Dimensions.get("window").width;
+
+  const chartConfig = {
+    backgroundGradientFrom: "#80AE92",
+    backgroundGradientFromOpacity: 0,
+    backgroundGradientTo: "#80AE92",
+    backgroundGradientToOpacity: 0.5,
+    color: (opacity = 5) => `rgba(0, 70, 42, ${opacity})`,
+    strokeWidth: 2, // optional, default 3
+    barPercentage: 1,
+    useShadowColorFromDataset: false // optional
+  };
+
+  const data = {
+    datasets: [
+      {
+        data: myLiter.first.map(s=>( s.score )),
+        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+        strokeWidth: 5 // optional
+      }
+    ],
+    legend: ["내 점수"] // optional
+  };
+
     return (
       <View style={styles.container}>
+        {isReady && (
+          <>
         <View style={styles.headerRow}>
           <TouchableOpacity
             onPress={() => navigation.navigate("MAIN")}
@@ -26,39 +64,38 @@ const DrawerPage = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <Text
-          style={{
-            fontSize: 30,
-            marginTop: 60,
-            marginLeft: 15,
-            marginBottom: 60,
-            letterSpacing: 10,
-          }}
-        >
-          {" "}
-          내 서랍{" "}
-        </Text>
+          {/* <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, }} > 
+          내 점수 </Text> */}
 
-        <FlatList
-        data={literList.new}
-        columnWrapperStyle={{
-          marginBottom: 20,
-        }}
-        renderItem={({item}) => 
-            <TouchableOpacity key={item.id}
-              onPress={() => navigation.navigate("CAPTURE",{
-                category: "new",
-                id: item.id,
-                text: item.text,
-              })}
-              style={styles.iconbutton} >
-              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
-            </TouchableOpacity>
-      }
-        keyExtractor={(item, index) => index}
-        numColumns={3}
-      />
+          <LineChart
+            data={data}
+            width={screenWidth-200}
+            height={200}
+            chartConfig={chartConfig}
+          />
+
+          <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
+          내 서랍 </Text>
           
+            <FlatList
+            data={myLiter.first}
+            columnWrapperStyle={{
+              marginBottom: 20,
+            }}
+            indicatorStyle={"white"}
+            nestedScrollEnabled ={true}
+            renderItem={({item}) => 
+                <TouchableOpacity key={item.id}
+                  // onPress={() => navigation.navigate()}
+                  style={styles.iconbutton} >
+                  <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
+                </TouchableOpacity>
+          }
+            keyExtractor={(item, index) => index}
+            numColumns={3}
+          />
+          </>
+          )}
       </View>
     );
 }
@@ -75,15 +112,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
+
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
     width: "100%",
-    height: 90,
+    height: 70,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#80AE92",
+    marginBottom: 45,
   },
   literatureRow: {
     marginTop: 10,
@@ -93,8 +132,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  grid:{
-
   },
 });
