@@ -66,7 +66,7 @@ const SubLiter= ({navigation, id, text}) => {
     })
   },[]);
 
-  const [fontPath,setPath] = useState("SF_HambakSnow"); // 초기 폰트 설정
+  const [fontPath,setPath] = useState("BMJUA"); // 초기 폰트 설정
 
   //폰트 경로 가져옴
   useEffect(() => {
