@@ -3,10 +3,11 @@ import React from "react";
 import SubLiter from "./SubLiter";
 import Swiper from 'react-native-swiper';
 
-const ExLiteratureNew = ({navigation, route}) => {
+const ExLiterature = ({navigation, route}) => {
   const id = route.params.id;
-
+  const title = route.params.title;
   const text = route.params.text;
+  
   var textArr = [];
   var cnt=0, last=-1;
   var i;
@@ -22,18 +23,20 @@ const ExLiteratureNew = ({navigation, route}) => {
     }
   }
 
-  if(cnt>0) textArr.push(text.substring(last+1, i)); 
+  if(cnt>0) textArr.push(text.substring(last+1, i));
 
   return (
     <Swiper showsButtons loop={false}>
       {textArr.map(s=>(
         <SubLiter 
         navigation={navigation} 
-        text={s} 
-        id={id}/>
+        id={id}
+        setTitle={title}
+        text={s}
+        />
       ))}
     </Swiper>
   );
 };
 
-export default ExLiteratureNew;
+export default ExLiterature;

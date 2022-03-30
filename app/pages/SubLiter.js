@@ -27,7 +27,9 @@ import markList from "../components/ExLiterature/markList";
 
 import * as Font from "expo-font";
 
-const SubLiter= ({navigation, id, text}) => {
+const SubLiter= ({navigation, id, setTitle, text}) => {
+  console.log(setTitle);
+  console.log(text)
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
@@ -224,7 +226,7 @@ const SubLiter= ({navigation, id, text}) => {
         { finish === false ? (
          <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
          <View style={styles.nameContainer}>
-           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {id} </Text>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {setTitle} </Text>
            <View style={styles.line}/>
            <View style={styles.line}/>
          </View>
@@ -233,7 +235,7 @@ const SubLiter= ({navigation, id, text}) => {
        :( 
        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
          <View style={styles.nameContainer}>
-           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {id} </Text>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
            <View style={styles.line}/>
            <View style={styles.line}/>
          </View>
