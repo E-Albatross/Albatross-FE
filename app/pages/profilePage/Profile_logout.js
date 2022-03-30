@@ -63,8 +63,8 @@ const Profile_logout = ({ navigation}) => {
     setReady(true);
 }, []);
 
-  const [userFont,setFont] = useState("함박눈체"); // 초기 폰트 설정
-  const [fontPath,setPath] = useState("SF_HambakSnow"); // 초기 폰트 설정
+const [userFont,setFont] = useState("주아체"); // 초기 폰트 설정
+const [fontPath,setPath] = useState("BMJUA"); // 초기 폰트 설정
   // 폰트 경로 가져옴
   useEffect(() => {
     AsyncStorage.getItem('userFont').then((font)=>{
