@@ -35,6 +35,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
   // id: s.id,
   const category = route.params.category;
   const id = route.params.id;
+  const title = route.params.title;
   const text = route.params.text;
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
@@ -84,14 +85,6 @@ const ExLiteratureNew = ({ navigation, route}) => {
       }
     })
   },[]);
-  
-  // 갤러리 허가
-  // useEffect(() => {
-  //   (async () => {
-  //     const { status } = await Camera.requestCameraPermissionsAsync();
-  //     setHasPermission(status === 'granted');
-  //   })();
-  // }, []);
 
   const [finish, setFinish] = useState(false);
 
@@ -246,7 +239,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
         { finish === false ? (
         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
           <View style={styles.nameContainer}>
-            <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {id} </Text>
+            <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {title} </Text>
             <View style={styles.line}/>
             <View style={styles.line}/>
           </View>
@@ -255,7 +248,7 @@ const ExLiteratureNew = ({ navigation, route}) => {
         :( 
         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
           <View style={styles.nameContainer}>
-            <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {id} </Text>
+            <Text style={{fontSize: 24, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {title} </Text>
             <View style={styles.line}/>
             <View style={styles.line}/>
           </View>
