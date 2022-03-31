@@ -28,9 +28,6 @@ import markList from "../components/ExLiterature/markList";
 import * as Font from "expo-font";
 
 const SubLiter= ({navigation, id, setTitle, text}) => {
-  console.log(setTitle);
-  console.log(text)
-
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
   const [score, setScore] = useState(80);
@@ -94,6 +91,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     setTool((prev) =>
       prev === DrawingTool.Brush ? DrawingTool.Eraser : DrawingTool.Brush
     );
+    console.log(tool);
   };
 
   //스크린샷 캡쳐 위한 코드
@@ -251,8 +249,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
-              height={"75%"}
-              width={"75%"}
+              height={900}
+              width={900}
               color="black"
               tool={tool}
               eraserSize={5}
