@@ -251,8 +251,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
-              height={"75%"}
-              width={"75%"}
+              height={900}
+              width={900}
               color="black"
               tool={tool}
               eraserSize={5}
