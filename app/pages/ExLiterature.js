@@ -69,9 +69,6 @@ const ExLiterature = ({navigation, route}) => {
               
               setVisible({...newPagearr})
               setPage(s);
-              console.log(visible, "\n");
-
-              
             }}
             style={styles.roundButton}>
           </TouchableOpacity>
