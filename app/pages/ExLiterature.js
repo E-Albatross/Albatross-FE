@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
+import { StyleSheet, View, TouchableOpacity, } from "react-native";
 
 import SubLiter from "./SubLiter";
-import Swiper from 'react-native-swiper';
 
 const ExLiterature = ({navigation, route}) => {
   const id = route.params.id;
@@ -10,8 +10,7 @@ const ExLiterature = ({navigation, route}) => {
   
   var textArr = [];
   var cnt=0, last=-1;
-  var i;
-  var pageSize=0;
+  var i, pageSize=0;
 
   for(i=0 ; i<text.length; i++){
     if(text[i]=='\n') { // \n을 만났을 때
@@ -30,14 +29,75 @@ const ExLiterature = ({navigation, route}) => {
     textArr.push(text.substring(last+1, i));
   }
 
+  const [visible, setVisible] = useState([
+    true, false, false, false, false, false, false, false, false, false
+  ]);
+  const [currentPage, setPage] = useState(0);
+
+  var pageArr = [];
+  for(var j=0 ; j<pageSize ; j++) pageArr.push(j); 
+
   return (
-    <SubLiter 
-      navigation={navigation} 
-      id={id}
-      setTitle={title}
-      text={textArr[0]}
-    />
+    <>
+      {pageArr.map((s)=>(
+        <>
+        { visible[s] && (
+          <SubLiter 
+          key={s}
+          navigation={navigation} 
+          id={id}
+          setTitle={title}
+          text={textArr[s]}
+          />
+        )}
+        </>
+        ))}
+      <View style={styles.container}> 
+        {pageArr.map((s)=>(
+          <TouchableOpacity
+            key={s}
+            onPress={() => {
+              var newPagearr = [];
+
+              for(var i=0 ; i<s ; i++){
+                newPagearr.push(false);
+              }
+              newPagearr.push(true);
+              for(var i=s+1 ; i<10 ; i++){
+                newPagearr.push(false);
+              }
+              
+              setVisible({...newPagearr})
+              setPage(s);
+              console.log(visible, "\n");
+
+              
+            }}
+            style={styles.roundButton}>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </>
   );
 };
 
 export default ExLiterature;
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "8%",
+    backgroundColor: "#F9F9F9",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  roundButton: {
+    width: 25,
+    height: 25,
+    borderRadius: 100,
+    backgroundColor: '#80AE92',
+    marginLeft : 5,
+    marginRight: 5
+  },
+})

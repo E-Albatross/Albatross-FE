@@ -91,7 +91,6 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     setTool((prev) =>
       prev === DrawingTool.Brush ? DrawingTool.Eraser : DrawingTool.Brush
     );
-    console.log(tool);
   };
 
   //스크린샷 캡쳐 위한 코드
@@ -254,7 +253,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%", borderWidth: 2, top: "5%",  }}
+              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%", top: "5%",  }}
             />
 
               {/* 가로줄 */}
@@ -304,9 +303,8 @@ export default SubLiter;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: "100%",
-    height: "100%",
+    height: "92%",
     backgroundColor: "#F9F9F9",
     flexDirection: "column",
     justifyContent: "flex-start",
