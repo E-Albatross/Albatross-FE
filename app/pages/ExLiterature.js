@@ -32,7 +32,6 @@ const ExLiterature = ({navigation, route}) => {
   const [visible, setVisible] = useState([
     true, false, false, false, false, false, false, false, false, false
   ]);
-  const [currentPage, setPage] = useState(0);
 
   var pageArr = [];
   for(var j=0 ; j<pageSize ; j++) pageArr.push(j); 
@@ -41,15 +40,15 @@ const ExLiterature = ({navigation, route}) => {
     <>
       {pageArr.map((s)=>(
         <>
-        { visible[s] && (
-          <SubLiter 
-          key={s}
-          navigation={navigation} 
-          id={id}
-          setTitle={title}
-          text={textArr[s]}
-          />
-        )}
+          { visible[s] && (
+            <SubLiter 
+            key={s}
+            navigation={navigation} 
+            id={id}
+            setTitle={title}
+            text={textArr[s]}
+            />
+          )}
         </>
         ))}
       <View style={styles.container}> 
@@ -59,16 +58,11 @@ const ExLiterature = ({navigation, route}) => {
             onPress={() => {
               var newPagearr = [];
 
-              for(var i=0 ; i<s ; i++){
-                newPagearr.push(false);
-              }
+              for(var i=0 ; i<s ; i++) newPagearr.push(false); 
               newPagearr.push(true);
-              for(var i=s+1 ; i<10 ; i++){
-                newPagearr.push(false);
-              }
+              for(var i=s+1 ; i<10 ; i++) newPagearr.push(false); 
               
               setVisible({...newPagearr})
-              setPage(s);
             }}
             style={styles.roundButton}>
           </TouchableOpacity>

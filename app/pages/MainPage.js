@@ -115,7 +115,7 @@ const MainPage = ({navigation}) => {
                 text: s.text,
               })}
               style={styles.iconbutton} >
-              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+              <Image key={s.id} source={literature} style={{marginLeft: 10, marginRight: 10}} />
             </TouchableOpacity>
           ))}
         </View>
@@ -137,7 +137,7 @@ const MainPage = ({navigation}) => {
                 text: s.text,
               })}
               style={styles.iconbutton} >
-              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+              <Image key={s.id} source={literature} style={{marginLeft: 10, marginRight: 10}} />
             </TouchableOpacity>
           ))}
         </View>
