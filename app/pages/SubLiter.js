@@ -244,8 +244,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
           
           <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: -5, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
-            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 55, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: -7, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 52, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
               height={900}
