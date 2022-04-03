@@ -15,7 +15,7 @@ const ExLiterature = ({navigation, route}) => {
   for(i=0 ; i<text.length; i++){
     if(text[i]=='\n') { // \n을 만났을 때
       cnt++; 
-      if(cnt%5==0 && cnt!=0){ // 5단위로 끊어서 배열 저장
+      if(cnt%4==0 && cnt!=0){ // 5단위로 끊어서 배열 저장
         pageSize++;
         textArr.push(text.substring(last+1, i));
         last = i; // i까지 저장했음을 알려줌
