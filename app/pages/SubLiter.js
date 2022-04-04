@@ -105,9 +105,10 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       const gallery = await galleryRef.current.capture();
       setUri(server);
       setGallery(gallery);
-      console.log("서버에 저장할 uri : ", photoUri);
-      console.log("갤러리에 저장할 uri : ", galleryUri);
 
+      console.log("서버에 저장할 uri : ", server);
+      console.log("갤러리에 저장할 uri : ", gallery);
+      
      } catch(err){
       console.log("uri를 가져오는데 실패함!");
      }
