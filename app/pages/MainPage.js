@@ -7,13 +7,28 @@ import drawer from "../assets/MainPage/apps.png";
 import profile from "../assets/MainPage/profile.png";
 import literature from "../assets/MainPage/literature.png";
 
+import new1 from "../assets/MainPage/new1.png";
+import new2 from "../assets/MainPage/new2.png";
+import new3 from "../assets/MainPage/new3.png";
+import new4 from "../assets/MainPage/new4.png";
+import new5 from "../assets/MainPage/new5.png";
+import new6 from "../assets/MainPage/new6.png";
+
+import best1 from "../assets/MainPage/best1.png";
+import best2 from "../assets/MainPage/best2.png";
+import best3 from "../assets/MainPage/best3.png";
+import best4 from "../assets/MainPage/best4.png";
+import best5 from "../assets/MainPage/best5.png";
+import best6 from "../assets/MainPage/best6.png";
+
 import literList from "../components/ExLiterature/literList";
 
 import * as Font from "expo-font";
 
 const MainPage = ({navigation}) => {
-  const [isReady, setIsReady] = useState(false);
+  const img = [new1, new2, new3, new4, new5, new6, best1, best2, best3, best4, best5, best6];
 
+  const [isReady, setIsReady] = useState(false);
   useEffect(async () => {
     await Font.loadAsync({
         'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
@@ -115,7 +130,7 @@ const MainPage = ({navigation}) => {
                 text: s.text,
               })}
               style={styles.iconbutton} >
-              <Image key={s.id} source={literature} style={{marginLeft: 10, marginRight: 10}} />
+              <Image key={s.id} source={img[s.id-1]} style={{marginLeft: 10, marginRight: 10, width: 194, height: 257}} />
             </TouchableOpacity>
           ))}
         </View>
@@ -137,7 +152,7 @@ const MainPage = ({navigation}) => {
                 text: s.text,
               })}
               style={styles.iconbutton} >
-              <Image key={s.id} source={literature} style={{marginLeft: 10, marginRight: 10}} />
+              <Image key={s.id} source={img[s.id-1]} style={{marginLeft: 10, marginRight: 10, width: 194, height: 257}} />
             </TouchableOpacity>
           ))}
         </View>
