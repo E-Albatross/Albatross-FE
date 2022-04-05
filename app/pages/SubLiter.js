@@ -27,7 +27,9 @@ import markList from "../components/ExLiterature/markList";
 
 import * as Font from "expo-font";
 
-const SubLiter= ({navigation, id, text}) => {
+const SubLiter= ({navigation, id, setTitle, text}) => {
+  console.log(setTitle);
+  console.log(text)
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
@@ -36,27 +38,27 @@ const SubLiter= ({navigation, id, text}) => {
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
-        'SF_HambakSnow': require('../assets/fonts/SF_HambakSnow.ttf'),
-        'ImcreSoojin_Regular': require('../assets/fonts/ImcreSoojin_Regular.ttf'),
         'NotoSansKR-Regular': require('../assets/fonts/NotoSansKR-Regular.ttf'),
-
         'CWDangamAsac-Bold': require('../assets/fonts/CWDangamAsac-Bold.ttf'),
-        'HSYuji-Regular': require('../assets/fonts/HSYuji-Regular.ttf'),
-        'SBAggroB': require('../assets/fonts/SBAggroB.ttf'),
-
         'SUIT-Regular': require('../assets/fonts/SUIT-Regular.ttf'),
+
         'KyoboHandwriting2019': require('../assets/fonts/KyoboHandwriting2019.ttf'),
         'EliceDigitalBaeum': require('../assets/fonts/EliceDigitalBaeum.ttf'),
-
-        'CookieRun-Regular': require('../assets/fonts/CookieRun-Regular.ttf'),
         'Cafe24Ssurroundair': require('../assets/fonts/Cafe24Ssurroundair.ttf'),
-        'YUniverse-L': require('../assets/fonts/YUniverse-L.ttf'),
 
+        'YUniverse-L': require('../assets/fonts/YUniverse-L.ttf'),
         'BMJUA': require('../assets/fonts/YUniverse-L.ttf'),
+
+        'ACCchildrenheart': require('../assets/fonts/ACCchildrenheart.ttf'),
+        'GangwonEduAllLight': require('../assets/fonts/GangwonEduAllLight.ttf'),
+        'KOTRA_SONGEULSSI-Medium': require('../assets/fonts/KOTRA_SONGEULSSI-Medium.ttf'),
+
+        'MaruBuri-SemiBold': require('../assets/fonts/MaruBuri-SemiBold.ttf'),
+        'NanumBaReunHiPi': require('../assets/fonts/NanumBaReunHiPi.ttf'),
+        'NanumPen': require('../assets/fonts/NanumPen.ttf'),
     });
     setReady(true);
-}, []);
-
+  }, []);
 
   useEffect(() => {
     AsyncStorage.getItem('userSize').then((size)=>{
@@ -66,7 +68,7 @@ const SubLiter= ({navigation, id, text}) => {
     })
   },[]);
 
-  const [fontPath,setPath] = useState("SF_HambakSnow"); // 초기 폰트 설정
+  const [fontPath,setPath] = useState("BMJUA"); // 초기 폰트 설정
 
   //폰트 경로 가져옴
   useEffect(() => {
@@ -224,7 +226,7 @@ const SubLiter= ({navigation, id, text}) => {
         { finish === false ? (
          <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
          <View style={styles.nameContainer}>
-           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {id} </Text>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {setTitle} </Text>
            <View style={styles.line}/>
            <View style={styles.line}/>
          </View>
@@ -233,7 +235,7 @@ const SubLiter= ({navigation, id, text}) => {
        :( 
        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
          <View style={styles.nameContainer}>
-           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {id} </Text>
+           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
            <View style={styles.line}/>
            <View style={styles.line}/>
          </View>
@@ -249,12 +251,12 @@ const SubLiter= ({navigation, id, text}) => {
             <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 0, lineHeight: 150, width: "85%", fontFamily: fontPath, color:"#C4C4C4",top:50}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
-              height={900}
-              width={900}
+              height={"75%"}
+              width={"75%"}
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%" }}
+              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%", borderWidth: 2, top: "5%",  }}
             />
 
               {/* 가로줄 */}

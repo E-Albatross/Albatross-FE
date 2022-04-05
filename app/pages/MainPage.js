@@ -111,6 +111,7 @@ const MainPage = ({navigation}) => {
               onPress={() => navigation.navigate("LITER",{
                 category: "new",
                 id: s.id,
+                title: s.title,
                 text: s.text,
               })}
               style={styles.iconbutton} >
@@ -132,6 +133,7 @@ const MainPage = ({navigation}) => {
               onPress={() => navigation.navigate("LITER",{
                 category: "best",
                 id: s.id,
+                title: s.title,
                 text: s.text,
               })}
               style={styles.iconbutton} >
