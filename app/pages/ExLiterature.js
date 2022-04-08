@@ -3,6 +3,9 @@ import { StyleSheet, View, TouchableOpacity, } from "react-native";
 
 import SubLiter from "./SubLiter";
 
+import store from "../_store/index";
+import {addArticle} from "../_actions/index";
+
 const ExLiterature = ({navigation, route}) => {
   const id = route.params.id;
   const title = route.params.title;
