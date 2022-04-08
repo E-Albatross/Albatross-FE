@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, Text,
-  Image, TouchableOpacity, Modal
+  Image, TouchableOpacity, Modal, Dimensions
 } from "react-native";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -141,6 +141,9 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
      }
   };
 
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+
   return (
     <View style={styles.container}>
       {isReady && (
@@ -220,9 +223,9 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         </Modal>
       {/* 모달창 코드 끝 */}
       
-      <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70}}>
+      <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70, width: windowWidth}}>
         { finish === false ? (
-         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
          <View style={styles.nameContainer}>
            <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath }}> {setTitle} </Text>
            <View style={styles.line}/>
@@ -231,7 +234,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        </View>
        ) 
        :( 
-       <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 530,}}> 
+       <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
          <View style={styles.nameContainer}>
            <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
            <View style={styles.line}/>
@@ -242,19 +245,19 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        )}
       
       {/* 캔버스보드 부분 */}
-        <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }}>
+        <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} style={{}}>
           
-          <View style={{ marginTop: 10, marginLeft: 900, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: -7, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
-            <Text style={{ fontSize: userSize, letterSpacing: 2, position: "absolute", left: "-40%", top: 52, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
+          <View style={{ marginTop: 10, marginLeft: 400, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
+            <Text style={{ fontSize: userSize, letterSpacing: 5, position: "absolute", left: "-40%", top: -7, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 5, position: "absolute", left: "-40%", top: 52, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
-              height={900}
+              height={windowHeight}
               width={900}
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "85%", position: "absolute", left: "-42%", top: "5%",  }}
+              style={{ backgroundColor: 'transparent', width: "85%",  height: "72%", position: "absolute", left: "-42%", top: "5%"}}
             />
 
               {/* 가로줄 */}
