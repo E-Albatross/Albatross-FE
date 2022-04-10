@@ -260,48 +260,7 @@ const savePath = async (fontPath) => {
           </TouchableOpacity>
         </View>
 
-        {/* 개인정보설정 상자 */}
-        <View style={styles.subTitleBox}>
-          <Text style={{textAlign: "left",color: "#808080",fontSize: 20,marginTop: 60,marginBottom: 10,}}> 비밀번호 변경 </Text>
-        </View>
-        <View style={styles.informBox}>
-          <View style={styles.rowBox}>
-            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
-              }} > 현재 비밀번호 </Text>
-              <TextInput style={styles.box}
-                onChangeText={onChangePW}
-                value={pw}
-             />
-          </View>
-          <View style={styles.line}></View>
-          <View style={styles.rowBox}>
-            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
-              }} > 새 비밀번호 </Text>
-              <TextInput style={styles.box}
-                onChangeText={onChangeNewpw}
-                value={newPw}
-             />
-          </View>
-          <View style={styles.line}></View>
-          <View style={styles.buttonBox}>
-          <View style={styles.rowBox}>
-            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60
-              }} > 새 비밀번호 확인 </Text>
-              <TextInput style={styles.box}
-                onChangeText={onChangeNewpw2}
-                value={newPw2}
-             />
-          </View>
-          <TouchableOpacity
-              onPress={() => setModifyVisible(true)}
-              style={{ height: 40, width: 70, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: "2%"}} >
-              <Text
-                style={{ fontSize: 22, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 40
-                }} >확인 </Text>
-          </TouchableOpacity>
-          </View>
-          
-        </View>
+        
 
         {/* 기본값설정 상자 */}
         <View style={styles.subTitleBox}>

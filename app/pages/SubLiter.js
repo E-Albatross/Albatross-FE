@@ -249,8 +249,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         style={{ marginTop: "10%", height:((windowHeight*0.92*0.9-70)*0.88-4)}}>
           
           <View style={{ marginLeft: 400, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-            <Text style={{ fontSize: userSize, letterSpacing: 5, position: "absolute", left: "-40%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
-            <Text style={{ fontSize: userSize, letterSpacing: 5, position: "absolute", left: "-40%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "-40%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "-40%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
               height={(windowHeight*0.92*0.9-70)*0.88}
