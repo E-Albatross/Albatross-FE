@@ -223,30 +223,30 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         </Modal>
       {/* 모달창 코드 끝 */}
       
-      <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70, width: windowWidth, height:(windowHeight*0.90)}}>
+      <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70, width: windowWidth, height:(windowHeight*0.92-70)}}>
         { finish === false ? (
          <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
-         <View style={styles.nameContainer}>
-           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath, }}> {setTitle} </Text>
-           <View style={styles.line}/>
-           <View style={styles.line}/>
-         </View>
-       </View>
+          <View style={styles.nameContainer}>
+            <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath, }}> {setTitle} </Text>
+            <View style={styles.line}/>
+            <View style={styles.line}/>
+          </View>
+        </View>
        ) 
        :( 
-       <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
-         <View style={styles.nameContainer}>
-           <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
-           <View style={styles.line}/>
-           <View style={styles.line}/>
-         </View>
-         <Score score={score}/> 
-       </View>
+        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
+          <View style={styles.nameContainer}>
+            <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
+            <View style={styles.line}/>
+            <View style={styles.line}/>
+          </View>
+          <Score score={score}/> 
+        </View>
        )}
-      
+       {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
       {/* 캔버스보드 부분 */}
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
-        style={{ marginTop: "10%", height:(windowHeight*0.92*0.9-70)*0.88-2}}>
+        style={{ marginTop: "10%", height:((windowHeight*0.92*0.9-70)*0.88-4)}}>
           
           <View style={{ marginLeft: 400, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
             <Text style={{ fontSize: userSize, letterSpacing: 5, position: "absolute", left: "-40%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
