@@ -17,6 +17,7 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.albatross.bareun-geulssi",
       "supportsTablet": true
     },
     "android": {
