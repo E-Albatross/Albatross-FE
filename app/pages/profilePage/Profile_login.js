@@ -5,6 +5,8 @@ import {
 } from "react-native";
 import * as Font from "expo-font";
 
+import AppleLoginButton from "../../components/AppleLoginButton";
+
 //텍스트 슬라이더
 import Slider from '@react-native-community/slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -311,6 +313,7 @@ const savePath = async (fontPath) => {
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
               }} >저장</Text>
           </TouchableOpacity>
+          
           <TouchableOpacity
             onPress={() => setModalVisible(true)}
             style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40, }} >

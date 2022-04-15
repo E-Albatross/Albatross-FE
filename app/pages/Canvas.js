@@ -25,7 +25,7 @@ const Canvas = ({ onOK }) => {
   //스크린샷 캡쳐 위한 코드
   const captureRef = useRef();
 
-   const getPhotoUri = async (): Promise<string> => {
+   const getPhotoUri = async ()=> {
      const uri = await captureRef.current.capture();
      console.log('👂👂 Image saved to', uri);
      return uri;

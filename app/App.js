@@ -7,7 +7,6 @@ import DrawerPage from "./pages/DrawerPage";
 import Profile_login from "./pages/profilePage/Profile_login";
 import Profile_logout from "./pages/profilePage/Profile_logout";
 import Login from "./pages/profilePage/Login";
-import SignIn from "./pages/profilePage/SignIn";
 
 import CaptureSign from "./components/CaptureSign";
 
@@ -35,7 +34,6 @@ function App() {
         <Stack.Screen name="PROFILE_LOGIN" component={Profile_login} />
         <Stack.Screen name="PROFILE_LOGOUT" component={Profile_logout} />
         <Stack.Screen name="LOGIN" component={Login} />
-        <Stack.Screen name="SIGNIN" component={SignIn} />
         <Stack.Screen name="FONTSLIST" component={FontsList} />
 
         <Stack.Screen name="LINE" component={ExLine} />
