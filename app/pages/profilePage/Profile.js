@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import * as Font from "expo-font";
 
-import AppleLoginButton from "../../components/AppleLoginButton";
+import * as AppleAuthentication from 'expo-apple-authentication';
 
 //텍스트 슬라이더
 import Slider from '@react-native-community/slider';
@@ -15,14 +15,13 @@ import home from "../../assets/home.png";
 
 const Profile_login = ({navigation}) => {
   //모달창
-  const [modalVisible, setModalVisible] = useState(false)
   const [fontVisible, setFontVisible] = useState(false)
   const [modifyVisible, setModifyVisible] = useState(false)
   const [confirmVisible, setConfirmVisible] = useState(false)
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   
-  const [login, setLogin] = useState(true); // true면 로그인, false면 로그아웃
+  const [login, setLogin] = useState(false); // false면 로그아웃, true면 로그인
   
 
   // 유저 사이즈 앱에 저장
@@ -107,36 +106,12 @@ const savePath = async (fontPath) => {
     }
 }
 
+const [identity, setIdentity] = useState(undefined);
+
     return (
       <View style={styles.container}>
          {isReady && (
         <>
-        {/* 로그아웃모달창 */}
-        <Modal
-        animationType='slide'
-        transparent={true}
-        visible={modalVisible}
-        closeOnTouchOutside={true}>
-          <View style={styles.modalContainer}>
-          <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                }}> 로그아웃 하시겠습니까?</Text>
-          <View style={styles.modalButtonBox}> 
-          <TouchableOpacity
-              onPress={() => { setLogin(false); setModalVisible(false);} }
-              style={{ height: 50, width: 200, marginRight:40, }}>
-              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                }} >YES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => { setModalVisible(false);}}
-              style={{ height: 50, width: 200, marginRight:40, }} >
-              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                }} >NO</Text>
-            </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-
         {/* 폰트설정창 */}
         <Modal
         animationType='slide'
@@ -313,20 +288,43 @@ const savePath = async (fontPath) => {
           </TouchableOpacity>
 
           {login?
-            <TouchableOpacity
-              onPress={() => setModalVisible(true)}
-              style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40, }} >
-              <Text
-                style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                }} >로그아웃</Text>
-            </TouchableOpacity>
-            :
-            <AppleLoginButton> </AppleLoginButton>
+            null :
+            // 애플 로그인
+            <AppleAuthentication.AppleAuthenticationButton
+              buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+              buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+              cornerRadius={5}
+              style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40 }}
+              onPress={async () => {
+                try {
+                  setIdentity (
+                    await AppleAuthentication.signInAsync({
+                      requestedScopes: [
+                        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                        AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                      ],
+                    })
+                  );
+                  setLogin(true);
+                  // signed in
+                } catch (error) {
+                  if (e.code === 'ERR_CANCELED') {
+                    console.info("The user cancelled in the sign in.", error);
+                  } else {
+                    console.info("An error occurred signing in.", error);
+                  }
+                }
+              }}
+            />
           }
-
         </View>
         </>
         )}
+        <Text style={{ marginTop: 0, width: "80%" }}>
+          {identity === undefined
+          ? "Not signed in."
+          : JSON.stringify(identity, undefined, 2)}
+        </Text>
       </View>
     );
   };
