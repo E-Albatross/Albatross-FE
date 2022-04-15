@@ -21,10 +21,8 @@ const Profile_login = ({navigation}) => {
   const [confirmVisible, setConfirmVisible] = useState(false)
 
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
-
-  const [pw, onChangePW] = useState(null);
-  const [newPw, onChangeNewpw] = useState(null);
-  const [newPw2, onChangeNewpw2] = useState(null);
+  
+  const [login, setLogin] = useState(true); // true면 로그인, false면 로그아웃
   
 
   // 유저 사이즈 앱에 저장
@@ -124,13 +122,13 @@ const savePath = async (fontPath) => {
                 }}> 로그아웃 하시겠습니까?</Text>
           <View style={styles.modalButtonBox}> 
           <TouchableOpacity
-              onPress={() => {navigation.navigate("PROFILE_LOGOUT"); setModalVisible(false);} }
+              onPress={() => { setLogin(false); setModalVisible(false);} }
               style={{ height: 50, width: 200, marginRight:40, }}>
               <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
                 }} >YES</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => {navigation.navigate("PROFILE_LOGIN"); setModalVisible(false);}}
+              onPress={() => { setModalVisible(false);}}
               style={{ height: 50, width: 200, marginRight:40, }} >
               <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
                 }} >NO</Text>
@@ -313,14 +311,19 @@ const savePath = async (fontPath) => {
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
               }} >저장</Text>
           </TouchableOpacity>
-          
-          <TouchableOpacity
-            onPress={() => setModalVisible(true)}
-            style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40, }} >
-            <Text
-              style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} >로그아웃</Text>
-          </TouchableOpacity>
+
+          {login?
+            <TouchableOpacity
+              onPress={() => setModalVisible(true)}
+              style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40, }} >
+              <Text
+                style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
+                }} >로그아웃</Text>
+            </TouchableOpacity>
+            :
+            <AppleLoginButton> </AppleLoginButton>
+          }
+
         </View>
         </>
         )}

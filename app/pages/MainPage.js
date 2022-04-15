@@ -45,7 +45,7 @@ const MainPage = ({navigation}) => {
           <>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("PROFILE_LOGIN")}
+            onPress={() => navigation.navigate("PROFILE")}
           >
             <Image source={profile} style={{width: 60, height: 60}} />
           </TouchableOpacity>
