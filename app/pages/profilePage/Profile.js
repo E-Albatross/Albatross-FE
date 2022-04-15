@@ -19,21 +19,33 @@ const Profile_login = ({navigation}) => {
   const [modifyVisible, setModifyVisible] = useState(false)
   const [confirmVisible, setConfirmVisible] = useState(false)
 
-  const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
-  
-  const [login, setLogin] = useState(false); // false면 로그아웃, true면 로그인
-  
+  // ----- 유저 아이디 ------
+  const [userId, setID] = useState(undefined); // false면 로그아웃, true면 로그인
 
-  // 유저 사이즈 앱에 저장
+  const saveUser = async (userId) => {
+    try {
+      await AsyncStorage.setItem('userId', String(userId))
+    } catch (e) {
+    }
+  }
+  useEffect(() => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!=null){
+        setID(userId);
+        console.log(userId);
+      } else setID(null);
+    })
+  },[]);
+
+  // ----- 유저 사이즈 -----
+  const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+
   const saveSize= async (userSize) => {
     try {
       await AsyncStorage.setItem('userSize', String(userSize))
     } catch (e) {
-      // saving error
     }
   }
-
-  // 유저 사이즈 가져옴
   useEffect(() => {
     AsyncStorage.getItem('userSize').then((size)=>{
       if(size!=null){
@@ -42,9 +54,10 @@ const Profile_login = ({navigation}) => {
     })
   },[]);
 
-  const [isReady, setReady]= useState(false);
+  // --- 폰트 가져오기 ---
 
-  // 폰트 정보 가져오기
+  const [isReady, setReady]= useState(false);
+  
   useEffect(async () => {
     await Font.loadAsync({
         'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
@@ -106,7 +119,7 @@ const savePath = async (fontPath) => {
     }
 }
 
-const [identity, setIdentity] = useState(undefined);
+const [identity, setIdentity] = useState("null");
 
     return (
       <View style={styles.container}>
@@ -287,9 +300,8 @@ const [identity, setIdentity] = useState(undefined);
               }} >저장</Text>
           </TouchableOpacity>
 
-          {login?
-            null :
-            // 애플 로그인
+          {userId!=undefined? null :
+            // ID가 null 일 때 애플 로그인
             <AppleAuthentication.AppleAuthenticationButton
               buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
               buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
@@ -305,7 +317,8 @@ const [identity, setIdentity] = useState(undefined);
                       ],
                     })
                   );
-                  setLogin(true);
+                  setID(String(identity.user));
+                  saveUser(String(identity.user));
                   // signed in
                 } catch (error) {
                   if (e.code === 'ERR_CANCELED') {
@@ -320,11 +333,7 @@ const [identity, setIdentity] = useState(undefined);
         </View>
         </>
         )}
-        <Text style={{ marginTop: 0, width: "80%" }}>
-          {identity === undefined
-          ? "Not signed in."
-          : JSON.stringify(identity, undefined, 2)}
-        </Text>
+        <Text style={{ marginTop: 0, width: "80%" }}> user id : {userId} </Text>
       </View>
     );
   };
