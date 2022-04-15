@@ -18,6 +18,7 @@
     ],
     "ios": {
       "bundleIdentifier": "com.albatross.bareun-geulssi",
+      "usesAppleSignIn": true,
       "config": {
         "googleSignIn": {
           "reservedClientId": "<YOUR_REVERSED_IOS_CLIENT_ID>"
