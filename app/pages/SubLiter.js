@@ -204,7 +204,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
           </View>
 
           <Image 
-            style={{width:"85%", height:"80%", marginTop:"5%"}}
+            style={{width:"95%", height:"85%", marginTop:"5%"}}
             source={{uri:galleryUri}} 
           />
 
