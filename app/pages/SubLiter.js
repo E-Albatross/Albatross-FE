@@ -246,7 +246,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
       {/* 캔버스보드 부분 */}
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
-        style={{ marginTop: "10%", height:((windowHeight*0.92*0.9-70)*0.88-4)}}>
+        style={{ marginTop: "10%", height:720 }}>
           
           <View style={{ marginLeft: 400, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
             <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "-40%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
@@ -262,26 +262,23 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             />
 
               {/* 가로줄 */}
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "0%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "6%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "12%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "18%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "24%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "30%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "36%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "42%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "48%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "54%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "60%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "66%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "72%", }} />
-              {/* <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "70%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "75%", }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "80%", }} /> */}
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 0, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 60, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 120, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 180, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 240, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 300, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 360, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 420, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 480, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 540, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 600, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 660, }} />
+              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 720, }} />
 
               {/* 세로줄 */}
-              <View style={{ height: "72%", width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "0%"}} />
-              <View style={{ height: "72%", width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "0%" }} />
+              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "0%"}} />
+              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "0%" }} />
 
               { finish === false ? (
                 <>
