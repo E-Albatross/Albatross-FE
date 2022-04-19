@@ -333,7 +333,7 @@ const [identity, setIdentity] = useState("null");
         </View>
         </>
         )}
-        <Text style={{ marginTop: 0, width: "80%" }}> user id : {userId} </Text>
+        {/* <Text style={{ marginTop: 0, width: "80%" }}> user id : {userId} </Text> */}
       </View>
     );
   };
