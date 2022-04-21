@@ -225,7 +225,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       
       <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70, width: windowWidth, height:(windowHeight*0.92-70)}}>
         { finish === false ? (
-         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
+         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: "5%"}}> 
           <View style={styles.nameContainer}>
             <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath, }}> {setTitle} </Text>
             <View style={styles.line}/>
@@ -234,7 +234,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         </View>
        ) 
        :( 
-        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
+        <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: "5%"}}> 
           <View style={styles.nameContainer}>
             <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
             <View style={styles.line}/>
@@ -246,39 +246,39 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
       {/* 캔버스보드 부분 */}
         <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
-        style={{ marginTop: "10%", height:720 }}>
+        style={{ marginTop: "10%", height:720}}>
           
-          <View style={{ marginLeft: 400, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "-40%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
-            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "-40%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
+          <View style={{ height: 1000, justifyContent: "center",  alignItems: "center"}} >
+            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
-              height={(windowHeight*0.92*0.9-70)*0.88}
+              height={720}
               width={900}
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "85%",  height: "72%", position: "absolute", left: "-42%", top: "0%"}}
+              style={{ backgroundColor: 'transparent', width: "90%",  height: "72%", position: "absolute", left: "5%", top: "0%", borderWidth:2}}
             />
 
               {/* 가로줄 */}
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 0, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 60, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 120, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 180, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 240, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 300, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 360, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 420, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 480, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 540, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 600, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 660, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 720, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 0, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 60, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 120, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 180, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 240, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 300, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 360, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 420, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 480, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 540, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 600, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 660, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 720, }} />
 
               {/* 세로줄 */}
-              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "0%"}} />
-              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "0%" }} />
+              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: "0%"}} />
+              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", right: "5%", top: "0%" }} />
 
               { finish === false ? (
                 <>

@@ -15,8 +15,25 @@ import { LineChart } from "react-native-chart-kit";
 
 import * as Font from "expo-font";
 
+import new1 from "../assets/MainPage/new1.png";
+import new2 from "../assets/MainPage/new2.png";
+import new3 from "../assets/MainPage/new3.png";
+import new4 from "../assets/MainPage/new4.png";
+import new5 from "../assets/MainPage/new5.png";
+import new6 from "../assets/MainPage/new6.png";
+
+import best1 from "../assets/MainPage/best1.png";
+import best2 from "../assets/MainPage/best2.png";
+import best3 from "../assets/MainPage/best3.png";
+import best4 from "../assets/MainPage/best4.png";
+import best5 from "../assets/MainPage/best5.png";
+import best6 from "../assets/MainPage/best6.png";
+
+
 const DrawerPage = ({navigation}) => {
   const [isReady, setIsReady] = useState(false);
+
+  const img = [new1, new2, new3, new4, new5, new6, best1, best2, best3, best4, best5, best6];
 
   useEffect(async () => {
     await Font.loadAsync({
@@ -88,7 +105,7 @@ const DrawerPage = ({navigation}) => {
                 <TouchableOpacity key={item.id}
                   // onPress={() => navigation.navigate()}
                   style={styles.iconbutton} >
-                  <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
+                  <Image source={img[item.id]} style={{marginLeft: 20, marginRight: 20, width: 194, height: 257}} />
                 </TouchableOpacity>
           }
             keyExtractor={(item, index) => index}
