@@ -30,7 +30,7 @@ import * as Font from "expo-font";
 const SubLiter= ({navigation, id, setTitle, text}) => {
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
-  const [score, setScore] = useState(80);
+  const [score, setScore] = useState(95);
 
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -214,7 +214,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         <Modal animationType='slide' transparent={true} visible={markModal}>
               <View style={styles.markModalContainer}>
                 <View style={styles.markModalText}> 
-                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"11%"}} > {markModalText} </Text> 
+                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"10%", fontFamily: fontPath}} > {markModalText} </Text> 
                 </View>
                   <TouchableOpacity onPress={() => setMarkModal(false)} style={{marginBottom: 1, width: "100%", height: "25%", backgroundColor: "#80AE92"}}>
                       <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", }} > 확인 </Text>
@@ -258,7 +258,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "90%",  height: "72%", position: "absolute", left: "5%", top: "0%", borderWidth:2}}
+              style={{ backgroundColor: 'transparent', width: "90%",  height: "72%", position: "absolute", left: "5%", top: "0%"}}
             />
 
               {/* 가로줄 */}
