@@ -119,13 +119,13 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       const name = arr[arr.length-1];
       setName(name);
 
-      console.log("서버에 저장할 uri : ", server);
+      // console.log("서버에 저장할 uri : ", server);
       console.log("갤러리에 저장할 uri : ", gallery);
-      console.log("서랍에 저장할 uri : ", drawer);
+      // console.log("서랍에 저장할 uri : ", drawer);
       console.log("파일 이름 : ", name);
       
      } catch(err){
-      console.log("uri를 가져오는데 실패함!");
+      // console.log("uri를 가져오는데 실패함!");
      }
   };
 
@@ -138,7 +138,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       setFinish(true);
     
      } catch(err){
-       console.log("검사에 실패함!");
+       // console.log("검사에 실패함!");
      }
   };
 
@@ -147,12 +147,12 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       MediaLibrary.getPermissionsAsync().then((data) => {
         if (data.status === 'granted') {
           MediaLibrary.saveToLibraryAsync(galleryUri);
-          console.log("갤러리 저장에 성공함!");
+          // console.log("갤러리 저장에 성공함!");
         }
       });
     
      } catch(err){
-       console.log("갤러리에 저장하는데에 실패함!");
+       // console.log("갤러리에 저장하는데에 실패함!");
      }
   };
 
@@ -171,22 +171,23 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     try{
       var file = dataURLtoFile(drawerUri, galleryName);
       var formData = new FormData();
-      formData.append('file',file);
+      formData.append("file", file);
 
-      axios({
-        method: "post",
-        url: `${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-        .then(function (response) {
-          //handle success
-          console.log(response);
+        axios({
+             url: `${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`,
+             headers: {
+               'Content-Type': 'multipart/form-data'
+             },
+             method: 'post',
+             data: formData
+        }).then(function (response) {
+          // console.log(response);
         })
-        .catch(function (response) {
-          //handle error
-          console.log(response);
+        .catch(function (error) {
+          // console.log(error);
         });
+      
+        
 
       console.log("서버에 저장함!");
       console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
