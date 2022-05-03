@@ -5,6 +5,7 @@ import { StyleSheet, View, Text,
    
 import axios from 'axios';
 import { USER_SERVER } from '../config';
+import {decode as atob, encode as btoa} from 'base-64'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -103,6 +104,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const [photoUri, setUri] = useState(null); // 서버에 넘겨줄 스크린샷
   const [galleryUri, setGallery] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
   const [drawerUri, setDrawer] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
+  const [galleryName, setName] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
 
   const getPhotoUri = async () => { // 스크린샷 두개 세팅
      try{
@@ -113,9 +115,14 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       setGallery(gallery);
       setDrawer(drawer);
 
+      const arr = gallery.split('/');
+      const name = arr[arr.length-1];
+      setName(name);
+
       console.log("서버에 저장할 uri : ", server);
       console.log("갤러리에 저장할 uri : ", gallery);
       console.log("서랍에 저장할 uri : ", drawer);
+      console.log("파일 이름 : ", name);
       
      } catch(err){
       console.log("uri를 가져오는데 실패함!");
@@ -148,6 +155,47 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        console.log("갤러리에 저장하는데에 실패함!");
      }
   };
+
+  const [userId, setId] = useState("appleid");
+
+  function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+    }
+
+  const postServer = async() => { // 서버에 넘기기
+    try{
+      var file = dataURLtoFile(drawerUri, galleryName);
+      var formData = new FormData();
+      formData.append('file',file);
+
+      axios({
+        method: "post",
+        url: `${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+        .then(function (response) {
+          //handle success
+          console.log(response);
+        })
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
+
+      console.log("서버에 저장함!");
+      console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
+    } catch(err){
+      console.log("서버에 저장하는데에 실패함!");
+      console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
+    }
+
+  }
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -206,7 +254,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginLeft: 10}} > 취소 </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setModalVisible(false); onSave();}}>
+            <TouchableOpacity onPress={() => {setModalVisible(false); onSave(); postServer();}}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginRight: 10}} > 저장 </Text>
             </TouchableOpacity>
           </View>
