@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, Text,
   Image, TouchableOpacity, Modal, Dimensions
 } from "react-native";
+   
+import axios from 'axios';
+import { USER_SERVER } from '../config';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -30,7 +33,7 @@ import * as Font from "expo-font";
 const SubLiter= ({navigation, id, setTitle, text}) => {
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
-  const [score, setScore] = useState(80);
+  const [score, setScore] = useState(95);
 
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -96,18 +99,23 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   //스크린샷 캡쳐 위한 코드
   const captureRef = useRef();
   const galleryRef = useRef();
+  const drawerRef = useRef();
   const [photoUri, setUri] = useState(null); // 서버에 넘겨줄 스크린샷
   const [galleryUri, setGallery] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
+  const [drawerUri, setDrawer] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
 
   const getPhotoUri = async () => { // 스크린샷 두개 세팅
      try{
       const server = await captureRef.current.capture();
       const gallery = await galleryRef.current.capture();
+      const drawer = await drawerRef.current.capture();
       setUri(server);
       setGallery(gallery);
+      setDrawer(drawer);
 
       console.log("서버에 저장할 uri : ", server);
       console.log("갤러리에 저장할 uri : ", gallery);
+      console.log("서랍에 저장할 uri : ", drawer);
       
      } catch(err){
       console.log("uri를 가져오는데 실패함!");
@@ -205,7 +213,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
           <Image 
             style={{width:"95%", height:"85%", marginTop:"5%"}}
-            source={{uri:galleryUri}} 
+            source={{uri:drawerUri}} 
           />
 
         </View>
@@ -224,6 +232,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       {/* 모달창 코드 끝 */}
       
       <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70, width: windowWidth, height:(windowHeight*0.92-70)}}>
+      <ViewShot ref={drawerRef} options={{ format: "jpg", quality: 0.9, result: "data-uri" }} style={{width: windowWidth, height:(windowHeight*0.92-70)}}> 
         { finish === false ? (
          <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
           <View style={styles.nameContainer}>
@@ -245,40 +254,40 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        )}
        {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
       {/* 캔버스보드 부분 */}
-        <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
-        style={{ marginTop: "10%", height:720 }}>
+      <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
+        style={{ marginTop: "10%", height:720}}>
           
-          <View style={{ marginLeft: 400, height: 1000, width: 900, justifyContent: "center",  alignItems: "center", }} >
-            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "-40%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
-            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "-40%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
+          <View style={{ height: 1000, justifyContent: "center",  alignItems: "center"}} >
+            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
             <Canvas
               ref={canvasRef}
-              height={(windowHeight*0.92*0.9-70)*0.88}
+              height={720}
               width={900}
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "85%",  height: "72%", position: "absolute", left: "-42%", top: "0%"}}
+              style={{ backgroundColor: 'transparent', width: "90%",  height: "72%", position: "absolute", left: "5%", top: "0%"}}
             />
 
               {/* 가로줄 */}
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 0, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 60, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 120, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 180, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 240, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 300, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 360, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 420, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 480, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 540, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 600, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 660, }} />
-              <View style={{ width: "85%", height: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: 720, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 0, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 60, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 120, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 180, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 240, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 300, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 360, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 420, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 480, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 540, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 600, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 660, }} />
+              <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 720, }} />
 
               {/* 세로줄 */}
-              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "-42%", top: "0%"}} />
-              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "43%", top: "0%" }} />
+              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: "0%"}} />
+              <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", right: "5%", top: "0%" }} />
 
               { finish === false ? (
                 <>
@@ -293,6 +302,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                   </>
               )}
             </View>
+          </ViewShot>
           </ViewShot>
         </ViewShot>
         </>
