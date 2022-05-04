@@ -165,35 +165,31 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             u8arr[n] = bstr.charCodeAt(n);
         }
         return new File([u8arr], filename, {type:mime});
-    }
+  }
 
-  const postServer = async() => { // 서버에 넘기기
+  const postServer = () => { // 서버에 넘기기
     try{
-      var file = dataURLtoFile(drawerUri, galleryName);
+      // var file = dataURLtoFile(drawerUri, galleryName);
+      var file = {
+           uri : galleryUri,
+           type: 'multipart/form-data',
+           name: galleryName
+          };
       var formData = new FormData();
       formData.append("file", file);
-
-      axios({
-        url: `${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`,
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        method: 'post',
-        data: formData
-      }).then(function (response) {
-          // console.log(response);
-        })
-        .catch(function (error) {
-          // console.log(error);
-        });
+      
+      fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`, { 
+        method : "POST"
+        , body : formData
+      })
+      .then(result => result.json())
+      .catch(error => console.log(`error => ${error}`));
 
       console.log("서버에 저장함!");
       console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
-      console.log(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`);
     } catch(err){
       console.log("서버에 저장하지 못함");
       console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
-      console.log(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`);
     }
   }
 
