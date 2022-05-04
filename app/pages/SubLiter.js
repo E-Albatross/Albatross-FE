@@ -173,29 +173,28 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       var formData = new FormData();
       formData.append("file", file);
 
-        axios({
-             url: `${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`,
-             headers: {
-               'Content-Type': 'multipart/form-data'
-             },
-             method: 'post',
-             data: formData
-        }).then(function (response) {
+      axios({
+        url: `${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        method: 'post',
+        data: formData
+      }).then(function (response) {
           // console.log(response);
         })
         .catch(function (error) {
           // console.log(error);
         });
-      
-        
 
       console.log("서버에 저장함!");
       console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
+      console.log(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`);
     } catch(err){
-      console.log("서버에 저장하는데에 실패함!");
+      console.log("서버에 저장하지 못함");
       console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
+      console.log(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`);
     }
-
   }
 
   const windowWidth = Dimensions.get('window').width;
