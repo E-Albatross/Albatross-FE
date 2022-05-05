@@ -5,7 +5,6 @@ import { StyleSheet, View, Text,
    
 import axios from 'axios';
 import { USER_SERVER } from '../config';
-import {decode as atob, encode as btoa} from 'base-64'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

@@ -7,7 +7,9 @@ import {
 
 import { FlatList } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as AppleAuthentication from 'expo-apple-authentication';
 import { USER_SERVER } from '../config';
+import axios from 'axios';
 
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
@@ -20,16 +22,38 @@ import * as Font from "expo-font";
 const DrawerPage = ({navigation}) => {
   // 유저아이디 기본 설정값
   const [userId, setID] = useState(null);
+  // 유저아이디 저장하기
+  const saveUser = async (userId) => {
+    try {
+      await AsyncStorage.setItem('userId', String(userId))
+    } catch (e) {
+    }
+  }
   // 유저아이디 가져오기
   useEffect(() => {
     AsyncStorage.getItem('userId').then((userId)=>{
       if(userId!=null){
         setID(userId);
         console.log(userId);
-      } else setID("appleid");
+      } else {
+        setID("appleid");
+        //setID(null);
+      }
+      
     })
   },[]);
+  const score = {
+    datasets: [
+      {
+        data: myLiter.first.map(s=>( s.score )),
+        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+        strokeWidth: 5 // optional
+      }
+    ],
+    legend: ["내 점수"] // optional
+  };
 
+  const [picture, setPicture] = useState(null);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(async () => {
@@ -37,6 +61,13 @@ const DrawerPage = ({navigation}) => {
         'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
     });
     setIsReady(true);
+  }, []);
+
+  useEffect(() => {
+    axios.get(`${USER_SERVER}/record/${userId}`)
+        .then(response => {
+          setPicture(response.data);
+        });
   }, []);
 
   const fontPath = "SeoulHangangL"; // 초기 폰트 설정
@@ -53,16 +84,7 @@ const DrawerPage = ({navigation}) => {
     useShadowColorFromDataset: false // optional
   };
 
-  const data = {
-    datasets: [
-      {
-        data: myLiter.first.map(s=>( s.score )),
-        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
-        strokeWidth: 5 // optional
-      }
-    ],
-    legend: ["내 점수"] // optional
-  };
+  
 
     return (
       <View style={styles.container}>
@@ -78,32 +100,38 @@ const DrawerPage = ({navigation}) => {
             </View>
 
             <LineChart
-              data={data}
+              data={score}
               width={screenWidth-200}
               height={200}
               chartConfig={chartConfig}
             />
-
+            <TouchableOpacity
+            onPress={() => {
+              picture.map((array)=>( console.log(array?.imageName) ))
+              }}>
             <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
             내 서랍 </Text>
+            </TouchableOpacity>
             
               <FlatList
-              data={myLiter.first}
+              data={picture}
               columnWrapperStyle={{
                 marginBottom: 20,
               }}
               indicatorStyle={"white"}
               nestedScrollEnabled ={true}
-              renderItem={({item}) => 
-                  <TouchableOpacity key={item.id}
-                    // onPress={() => navigation.navigate()}
+              renderItem={(array) => (
+                  <TouchableOpacity key={array.id}
+                    onPress={() => {
+                      // 내 서랍 해당 페이지
+                    }}
                     style={styles.iconbutton} >
-                    <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
+                    <Image source={{uri : `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`}} style={{marginLeft: 20, marginRight: 20, height: 300, width: 250, borderWidth: 0.5}} /> 
                   </TouchableOpacity>
-            }
+              )}
               keyExtractor={(item, index) => index}
               numColumns={3}
-            />
+            /> 
           </>
           :
           <>
@@ -116,7 +144,36 @@ const DrawerPage = ({navigation}) => {
               </TouchableOpacity>
             </View>
 
-          <Text> 로그인이 필요한 서비스입니다. 로그인을 해주세요.</Text>
+            {userId!=undefined? null :
+            // ID가 null 일 때 애플 로그인
+            <AppleAuthentication.AppleAuthenticationButton
+              buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+              buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+              cornerRadius={5}
+              style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginTop: "50%" }}
+              onPress={async () => {
+                try {
+                  setIdentity (
+                    await AppleAuthentication.signInAsync({
+                      requestedScopes: [
+                        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                        AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                      ],
+                    })
+                  );
+                  setID(String(identity.user));
+                  saveUser(String(identity.user));
+                  // signed in
+                } catch (error) {
+                  if (e.code === 'ERR_CANCELED') {
+                    console.info("The user cancelled in the sign in.", error);
+                  } else {
+                    console.info("An error occurred signing in.", error);
+                  }
+                }
+              }}
+            />
+          }
           </>
           }
       </View>
