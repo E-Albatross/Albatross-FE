@@ -156,25 +156,25 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
      }
   };
 
-  const [userId, setId] = useState("appleid");
-
-  function dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-        while(n--){
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new File([u8arr], filename, {type:mime});
-  }
+  // 유저아이디 기본 설정값
+  const [userId, setID] = useState("appleid");
+  // 유저아이디 가져오기
+  useEffect(() => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!=null){
+        setID(userId);
+        console.log(userId);
+      } else setID(null);
+    })
+  },[]);
 
   const postServer = () => { // 서버에 넘기기
     try{
-      // var file = dataURLtoFile(drawerUri, galleryName);
       var file = {
            uri : galleryUri,
            type: 'multipart/form-data',
            name: galleryName
-          };
+      };
       var formData = new FormData();
       formData.append("file", file);
       
