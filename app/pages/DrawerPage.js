@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
     width: "100%",
-    height: 70,
+    height: 80,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

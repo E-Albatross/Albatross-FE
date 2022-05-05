@@ -7,7 +7,7 @@ import {
 
 //이미지 파일들
 import home from "../assets/home.png";
-import drawer from "../assets/MainPage/apps.png";
+import drawer from "../assets/MainPage/apps_white2.png";
 
 const DrawerPicture = ({ navigation, route }) => {
     const url = route.params.url;
@@ -24,7 +24,7 @@ const DrawerPicture = ({ navigation, route }) => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate("DRAWER")}> 
-                <Image source={drawer} style={{width: 90, height: 90}} />
+                <Image source={drawer} style={{width: 70, height: 70, marginTop:10}} />
             </TouchableOpacity>
         </View>
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
     width: "100%",
-    height: 70,
+    height: 80,
     position: "absolute",
     flexDirection: "row",
     justifyContent: "space-between",
