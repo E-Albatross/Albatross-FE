@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import MainPage from "./pages/MainPage";
 import DrawerPage from "./pages/DrawerPage";
+import DrawerPicture from "./pages/DrawerPicture";
 import Profile from "./pages/profilePage/Profile";
 import Login from "./pages/profilePage/Login";
 
@@ -28,6 +29,7 @@ function App() {
         <Stack.Screen name="MAIN" component={MainPage} />
         <Stack.Screen name="LITER" component={ExLiterature} />
         <Stack.Screen name="DRAWER" component={DrawerPage} />
+        <Stack.Screen name="DRAWERPICTURE" component={DrawerPicture} />
         <Stack.Screen name="SUBLITER" component={SubLiter} />
 
         <Stack.Screen name="PROFILE" component={Profile} />

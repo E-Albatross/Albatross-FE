@@ -122,9 +122,9 @@ const DrawerPage = ({navigation}) => {
               nestedScrollEnabled ={true}
               renderItem={(array) => (
                   <TouchableOpacity key={array.id}
-                    onPress={() => {
-                      // 내 서랍 해당 페이지
-                    }}
+                  onPress={() => navigation.navigate("DRAWERPICTURE",{
+                    url: `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`
+                  })}
                     style={styles.iconbutton} >
                     <Image source={{uri : `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`}} style={{marginLeft: 20, marginRight: 20, height: 300, width: 250, borderWidth: 0.5}} /> 
                   </TouchableOpacity>
