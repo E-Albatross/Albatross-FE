@@ -6,6 +6,8 @@ import {
 } from "react-native";
 
 import { FlatList } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { USER_SERVER } from '../config';
 
 import home from "../assets/home.png";
 import literature from "../assets/literature.png";
@@ -16,6 +18,18 @@ import { LineChart } from "react-native-chart-kit";
 import * as Font from "expo-font";
 
 const DrawerPage = ({navigation}) => {
+  // 유저아이디 기본 설정값
+  const [userId, setID] = useState(null);
+  // 유저아이디 가져오기
+  useEffect(() => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!=null){
+        setID(userId);
+        console.log(userId);
+      } else setID("appleid");
+    })
+  },[]);
+
   const [isReady, setIsReady] = useState(false);
 
   useEffect(async () => {
@@ -26,7 +40,6 @@ const DrawerPage = ({navigation}) => {
   }, []);
 
   const fontPath = "SeoulHangangL"; // 초기 폰트 설정
-
   const screenWidth = Dimensions.get("window").width;
 
   const chartConfig = {
@@ -53,49 +66,59 @@ const DrawerPage = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-        {isReady && (
+        {(isReady && userId!=null)?
           <>
-        <View style={styles.headerRow}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("MAIN")}
-            style={styles.iconbutton}
-          >
-            <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
-          </TouchableOpacity>
-        </View>
+            <View style={styles.headerRow}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MAIN")}
+                style={styles.iconbutton}
+              >
+                <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
+              </TouchableOpacity>
+            </View>
 
-          {/* <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, }} > 
-          내 점수 </Text> */}
+            <LineChart
+              data={data}
+              width={screenWidth-200}
+              height={200}
+              chartConfig={chartConfig}
+            />
 
-          <LineChart
-            data={data}
-            width={screenWidth-200}
-            height={200}
-            chartConfig={chartConfig}
-          />
-
-          <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
-          내 서랍 </Text>
-          
-            <FlatList
-            data={myLiter.first}
-            columnWrapperStyle={{
-              marginBottom: 20,
-            }}
-            indicatorStyle={"white"}
-            nestedScrollEnabled ={true}
-            renderItem={({item}) => 
-                <TouchableOpacity key={item.id}
-                  // onPress={() => navigation.navigate()}
-                  style={styles.iconbutton} >
-                  <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
-                </TouchableOpacity>
-          }
-            keyExtractor={(item, index) => index}
-            numColumns={3}
-          />
+            <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
+            내 서랍 </Text>
+            
+              <FlatList
+              data={myLiter.first}
+              columnWrapperStyle={{
+                marginBottom: 20,
+              }}
+              indicatorStyle={"white"}
+              nestedScrollEnabled ={true}
+              renderItem={({item}) => 
+                  <TouchableOpacity key={item.id}
+                    // onPress={() => navigation.navigate()}
+                    style={styles.iconbutton} >
+                    <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
+                  </TouchableOpacity>
+            }
+              keyExtractor={(item, index) => index}
+              numColumns={3}
+            />
           </>
-          )}
+          :
+          <>
+          <View style={styles.headerRow}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MAIN")}
+                style={styles.iconbutton}
+              >
+                <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
+              </TouchableOpacity>
+            </View>
+
+          <Text> 로그인이 필요한 서비스입니다. 로그인을 해주세요.</Text>
+          </>
+          }
       </View>
     );
 }
