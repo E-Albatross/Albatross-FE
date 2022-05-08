@@ -126,7 +126,8 @@ const DrawerPage = ({navigation}) => {
                     url: `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`
                   })}
                     style={styles.iconbutton} >
-                    <Image source={{uri : `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`}} style={{marginLeft: 20, marginRight: 20, height: 300, width: 250, borderWidth: 0.5}} /> 
+                    <Image source={{uri : `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`}} 
+                    style={{marginLeft: 20, marginRight: 20, height: 250, width: 220, borderWidth: 0.5}} /> 
                   </TouchableOpacity>
               )}
               keyExtractor={(item, index) => index}
