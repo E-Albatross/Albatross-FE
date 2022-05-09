@@ -146,7 +146,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       MediaLibrary.getPermissionsAsync().then((data) => {
         if (data.status === 'granted') {
           MediaLibrary.saveToLibraryAsync(galleryUri);
-          // console.log("갤러리 저장에 성공함!");
+          console.log(photoUri);
         }
       });
     
@@ -307,6 +307,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               ref={canvasRef}
               height={720}
               width={900}
+              thickness={2}
               color="black"
               tool={tool}
               eraserSize={5}
