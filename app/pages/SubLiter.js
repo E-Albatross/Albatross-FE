@@ -196,7 +196,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const windowHeight = Dimensions.get('window').height;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} key = {id}>
       {isReady && (
         <>
       {/* 헤더부분 */}
@@ -307,7 +307,6 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               ref={canvasRef}
               height={720}
               width={900}
-              thickness={2}
               color="black"
               tool={tool}
               eraserSize={5}
@@ -340,7 +339,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                   {markList.mark.map((s)=>(
                     <TouchableOpacity key={s.id} style={styles.iconbutton}
                     onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
-                        <Image style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
+                        <Image key={s.id} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
                     </TouchableOpacity>
                     ))}
                   </>
