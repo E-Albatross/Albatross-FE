@@ -1,10 +1,7 @@
 import React, {useState} from "react";
-import { StyleSheet, View, TouchableOpacity, } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 
 import SubLiter from "./SubLiter";
-
-import store from "../_store/index";
-import {addArticle} from "../_actions/index";
 
 const ExLiterature = ({navigation, route}) => {
   const id = route.params.id;
@@ -37,19 +34,21 @@ const ExLiterature = ({navigation, route}) => {
   ]);
 
   var pageArr = [];
-  for(var j=0 ; j<pageSize ; j++) pageArr.push(j); 
+  for(var j=0 ; j<pageSize ; j++) pageArr.push({
+    id : j,
+    num : j
+  }); 
 
   return (
     <>
       {pageArr.map((s)=>(
         <>
-          { visible[s] && (
-            <SubLiter 
-            key={s}
+          { visible[s.num] && (
+            <SubLiter
             navigation={navigation} 
             id={id}
             setTitle={title}
-            text={textArr[s]}
+            text={textArr[s.num]}
             />
           )}
         </>
@@ -57,13 +56,13 @@ const ExLiterature = ({navigation, route}) => {
       <View style={styles.container}> 
         {pageArr.map((s)=>(
           <TouchableOpacity
-            key={s}
+            key={s.id}
             onPress={() => {
               var newPagearr = [];
 
-              for(var i=0 ; i<s ; i++) newPagearr.push(false); 
+              for(var i=0 ; i<s.num ; i++) newPagearr.push(false); 
               newPagearr.push(true);
-              for(var i=s+1 ; i<10 ; i++) newPagearr.push(false); 
+              for(var i=s.num+1 ; i<10 ; i++) newPagearr.push(false); 
               
               setVisible({...newPagearr})
             }}
