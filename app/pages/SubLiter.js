@@ -135,6 +135,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     try{
       await getPhotoUri();
       setFinish(true);
+      console.log(photoUri);
     
      } catch(err){
        // console.log("검사에 실패함!");
