@@ -12,7 +12,6 @@ import { USER_SERVER } from '../config';
 import axios from 'axios';
 
 import home from "../assets/home.png";
-import literature from "../assets/literature.png";
 import myLiter from "../components/myLiter";
 
 import { LineChart } from "react-native-chart-kit";
@@ -23,25 +22,12 @@ const DrawerPage = ({navigation}) => {
   // 유저아이디 기본 설정값
   const [userId, setID] = useState(null);
   // 유저아이디 저장하기
-  const saveUser = async (userId) => {
+  const saveUser = async (item) => {
     try {
-      await AsyncStorage.setItem('userId', String(userId))
+      await AsyncStorage.setItem('userId', String(item))
     } catch (e) {
     }
   }
-  // 유저아이디 가져오기
-  useEffect(() => {
-    AsyncStorage.getItem('userId').then((userId)=>{
-      if(userId!=null){
-        setID(userId);
-        console.log(userId);
-      } else {
-        setID("appleid");
-        //setID(null);
-      }
-      
-    })
-  },[]);
   const score = {
     datasets: [
       {
@@ -62,6 +48,24 @@ const DrawerPage = ({navigation}) => {
     });
     setIsReady(true);
   }, []);
+
+  // 유저아이디 가져오기
+  useEffect(() => {
+    AsyncStorage.getItem('userId').then((item)=>{
+      if(item!=null){
+        setID(item);
+        console.log(item);
+
+        axios.get(`${USER_SERVER}/record/${item}`)
+        .then(response => {
+          setPicture(response.data);
+        });
+
+      } else {
+        setID(null);
+      }
+    })
+  },[]);
 
   useEffect(() => {
     axios.get(`${USER_SERVER}/record/${userId}`)
@@ -84,8 +88,6 @@ const DrawerPage = ({navigation}) => {
     useShadowColorFromDataset: false // optional
   };
 
-  
-
     return (
       <View style={styles.container}>
         {(isReady && userId!=null)?
@@ -105,13 +107,9 @@ const DrawerPage = ({navigation}) => {
               height={200}
               chartConfig={chartConfig}
             />
-            <TouchableOpacity
-            onPress={() => {
-              picture.map((array)=>( console.log(array?.imageName) ))
-              }}>
+            
             <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
             내 서랍 </Text>
-            </TouchableOpacity>
             
               <FlatList
               data={picture}

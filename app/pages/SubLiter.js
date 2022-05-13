@@ -149,7 +149,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     try{
       MediaLibrary.getPermissionsAsync().then((data) => {
         if (data.status === 'granted') {
-          MediaLibrary.saveToLibraryAsync(galleryUri);
+          MediaLibrary.saveToLibraryAsync(photoUri);
           console.log(photoUri);
         }
       });
