@@ -57,27 +57,23 @@ const Profile_login = ({navigation}) => {
   // --- 폰트 가져오기 ---
 
   const [isReady, setReady]= useState(false);
+
+  const fontArr = [{id: 1, fontName: "나눔손글씨 펜체", fontpath:"NanumPen"}, {id: 2,fontName: "교보손글씨체", fontpath:"KyoboHandwriting2019"}, {id: 3,fontName: "훈슬림스키니", fontpath:"HoonSlimsB"}
+  , {id: 4,fontName: "마루부리", fontpath:"MaruBuri-SemiBold"}, {id: 5,fontName: "카페24체", fontpath:"Cafe24Ssurroundair"}, {id: 6,fontName: "노토산스", fontpath:"NotoSansKR-Regular"},
+  {id: 7,fontName: "수트체", fontpath:"SUIT-Regular"}, {id: 8,fontName: "앨리스체", fontpath:"EliceDigitalBaeum"},];
   
   useEffect(async () => {
     await Font.loadAsync({
-        'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
-        'CWDangamAsac-Bold': require('../../assets/fonts/CWDangamAsac-Bold.ttf'),
-        'SUIT-Regular': require('../../assets/fonts/SUIT-Regular.ttf'),
+      'NanumPen': require('../../assets/fonts/NanumPen.ttf'),
+      'KyoboHandwriting2019': require('../../assets/fonts/KyoboHandwriting2019.ttf'),
+      'HoonSlimsB': require('../../assets/fonts/HoonSlimsB.ttf'),
 
-        'KyoboHandwriting2019': require('../../assets/fonts/KyoboHandwriting2019.ttf'),
-        'EliceDigitalBaeum': require('../../assets/fonts/EliceDigitalBaeum.ttf'),
-        'Cafe24Ssurroundair': require('../../assets/fonts/Cafe24Ssurroundair.ttf'),
+      'MaruBuri-SemiBold': require('../../assets/fonts/MaruBuri-SemiBold.ttf'),
+      'Cafe24Ssurroundair': require('../../assets/fonts/Cafe24Ssurroundair.ttf'),
+      'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
 
-        'YUniverse-L': require('../../assets/fonts/YUniverse-L.ttf'),
-        'BMJUA': require('../../assets/fonts/YUniverse-L.ttf'),
-
-        'ACCchildrenheart': require('../../assets/fonts/ACCchildrenheart.ttf'),
-        'GangwonEduAllLight': require('../../assets/fonts/GangwonEduAllLight.ttf'),
-        'KOTRA_SONGEULSSI-Medium': require('../../assets/fonts/KOTRA_SONGEULSSI-Medium.ttf'),
-
-        'MaruBuri-SemiBold': require('../../assets/fonts/MaruBuri-SemiBold.ttf'),
-        'NanumBaReunHiPi': require('../../assets/fonts/NanumBaReunHiPi.ttf'),
-        'NanumPen': require('../../assets/fonts/NanumPen.ttf'),
+      'SUIT-Regular': require('../../assets/fonts/SUIT-Regular.ttf'),
+      'EliceDigitalBaeum': require('../../assets/fonts/EliceDigitalBaeum.ttf'),
     });
     setReady(true);
 }, []);
@@ -135,59 +131,11 @@ const [identity, setIdentity] = useState("null");
           <View style={styles.FontContainer}>
             <ScrollView contentContainerStyle={{justifyContent: "center", alignItems: "center"}}
               centerContent={true} indicatorStyle={"white"}>
-
-              <TouchableOpacity onPress={() => { setFontVisible(false); setFont("주아체"); setPath("BMJUA");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "BMJUA", marginBottom: 23, marginTop: 30}}>주아체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("Y유니버스체"); setPath("YUniverse-L");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "YUniverse-L", marginBottom: 23,}}>Y유니버스체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("바른히피"); setPath("NanumBaReunHiPi");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "NanumBaReunHiPi", marginBottom: 33}}>바른히피</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("어린이마음고운체"); setPath("ACCchildrenheart");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "ACCchildrenheart", marginBottom: 30,}}>어린이마음고운체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("강원교육모두체"); setPath("GangwonEduAllLight");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "GangwonEduAllLight", marginBottom: 25}}>강원교육모두체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("코토라체"); setPath("KOTRA_SONGEULSSI-Medium");}}> 
-                  <Text style={{ fontSize: 28, fontFamily: "KOTRA_SONGEULSSI-Medium", marginBottom: 25}}>코토라체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("나눔손글씨 펜체"); setPath("NanumPen");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "NanumPen", marginBottom: 30}}>나눔손글씨 펜체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFont("교보손글씨체"); setPath("KyoboHandwriting2019");setFontVisible(false);}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "KyoboHandwriting2019",  marginBottom: 30}}>교보손글씨체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("마루부리"); setPath("MaruBuri-SemiBold");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "MaruBuri-SemiBold", marginBottom: 30}}>마루부리</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("카페24체"); setPath("Cafe24Ssurroundair");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "Cafe24Ssurroundair", marginBottom: 30}}>카페24체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFontVisible(false); setFont("노토산스"); setPath("NotoSansKR-Regular");}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "NotoSansKR-Regular", marginBottom: 25}}>노토산스</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFont("수트체"); setPath("SUIT-Regular");setFontVisible(false);}}> 
-                  <Text style={{ fontSize: 30,fontFamily: "SUIT-Regular", marginBottom: 25}}>수트체</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => {setFont("앨리스체"); setPath("EliceDigitalBaeum");setFontVisible(false);}}> 
-                  <Text style={{ fontSize: 30, fontFamily: "EliceDigitalBaeum",  marginBottom: 25}}>앨리스체</Text>
-              </TouchableOpacity>
-              
+                {fontArr.map((s)=>(
+                  <TouchableOpacity id={s.id} onPress={() => {setFontVisible(false); setFont(s.fontName); setPath(s.fontpath);}}> 
+                    <Text style={{ fontSize: 30, fontFamily: s.fontpath, marginBottom: 30}}>{s.fontName}</Text>
+                  </TouchableOpacity>
+                ))}
             </ScrollView>
           </View>
           

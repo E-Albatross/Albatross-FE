@@ -38,24 +38,16 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
-        'NotoSansKR-Regular': require('../assets/fonts/NotoSansKR-Regular.ttf'),
-        'CWDangamAsac-Bold': require('../assets/fonts/CWDangamAsac-Bold.ttf'),
-        'SUIT-Regular': require('../assets/fonts/SUIT-Regular.ttf'),
+      'NanumPen': require('../assets/fonts/NanumPen.ttf'),
+      'KyoboHandwriting2019': require('../assets/fonts/KyoboHandwriting2019.ttf'),
+      'HoonSlimsB': require('../assets/fonts/HoonSlimsB.ttf'),
 
-        'KyoboHandwriting2019': require('../assets/fonts/KyoboHandwriting2019.ttf'),
-        'EliceDigitalBaeum': require('../assets/fonts/EliceDigitalBaeum.ttf'),
-        'Cafe24Ssurroundair': require('../assets/fonts/Cafe24Ssurroundair.ttf'),
+      'MaruBuri-SemiBold': require('../assets/fonts/MaruBuri-SemiBold.ttf'),
+      'Cafe24Ssurroundair': require('../assets/fonts/Cafe24Ssurroundair.ttf'),
+      'NotoSansKR-Regular': require('../assets/fonts/NotoSansKR-Regular.ttf'),
 
-        'YUniverse-L': require('../assets/fonts/YUniverse-L.ttf'),
-        'BMJUA': require('../assets/fonts/YUniverse-L.ttf'),
-
-        'ACCchildrenheart': require('../assets/fonts/ACCchildrenheart.ttf'),
-        'GangwonEduAllLight': require('../assets/fonts/GangwonEduAllLight.ttf'),
-        'KOTRA_SONGEULSSI-Medium': require('../assets/fonts/KOTRA_SONGEULSSI-Medium.ttf'),
-
-        'MaruBuri-SemiBold': require('../assets/fonts/MaruBuri-SemiBold.ttf'),
-        'NanumBaReunHiPi': require('../assets/fonts/NanumBaReunHiPi.ttf'),
-        'NanumPen': require('../assets/fonts/NanumPen.ttf'),
+      'SUIT-Regular': require('../assets/fonts/SUIT-Regular.ttf'),
+      'EliceDigitalBaeum': require('../assets/fonts/EliceDigitalBaeum.ttf'),
     });
     setReady(true);
   }, []);
