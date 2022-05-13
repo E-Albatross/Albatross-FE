@@ -58,28 +58,56 @@ const Profile_login = ({navigation}) => {
 
   const [isReady, setReady]= useState(false);
 
-  const fontArr = [{id: 1, fontName: "나눔손글씨 펜체", fontpath:"NanumPen"}, {id: 2,fontName: "교보손글씨체", fontpath:"KyoboHandwriting2019"}, {id: 3,fontName: "훈슬림스키니", fontpath:"HoonSlimsB"}
-  , {id: 4,fontName: "마루부리", fontpath:"MaruBuri-SemiBold"}, {id: 5,fontName: "카페24체", fontpath:"Cafe24Ssurroundair"}, {id: 6,fontName: "노토산스", fontpath:"NotoSansKR-Regular"},
-  {id: 7,fontName: "수트체", fontpath:"SUIT-Regular"}, {id: 8,fontName: "앨리스체", fontpath:"EliceDigitalBaeum"},];
+  const fontArr = [
+    {id: 1, fontName: "가람연꽃", fontpath:"NanumGaRamYeonGgoc"},
+    {id: 2, fontName: "고딕 아니고 고딩", fontpath:"NanumGoDigANiGoGoDing"},
+    {id: 3, fontName: "곰신체", fontpath:"NanumGomSinCe"},
+    {id: 4, fontName: "규리의 일기", fontpath:"NanumGyuRiEuiIrGi"},
+    {id: 5, fontName: "금은보화", fontpath:"NanumGeumEunBoHwa"},
+    {id: 6, fontName: "기쁨밝음", fontpath:"NanumGiBbeumBarkEum"},
+    {id: 7, fontName: "김유이체", fontpath:"NanumGimYuICe"},
+    {id: 8, fontName: "나는 이겨낸다", fontpath:"NanumNaNeunIGyeoNaenDa"},
+    {id: 9, fontName: "다행체", fontpath:"NanumDaHaengCe"},
+    {id: 10, fontName: "동화또박", fontpath:"NanumDongHwaDdoBag"},
+    {id: 11, fontName: "딸에게 엄마가", fontpath:"NanumDdarEGeEomMaGa"},
+    {id: 12, fontName: "맛있는체", fontpath:"NanumMasIssNeunCe"},
+    {id: 13, fontName: "몽돌", fontpath:"NanumMongDor"},
+    {id: 14, fontName: "무궁화", fontpath:"NanumMuGungHwa"},
+    {id: 15, fontName: "미니 손글씨", fontpath:"NanumMiNiSonGeurSsi"},
+    {id: 16, fontName: "야근하는 김주임", fontpath:"NanumYaGeunHaNeunGimJuIm"},
+    {id: 17, fontName: "장미체", fontpath:"NanumJangMiCe"},
+    {id: 18, fontName: "행복한 도비", fontpath:"NanumHaengBogHanDoBi"},
+    {id: 19, fontName: "힘내라는 말보단", fontpath:"NanumHimNaeRaNeunMarBoDan"},
+    ];
   
   useEffect(async () => {
     await Font.loadAsync({
-      'NanumPen': require('../../assets/fonts/NanumPen.ttf'),
-      'KyoboHandwriting2019': require('../../assets/fonts/KyoboHandwriting2019.ttf'),
-      'HoonSlimsB': require('../../assets/fonts/HoonSlimsB.ttf'),
-
-      'MaruBuri-SemiBold': require('../../assets/fonts/MaruBuri-SemiBold.ttf'),
-      'Cafe24Ssurroundair': require('../../assets/fonts/Cafe24Ssurroundair.ttf'),
-      'NotoSansKR-Regular': require('../../assets/fonts/NotoSansKR-Regular.ttf'),
-
-      'SUIT-Regular': require('../../assets/fonts/SUIT-Regular.ttf'),
-      'EliceDigitalBaeum': require('../../assets/fonts/EliceDigitalBaeum.ttf'),
+      'NanumGaRamYeonGgoc': require('../../assets/fonts/NanumGaRamYeonGgoc.ttf'),
+      'NanumGoDigANiGoGoDing': require('../../assets/fonts/NanumGoDigANiGoGoDing.ttf'),
+      'NanumGomSinCe': require('../../assets/fonts/NanumGomSinCe.ttf'),
+      'NanumGyuRiEuiIrGi': require('../../assets/fonts/NanumGyuRiEuiIrGi.ttf'),
+      'NanumGeumEunBoHwa': require('../../assets/fonts/NanumGeumEunBoHwa.ttf'),
+      'NanumGiBbeumBarkEum': require('../../assets/fonts/NanumGiBbeumBarkEum.ttf'),
+      'NanumGimYuICe': require('../../assets/fonts/NanumGimYuICe.ttf'),
+      'NanumNaNeunIGyeoNaenDa': require('../../assets/fonts/NanumNaNeunIGyeoNaenDa.ttf'),
+      'NanumDaHaengCe': require('../../assets/fonts/NanumDaHaengCe.ttf'),
+      'NanumDongHwaDdoBag': require('../../assets/fonts/NanumDongHwaDdoBag.ttf'),
+      'NanumDdarEGeEomMaGa': require('../../assets/fonts/NanumDdarEGeEomMaGa.ttf'),
+      'NanumMasIssNeunCe': require('../../assets/fonts/NanumMasIssNeunCe.ttf'),
+      'NanumMongDor': require('../../assets/fonts/NanumMongDor.ttf'),
+      'NanumMuGungHwa': require('../../assets/fonts/NanumMuGungHwa.ttf'),
+      'NanumMiNiSonGeurSsi': require('../../assets/fonts/NanumMiNiSonGeurSsi.ttf'),
+      'NanumYaGeunHaNeunGimJuIm': require('../../assets/fonts/NanumYaGeunHaNeunGimJuIm.ttf'),
+      'NanumJangMiCe': require('../../assets/fonts/NanumJangMiCe.ttf'),
+      'NanumHaengBogHanDoBi': require('../../assets/fonts/NanumHaengBogHanDoBi.ttf'),
+      'NanumHimNaeRaNeunMarBoDan': require('../../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
+      'Pak_Yong_jun': require('../../assets/fonts/Pak_Yong_jun.ttf'),
     });
     setReady(true);
 }, []);
 
-  const [userFont,setFont] = useState("주아체"); // 초기 폰트 설정
-  const [fontPath,setPath] = useState("BMJUA"); // 초기 폰트 설정
+  const [userFont,setFont] = useState("장미체"); // 초기 폰트 설정
+  const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
 
   // 폰트 경로 가져옴
   useEffect(() => {
@@ -210,8 +238,8 @@ const [identity, setIdentity] = useState("null");
               <Text style={{ fontSize: 20, letterSpacing: 2, marginLeft: "3%", marginRight: "1%"}}> A </Text>
               <Slider
                 style={{width: 200, height: 40}}
-                minimumValue={20}
-                maximumValue={30}
+                minimumValue={30}
+                maximumValue={40}
                 value={userSize}
                 onValueChange={(value)=>setSize(value)} // 슬라이더 움직일 때 출력값 반환
                 minimumTrackTintColor="#80AE92"
@@ -228,7 +256,7 @@ const [identity, setIdentity] = useState("null");
             <TouchableOpacity
             onPress={() => {setFontVisible(true);}}
             style={{ marginLeft: "3%", lineHeight: 60, }}>
-            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, fontFamily: fontPath }} > {userFont}</Text>                                                      
+            <Text style={{ fontSize: 30, letterSpacing: 2, marginLeft: "3%", lineHeight: 60, fontFamily: fontPath }} > {userFont}</Text>                                                      
           </TouchableOpacity>
           </View>
         </View>
@@ -381,6 +409,7 @@ const styles = StyleSheet.create({
   },
   FontContainer: {
     marginTop: "25%",
+    paddingTop:"5%", 
     width: "50%",
     marginLeft:"25%",
     height: "50%",

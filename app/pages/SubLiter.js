@@ -38,16 +38,26 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
-      'NanumPen': require('../assets/fonts/NanumPen.ttf'),
-      'KyoboHandwriting2019': require('../assets/fonts/KyoboHandwriting2019.ttf'),
-      'HoonSlimsB': require('../assets/fonts/HoonSlimsB.ttf'),
-
-      'MaruBuri-SemiBold': require('../assets/fonts/MaruBuri-SemiBold.ttf'),
-      'Cafe24Ssurroundair': require('../assets/fonts/Cafe24Ssurroundair.ttf'),
-      'NotoSansKR-Regular': require('../assets/fonts/NotoSansKR-Regular.ttf'),
-
-      'SUIT-Regular': require('../assets/fonts/SUIT-Regular.ttf'),
-      'EliceDigitalBaeum': require('../assets/fonts/EliceDigitalBaeum.ttf'),
+      'NanumGaRamYeonGgoc': require('../assets/fonts/NanumGaRamYeonGgoc.ttf'),
+      'NanumGoDigANiGoGoDing': require('../assets/fonts/NanumGoDigANiGoGoDing.ttf'),
+      'NanumGomSinCe': require('../assets/fonts/NanumGomSinCe.ttf'),
+      'NanumGyuRiEuiIrGi': require('../assets/fonts/NanumGyuRiEuiIrGi.ttf'),
+      'NanumGeumEunBoHwa': require('../assets/fonts/NanumGeumEunBoHwa.ttf'),
+      'NanumGiBbeumBarkEum': require('../assets/fonts/NanumGiBbeumBarkEum.ttf'),
+      'NanumGimYuICe': require('../assets/fonts/NanumGimYuICe.ttf'),
+      'NanumNaNeunIGyeoNaenDa': require('../assets/fonts/NanumNaNeunIGyeoNaenDa.ttf'),
+      'NanumDaHaengCe': require('../assets/fonts/NanumDaHaengCe.ttf'),
+      'NanumDongHwaDdoBag': require('../assets/fonts/NanumDongHwaDdoBag.ttf'),
+      'NanumDdarEGeEomMaGa': require('../assets/fonts/NanumDdarEGeEomMaGa.ttf'),
+      'NanumMasIssNeunCe': require('../assets/fonts/NanumMasIssNeunCe.ttf'),
+      'NanumMongDor': require('../assets/fonts/NanumMongDor.ttf'),
+      'NanumMuGungHwa': require('../assets/fonts/NanumMuGungHwa.ttf'),
+      'NanumMiNiSonGeurSsi': require('../assets/fonts/NanumMiNiSonGeurSsi.ttf'),
+      'NanumYaGeunHaNeunGimJuIm': require('../assets/fonts/NanumYaGeunHaNeunGimJuIm.ttf'),
+      'NanumJangMiCe': require('../assets/fonts/NanumJangMiCe.ttf'),
+      'NanumHaengBogHanDoBi': require('../assets/fonts/NanumHaengBogHanDoBi.ttf'),
+      'NanumHimNaeRaNeunMarBoDan': require('../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
+      'Pak_Yong_jun': require('../assets/fonts/Pak_Yong_jun.ttf'),
     });
     setReady(true);
   }, []);
@@ -60,7 +70,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     })
   },[]);
 
-  const [fontPath,setPath] = useState("BMJUA"); // 초기 폰트 설정
+  const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
 
   //폰트 경로 가져옴
   useEffect(() => {
