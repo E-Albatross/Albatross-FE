@@ -62,7 +62,7 @@ const DrawerPage = ({navigation}) => {
         });
 
       } else {
-        setID(null);
+        setID("appleid");
       }
     })
   },[]);

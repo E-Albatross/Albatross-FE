@@ -160,7 +160,7 @@ const [identity, setIdentity] = useState("null");
             <ScrollView contentContainerStyle={{justifyContent: "center", alignItems: "center"}}
               centerContent={true} indicatorStyle={"white"}>
                 {fontArr.map((s)=>(
-                  <TouchableOpacity id={s.id} onPress={() => {setFontVisible(false); setFont(s.fontName); setPath(s.fontpath);}}> 
+                  <TouchableOpacity key={s.id} onPress={() => {setFontVisible(false); setFont(s.fontName); setPath(s.fontpath);}}> 
                     <Text style={{ fontSize: 30, fontFamily: s.fontpath, marginBottom: 30}}>{s.fontName}</Text>
                   </TouchableOpacity>
                 ))}

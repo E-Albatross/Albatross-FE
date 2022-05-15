@@ -42,17 +42,16 @@ const ExLiterature = ({navigation, route}) => {
   return (
     <>
       {pageArr.map((s)=>(
-        <>
-          { visible[s.num] && (
+          visible[s.num] && (
             <SubLiter
+            key = {s.id}
             navigation={navigation} 
             id={id}
             setTitle={title}
             text={textArr[s.num]}
             />
-          )}
-        </>
-        ))}
+          )
+      ))}
       <View style={styles.container}> 
         {pageArr.map((s)=>(
           <TouchableOpacity
