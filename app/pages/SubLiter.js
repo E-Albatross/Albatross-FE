@@ -145,6 +145,14 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
      }
   };
 
+  const retry = async () => { // 다시쓰기버튼 눌렀을 때
+    try{
+      setFinish(false);
+     } catch(err){
+       // console.log("검사에 실패함!");
+     }
+  };
+
   const onSave = async () => { // 저장 버튼 눌렀을 때
     try{
       MediaLibrary.getPermissionsAsync().then((data) => {
@@ -231,14 +239,19 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <>
             <View style={styles.headerSubRow}>
               <TouchableOpacity
+                onPress={() => retry()}
+                style={{ height: 60 }}>
+                <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginLeft: -10}} > 다시쓰기 </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
                 onPress={() => setModalVisible(true)}
                 style={{ height: 60 }}>
-                <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginLeft: 100}} > 다운로드 </Text>
+                <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginLeft: 10}} > 다운로드 </Text>
               </TouchableOpacity>
               <TouchableOpacity
               onPress={() => navigation.navigate("MAIN")}
               style={{ height: 60 }}>
-              <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginRight: 20}} > 확인 </Text>
+              <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginLeft: 10, marginRight: 20}} > 확인 </Text>
             </TouchableOpacity>
             </View>
           </>)

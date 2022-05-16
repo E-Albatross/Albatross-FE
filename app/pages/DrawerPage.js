@@ -107,9 +107,11 @@ const DrawerPage = ({navigation}) => {
               height={200}
               chartConfig={chartConfig}
             />
-            
+            {/* <TouchableOpacity
+              onPress={() => console.log(userId)}>  */}
             <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
             내 서랍 </Text>
+            {/* </TouchableOpacity> */}
             
               <FlatList
               data={picture}
