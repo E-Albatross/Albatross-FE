@@ -207,12 +207,12 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const windowHeight = Dimensions.get('window').height;
 
   const feedbackText = [
-    {id : 1, text : "줄이 맞지 않습니다. 글자들이 기울어지지않게 작성해보세요!"},
-    {id : 2, text : "글자 간격을 주의해서 작성해보세요!"},
-    {id : 3, text : "이 글자의 전체적인 크기에 주의해서 작성해보세요!"},
-    {id : 4, text : "이 글자의 자음에 주의해서 작성해 보세요!"},
-    {id : 5, text : "이 글자의 모음에 주의해서 작성해 보세요!"},
-    {id : 6, text : "이 글자의 받침에 주의해서 작성해 보세요!"},
+    {id : 1, text : "줄이 맞지 않습니다.\n 글자들이 기울어지지않게 작성해보세요!"},
+    {id : 2, text : "글자 간격을 주의해서 \n작성해보세요!"},
+    {id : 3, text : "이 글자의 전체적인 크기에 주의해서\n 작성해보세요!"},
+    {id : 4, text : "이 글자의 자음에 주의해서 \n작성해 보세요!"},
+    {id : 5, text : "이 글자의 모음에 주의해서 \n작성해 보세요!"},
+    {id : 6, text : "이 글자의 받침에 주의해서 \n작성해 보세요!"},
   ]
 
   return (
@@ -286,13 +286,10 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
         </View>
       </Modal>
-
         <Modal animationType='slide' transparent={true} visible={markModal}>
               <View style={styles.markModalContainer}>
-                <View style={styles.markModalText}> 
-                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"11%", fontFamily: fontPath }} > {markModalText} </Text> 
-                </View>
-                  <TouchableOpacity onPress={() => setMarkModal(false)} style={{marginBottom: 1, width: "100%", height: "25%", backgroundColor: "#80AE92"}}>
+                  <Text style={{ fontSize: 30, letterSpacing: 2, textAlign: "center", paddingTop : "10%", fontFamily: fontPath }} > {markModalText} </Text> 
+                  <TouchableOpacity onPress={() => setMarkModal(false)} style={{ width: "100%", height: "25%", backgroundColor: "#80AE92"}}>
                       <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", fontFamily: fontPath }} > 확인 </Text>
                   </TouchableOpacity>
               </View>
@@ -450,18 +447,13 @@ const styles = StyleSheet.create({
   },
   markModalContainer: {
     width: "60%",
-    height: "15%",
-    top: "35%",
+    height: "20%",
+    top: "40%",
     left: "20%",
     borderWidth: 0.5,
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-  },
-  markModalText: {
-    width: "100%",
-    height: "80%",
-    flexDirection: "column",
-    alignItems: "center",
+    justifyContent: "space-between"
   },
 });
