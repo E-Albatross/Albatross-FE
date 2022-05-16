@@ -33,7 +33,6 @@ import * as Font from "expo-font";
 const SubLiter= ({navigation, id, setTitle, text}) => {
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
-  const [score, setScore] = useState(95);
 
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -207,6 +206,15 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
+  const feedbackText = [
+    {id : 1, text : "줄이 맞지 않습니다. 글자들이 기울어지지않게 작성해보세요!"},
+    {id : 2, text : "글자 간격을 주의해서 작성해보세요!"},
+    {id : 3, text : "이 글자의 전체적인 크기에 주의해서 작성해보세요!"},
+    {id : 4, text : "이 글자의 자음에 주의해서 작성해 보세요!"},
+    {id : 5, text : "이 글자의 모음에 주의해서 작성해 보세요!"},
+    {id : 6, text : "이 글자의 받침에 주의해서 작성해 보세요!"},
+  ]
+
   return (
     <View style={styles.container} key = {id}>
       {isReady && (
@@ -282,10 +290,10 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         <Modal animationType='slide' transparent={true} visible={markModal}>
               <View style={styles.markModalContainer}>
                 <View style={styles.markModalText}> 
-                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"11%"}} > {markModalText} </Text> 
+                  <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginTop:"11%", fontFamily: fontPath }} > {markModalText} </Text> 
                 </View>
                   <TouchableOpacity onPress={() => setMarkModal(false)} style={{marginBottom: 1, width: "100%", height: "25%", backgroundColor: "#80AE92"}}>
-                      <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", }} > 확인 </Text>
+                      <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "1%", fontFamily: fontPath }} > 확인 </Text>
                   </TouchableOpacity>
               </View>
         </Modal>
@@ -309,14 +317,13 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <View style={styles.line}/>
             <View style={styles.line}/>
           </View>
-          <Score score={score}/> 
+          <Score score={markList.mark[0].score}/> 
         </View>
        )}
        {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
         style={{ marginTop: "10%", height:720}}>
-          
           <View style={{ height: 1000, justifyContent: "center",  alignItems: "center"}} >
             <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
             <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
@@ -329,7 +336,6 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               eraserSize={5}
               style={{ backgroundColor: 'transparent', width: "90%",  height: "72%", position: "absolute", left: "5%", top: "0%"}}
             />
-
               {/* 가로줄 */}
               <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 0, }} />
               <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 60, }} />
@@ -349,18 +355,18 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: "0%"}} />
               <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", right: "5%", top: "0%" }} />
 
-              { finish === false ? (
+               { finish === false ? (
                 <>
                 </>) 
                 :(<>
                   {markList.mark.map((s)=>(
                     <TouchableOpacity key={s.id} style={styles.iconbutton}
-                    onPress={() => {setMarkModal(true); setMarkModalText(s.text)}}>
-                        <Image key={s.id} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.xPos, top:s.yPos}} source={markIcon} />
+                    onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text)}}>
+                        <Image key={s.id} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x, top:s.y}} source={markIcon} />
                     </TouchableOpacity>
                     ))}
                   </>
-              )}
+              )} 
             </View>
           </ViewShot>
           </ViewShot>
