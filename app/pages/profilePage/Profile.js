@@ -78,6 +78,7 @@ const Profile_login = ({navigation}) => {
     {id: 17, fontName: "장미체", fontpath:"NanumJangMiCe"},
     {id: 18, fontName: "행복한 도비", fontpath:"NanumHaengBogHanDoBi"},
     {id: 19, fontName: "힘내라는 말보단", fontpath:"NanumHimNaeRaNeunMarBoDan"},
+    {id: 20, fontName: "마루부리", fontpath:"MaruBuri-Bold"},
     ];
   
   useEffect(async () => {
@@ -102,6 +103,7 @@ const Profile_login = ({navigation}) => {
       'NanumHaengBogHanDoBi': require('../../assets/fonts/NanumHaengBogHanDoBi.ttf'),
       'NanumHimNaeRaNeunMarBoDan': require('../../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
       'Pak_Yong_jun': require('../../assets/fonts/Pak_Yong_jun.ttf'),
+      'MaruBuri-Bold': require('../../assets/fonts/MaruBuri-Bold.ttf'),
     });
     setReady(true);
 }, []);

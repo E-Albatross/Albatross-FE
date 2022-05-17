@@ -57,6 +57,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       'NanumHaengBogHanDoBi': require('../assets/fonts/NanumHaengBogHanDoBi.ttf'),
       'NanumHimNaeRaNeunMarBoDan': require('../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
       'Pak_Yong_jun': require('../assets/fonts/Pak_Yong_jun.ttf'),
+      'MaruBuri-Bold': require('../assets/fonts/MaruBuri-Bold.ttf'),
     });
     setReady(true);
   }, []);
@@ -138,6 +139,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     try{
       await getPhotoUri();
       setFinish(true);
+      console.log(photoUri);
     
      } catch(err){
        // console.log("검사에 실패함!");
@@ -356,10 +358,10 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                 <>
                 </>) 
                 :(<>
-                  {markList.mark.map((s)=>(
-                    <TouchableOpacity key={s.id} style={styles.iconbutton}
+                  {markList.mark.map((s, index)=>(
+                    <TouchableOpacity key={index} style={styles.iconbutton}
                     onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text)}}>
-                        <Image key={s.id} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x, top:s.y}} source={markIcon} />
+                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x, top:s.y}} source={markIcon} />
                     </TouchableOpacity>
                     ))}
                   </>

@@ -48,6 +48,7 @@ const ExWord = ({ navigation }) => {
       'NanumHaengBogHanDoBi': require('../assets/fonts/NanumHaengBogHanDoBi.ttf'),
       'NanumHimNaeRaNeunMarBoDan': require('../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
       'Pak_Yong_jun': require('../assets/fonts/Pak_Yong_jun.ttf'),
+      'MaruBuri-Bold': require('../assets/fonts/MaruBuri-Bold.ttf'),
     });
     setReady(true);
   }, []);
