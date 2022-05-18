@@ -147,7 +147,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
   const getFeedback = async() => {
     try{
-      axios.post(`${USER_SERVER}/score/test.jpg/1/NanumJangMiCe`, JSON.stringify(ExJson), {
+      axios.post(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`, JSON.stringify(ExJson), {
         headers: { "Content-Type": `application/json`}
       }
       ).then((res) => {
@@ -156,7 +156,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               });
 
       console.log("백 서버에 json을 넘김!");
-      console.log(`${USER_SERVER}/score/test.jpg/1/NanumJangMiCe`);
+      console.log(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`);
     } catch(err){
       console.log("백 서버에 json을 넘기지 못함!");
     }
@@ -400,8 +400,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                     <TouchableOpacity key={index} style={styles.iconbutton}
                     onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text + " " + s.x + " " + s.y)}}>
                       {s.fidx===1? 
-                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-windowWidth*(0.10), top:30-30-360+s.line*180}} source={markIcon} />
-                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-windowWidth*(0.10), top:-30-360+s.line*180}} source={markIcon} />
+                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-(windowWidth*(0.10)), top:30-30-360+s.line*180}} source={markIcon} />
+                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-(windowWidth*(0.10)), top:-30-360+s.line*180}} source={markIcon} />
                       }
               
                     </TouchableOpacity>

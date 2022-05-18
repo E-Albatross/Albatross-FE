@@ -17,10 +17,10 @@ const DrawerPicture = ({ navigation, route }) => {
         {/* 헤더부분 */}
         <View style={styles.headerRow}>
             <TouchableOpacity
-            onPress={() => navigation.navigate("MAIN")}
-            style={styles.iconbutton}
+              onPress={() => navigation.navigate("MAIN")}
+              style={styles.iconbutton}
             >
-            <Image style={{ marginLeft: 20 }} source={home} />
+              <Image style={{ marginLeft: 10 }} source={home} />
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate("DRAWER")}> 

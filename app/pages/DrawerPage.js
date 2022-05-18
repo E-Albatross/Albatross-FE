@@ -28,6 +28,21 @@ const DrawerPage = ({navigation}) => {
     } catch (e) {
     }
   }
+  const getScore = async() => {
+    try{
+      axios.get(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`)
+      .then((res) => {
+                console.log("결과) \n",res);
+                // setMarkList(res?.data);
+              });
+
+      console.log("백 서버에서 점수를 받아옴!");
+      console.log(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`);
+    } catch(err){
+      console.log("백 서버에 점수를 보냄!");
+    }
+  }
+
   const score = {
     datasets: [
       {
@@ -137,12 +152,12 @@ const DrawerPage = ({navigation}) => {
           :
           <>
           <View style={styles.headerRow}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate("MAIN")}
-                style={styles.iconbutton}
-              >
-                <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
-              </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("MAIN")}
+              style={styles.iconbutton}
+            >
+              <Image style={{ marginLeft: 10 }} source={home} />
+            </TouchableOpacity>
             </View>
 
             {userId!=undefined? null :
