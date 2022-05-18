@@ -165,10 +165,14 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const onCheck = async () => { // 검사버튼 눌렀을 때
     try{
       await getPhotoUri();
-      setFinish(true);
       console.log(photoUri);
       await getFeedback();
       console.log(markList);
+
+      setTimeout(function(){
+        setFinish(true);
+    },1000);
+
     
      } catch(err){
        // console.log("검사에 실패함!");
@@ -396,8 +400,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                     <TouchableOpacity key={index} style={styles.iconbutton}
                     onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text + " " + s.x + " " + s.y)}}>
                       {s.fidx===1? 
-                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380, top:30-30-360+s.line*180}} source={markIcon} />
-                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380, top:-30-360+s.line*180}} source={markIcon} />
+                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-windowWidth*(0.10), top:30-30-360+s.line*180}} source={markIcon} />
+                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-windowWidth*(0.10), top:-30-360+s.line*180}} source={markIcon} />
                       }
               
                     </TouchableOpacity>
