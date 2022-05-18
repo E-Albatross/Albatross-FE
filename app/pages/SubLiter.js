@@ -171,7 +171,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
       setTimeout(function(){
         setFinish(true);
-    },1000);
+    },500);
 
     
      } catch(err){

@@ -19,43 +19,21 @@ import { LineChart } from "react-native-chart-kit";
 import * as Font from "expo-font";
 
 const DrawerPage = ({navigation}) => {
-  // 유저아이디 기본 설정값
-  const [userId, setID] = useState(null);
-  // 유저아이디 저장하기
+  const [userId, setID] = useState("001807.9a775268f7904dbbaf6dac8a3cdde6f9.0411");
+  // const [userId, setID] = useState("appleid");
+  // const [userId, setID] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  const [scoreReady, setScoreReady] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [SecondScore, setSecondScore] = useState(null);
+  var arr=[];
+  
   const saveUser = async (item) => {
     try {
       await AsyncStorage.setItem('userId', String(item))
     } catch (e) {
     }
   }
-  const getScore = async() => {
-    try{
-      axios.get(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`)
-      .then((res) => {
-                console.log("결과) \n",res);
-                // setMarkList(res?.data);
-              });
-
-      console.log("백 서버에서 점수를 받아옴!");
-      console.log(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`);
-    } catch(err){
-      console.log("백 서버에 점수를 보냄!");
-    }
-  }
-
-  const score = {
-    datasets: [
-      {
-        data: myLiter.first.map(s=>( s.score )),
-        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
-        strokeWidth: 5 // optional
-      }
-    ],
-    legend: ["내 점수"] // optional
-  };
-
-  const [picture, setPicture] = useState(null);
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(async () => {
     await Font.loadAsync({
@@ -65,29 +43,54 @@ const DrawerPage = ({navigation}) => {
   }, []);
 
   // 유저아이디 가져오기
-  useEffect(() => {
-    AsyncStorage.getItem('userId').then((item)=>{
-      if(item!=null){
-        setID(item);
-        console.log(item);
-
-        axios.get(`${USER_SERVER}/record/${item}`)
-        .then(response => {
-          setPicture(response.data);
-        });
-
+  useEffect(async () => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!=null){
+        setID(userId);
+        console.log(userId);
       } else {
-        setID("appleid");
       }
     })
+
+    axios.get(`${USER_SERVER}/record/${userId}`)
+    .then(response => {
+      setUserInfo(response.data);
+      var data = response.data;
+
+      arr=[];
+      for(var i=0 ; i<data.length; i++){
+        arr[i] = data[i].score
+      }
+
+      score = {
+        datasets: [
+          {
+            data: arr,
+            color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+            strokeWidth: 5 
+          }
+        ],
+        legend: ["내 점수"] // optional
+      };
+      setSecondScore(score);
+    })
+    setSecondScore(score)
+    setScoreReady(true);
   },[]);
 
-  useEffect(() => {
-    axios.get(`${USER_SERVER}/record/${userId}`)
-        .then(response => {
-          setPicture(response.data);
-        });
-  }, []);
+  console.log("함수 빠져나오자마자 : ", score);
+  console.log(arr);
+
+  var score = {
+    datasets: [
+      {
+        data: myLiter.first.map(s=>( s.score )),
+        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+        strokeWidth: 5 // optional
+      }
+    ],
+    legend: ["내 점수"] // optional
+  };
 
   const fontPath = "SeoulHangangL"; // 초기 폰트 설정
   const screenWidth = Dimensions.get("window").width;
@@ -115,21 +118,25 @@ const DrawerPage = ({navigation}) => {
                 <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
               </TouchableOpacity>
             </View>
-
-            <LineChart
-              data={score}
+            {scoreReady? 
+              <LineChart
+              data={SecondScore}
               width={screenWidth-200}
               height={200}
               chartConfig={chartConfig}
             />
-            {/* <TouchableOpacity
-              onPress={() => console.log(userId)}>  */}
+            : null}
+           
+            <TouchableOpacity
+              onPress={() => {
+                console.log(score);
+                }}> 
             <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
             내 서랍 </Text>
-            {/* </TouchableOpacity> */}
+            </TouchableOpacity> 
             
               <FlatList
-              data={picture}
+              data={userInfo}
               columnWrapperStyle={{
                 marginBottom: 20,
               }}
