@@ -4,6 +4,7 @@ import { StyleSheet, View, Text,
 } from "react-native";
    
 import axios from 'axios';
+import ExJson from "../assets/ExJson";
 import { USER_SERVER } from '../config';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,13 +27,22 @@ import Score from "../components/ExLiterature/Score";
 
 //느낌표 모달
 import markIcon from "../assets/markIcon.png";
-import markList from "../components/ExLiterature/markList";
+// import markList from "../components/ExLiterature/markList";
 
 import * as Font from "expo-font";
 
 const SubLiter= ({navigation, id, setTitle, text}) => {
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
+  const [markList, setMarkList] = useState(null);
+  // const markList = [
+  //   {
+  //     "fidx": 1,
+  //     "score": 97,
+  //     "x": 0,
+  //     "y": 0,
+  //   },
+  // ]
 
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -135,11 +145,30 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   // 갤러리 권한 주기
   MediaLibrary.requestPermissionsAsync();
 
+  const getFeedback = async() => {
+    try{
+      axios.post(`${USER_SERVER}/score/test.jpg/1/NanumJangMiCe`, JSON.stringify(ExJson), {
+        headers: { "Content-Type": `application/json`}
+      }
+      ).then((res) => {
+                // console.log("결과) \n",res?.data);
+                setMarkList(res?.data);
+              });
+
+      console.log("백 서버에 json을 넘김!");
+      console.log(`${USER_SERVER}/score/test.jpg/1/NanumJangMiCe`);
+    } catch(err){
+      console.log("백 서버에 json을 넘기지 못함!");
+    }
+  }
+
   const onCheck = async () => { // 검사버튼 눌렀을 때
     try{
       await getPhotoUri();
       setFinish(true);
       console.log(photoUri);
+      await getFeedback();
+      console.log(markList);
     
      } catch(err){
        // console.log("검사에 실패함!");
@@ -205,6 +234,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     }
   }
 
+
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
@@ -249,7 +279,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <>
             <View style={styles.headerSubRow}>
               <TouchableOpacity
-                onPress={() => retry()}
+                onPress={() => {retry();}}
                 style={{ height: 60 }}>
                 <Text style={{ fontSize: 20, letterSpacing: 2, marginTop:20, color: "white", fontWeight: "bold", marginLeft: -10}} > 다시쓰기 </Text>
               </TouchableOpacity>
@@ -303,7 +333,10 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         { finish === false ? (
          <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
           <View style={styles.nameContainer}>
+           <TouchableOpacity
+            onPress={() => getFeedback()}> 
             <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath, }}> {setTitle} </Text>
+            </TouchableOpacity>
             <View style={styles.line}/>
             <View style={styles.line}/>
           </View>
@@ -312,11 +345,12 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        :( 
         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
           <View style={styles.nameContainer}>
+            
             <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
             <View style={styles.line}/>
             <View style={styles.line}/>
           </View>
-          <Score score={markList.mark[0].score}/> 
+          <Score score={markList[markList.length-1].score}/>
         </View>
        )}
        {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
@@ -354,14 +388,18 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: "0%"}} />
               <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", right: "5%", top: "0%" }} />
 
-               { finish === false ? (
+               {finish === false ? (
                 <>
                 </>) 
                 :(<>
-                  {markList.mark.map((s, index)=>(
+                  {markList.map((s, index)=>(
                     <TouchableOpacity key={index} style={styles.iconbutton}
-                    onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text)}}>
-                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x, top:s.y}} source={markIcon} />
+                    onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text + " " + s.x + " " + s.y)}}>
+                      {s.fidx===1? 
+                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380, top:30-30-360+s.line*180}} source={markIcon} />
+                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380, top:-30-360+s.line*180}} source={markIcon} />
+                      }
+              
                     </TouchableOpacity>
                     ))}
                   </>
