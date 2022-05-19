@@ -78,9 +78,6 @@ const DrawerPage = ({navigation}) => {
     setScoreReady(true);
   },[]);
 
-  console.log("함수 빠져나오자마자 : ", score);
-  console.log(arr);
-
   var score = {
     datasets: [
       {
@@ -118,18 +115,19 @@ const DrawerPage = ({navigation}) => {
                 <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
               </TouchableOpacity>
             </View>
-            {scoreReady? 
+             {scoreReady? 
               <LineChart
               data={SecondScore}
               width={screenWidth-200}
               height={200}
               chartConfig={chartConfig}
             />
-            : null}
+            : null} 
            
             <TouchableOpacity
               onPress={() => {
                 console.log(score);
+                console.log(SecondScore);
                 }}> 
             <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
             내 서랍 </Text>
@@ -137,7 +135,7 @@ const DrawerPage = ({navigation}) => {
             
               <FlatList
               data={userInfo}
-              columnWrapperStyle={{
+              columnWrapperStyle={{ 
                 marginBottom: 20,
               }}
               indicatorStyle={"white"}

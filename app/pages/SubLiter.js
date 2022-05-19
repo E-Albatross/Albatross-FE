@@ -35,15 +35,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
   const [markList, setMarkList] = useState(null);
-  // const markList = [
-  //   {
-  //     "fidx": 1,
-  //     "score": 97,
-  //     "x": 0,
-  //     "y": 0,
-  //   },
-  // ]
-
+  
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
@@ -151,7 +143,6 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         headers: { "Content-Type": `application/json`}
       }
       ).then((res) => {
-                // console.log("결과) \n",res?.data);
                 setMarkList(res?.data);
               });
 
@@ -398,10 +389,10 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                 :(<>
                   {markList.map((s, index)=>(
                     <TouchableOpacity key={index} style={styles.iconbutton}
-                    onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text + " " + s.x + " " + s.y)}}>
+                    onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text )}}>
                       {s.fidx===1? 
-                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-(windowWidth*(0.10)), top:30-30-360+s.line*180}} source={markIcon} />
-                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x-380-(windowWidth*(0.10)), top:-30-360+s.line*180}} source={markIcon} />
+                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x*0.6-390-60+20, top:30-30-360+s.line*180}} source={markIcon} />
+                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x*0.6-390-60+20, top:-30-360+s.line*180}} source={markIcon} />
                       }
               
                     </TouchableOpacity>
