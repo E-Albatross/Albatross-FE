@@ -3,6 +3,9 @@ import { Text, View, Button, StyleSheet, Image,
   TouchableOpacity, ScrollView,
 } from "react-native";
 
+import axios from 'axios';
+import { USER_SERVER } from '../config';
+
 import drawer from "../assets/MainPage/apps.png";
 import profile from "../assets/MainPage/profile.png";
 import literature from "../assets/MainPage/literature.png";
@@ -37,6 +40,20 @@ const MainPage = ({navigation}) => {
 }, []);
 
   const fontPath = "SeoulHangangL"; // 초기 폰트 설정
+
+  const confirmScore = () =>{
+    axios.get(`${USER_SERVER}/record/001807.9a775268f7904dbbaf6dac8a3cdde6f9.0411`)
+    .then(response => {
+      var data = response.data;
+
+      var arr=[];
+      for(var i=0 ; i<data.length; i++){
+        arr[i] = data[i].score
+      }
+      console.log(arr);
+    })
+    }
+  
   
     return (
       
@@ -45,7 +62,7 @@ const MainPage = ({navigation}) => {
           <>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("PROFILE")}
+            onPress={() => {navigation.navigate("PROFILE"); confirmScore();}}
           >
             <Image source={profile} style={{width: 60, height: 60}} />
           </TouchableOpacity>

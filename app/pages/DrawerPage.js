@@ -128,7 +128,6 @@ const DrawerPage = ({navigation}) => {
               onPress={() => {
                 console.log(score);
                 console.log(SecondScore);
-                console.log(userInfo);
                 }}> 
             <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
             내 서랍 </Text>

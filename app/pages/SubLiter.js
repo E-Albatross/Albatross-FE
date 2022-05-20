@@ -8,6 +8,7 @@ import ExJson from "../assets/ExJson";
 import { USER_SERVER } from '../config';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as AppleAuthentication from 'expo-apple-authentication';
 
 //캔버스
 import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
@@ -27,7 +28,6 @@ import Score from "../components/ExLiterature/Score";
 
 //느낌표 모달
 import markIcon from "../assets/markIcon.png";
-// import markList from "../components/ExLiterature/markList";
 
 import * as Font from "expo-font";
 
@@ -35,6 +35,34 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
   const [markList, setMarkList] = useState(null);
+  const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
+  const [userId, setID] = useState("appleid"); // 유저아이디 기본 설정값
+
+  const [finish, setFinish] = useState(false);
+
+  //모달창
+  const [modalVisible, setModalVisible] = useState(false);
+  const [markModal, setMarkModal] = useState(false);
+  const [markModalText, setMarkModalText] = useState("빈칸");
+
+  //드로잉 도구들
+  const canvasRef = useRef();
+  const [tool, setTool] = useState(DrawingTool.Brush);
+  const handleUndo = () => { canvasRef.current?.undo(); };
+  const handleToggleEraser = () => {
+    setTool((prev) =>
+      prev === DrawingTool.Brush ? DrawingTool.Eraser : DrawingTool.Brush
+    );
+  };
+
+  //스크린샷 캡쳐 위한 코드
+  const captureRef = useRef();
+  const galleryRef = useRef();
+  const drawerRef = useRef();
+  const [photoUri, setUri] = useState(null); // 서버에 넘겨줄 스크린샷
+  const [galleryUri, setGallery] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
+  const [drawerUri, setDrawer] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
+  const [galleryName, setName] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
   
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -65,51 +93,30 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   }, []);
 
   useEffect(() => {
+    // 폰트 크기 가져옴
     AsyncStorage.getItem('userSize').then((size)=>{
       if(size!=null){
         setSize(Number(size));
       } else setSize(25);
     })
-  },[]);
-
-  const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
-
-  //폰트 경로 가져옴
-  useEffect(() => {
+    // 폰트 경로 가져옴
     AsyncStorage.getItem('fontPath').then((font)=>{
       if(font!=null){
         setPath(font);
       }
     })
+    // 유저 아이디 가져옴
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!=null){
+        setID(userId);
+      } else {
+        setID("001807.9a775268f7904dbbaf6dac8a3cdde6f9.0411");
+        // setID(null);
+      }
+    })
   },[]);
 
-  const [finish, setFinish] = useState(false);
-
-  //모달창
-  const [modalVisible, setModalVisible] = useState(false);
-  const [markModal, setMarkModal] = useState(false);
-  const [markModalText, setMarkModalText] = useState("빈칸");
-
-  //draw
-  const canvasRef = useRef();
-  const [tool, setTool] = useState(DrawingTool.Brush);
-  const handleUndo = () => { canvasRef.current?.undo(); };
-  const handleToggleEraser = () => {
-    setTool((prev) =>
-      prev === DrawingTool.Brush ? DrawingTool.Eraser : DrawingTool.Brush
-    );
-  };
-
-  //스크린샷 캡쳐 위한 코드
-  const captureRef = useRef();
-  const galleryRef = useRef();
-  const drawerRef = useRef();
-  const [photoUri, setUri] = useState(null); // 서버에 넘겨줄 스크린샷
-  const [galleryUri, setGallery] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
-  const [drawerUri, setDrawer] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
-  const [galleryName, setName] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
-
-  const getPhotoUri = async () => { // 스크린샷 두개 세팅
+  const getPhotoUri = async() => { // 스크린샷 두개 세팅 + 서버에 넘기기
      try{
       const server = await captureRef.current.capture();
       const gallery = await galleryRef.current.capture();
@@ -118,55 +125,60 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       setGallery(gallery);
       setDrawer(drawer);
 
-      console.log(server);
-
       const arr = gallery.split('/');
       const name = arr[arr.length-1];
       setName(name);
 
-      // console.log("서버에 저장할 uri : ", server);
-      console.log("갤러리에 저장할 uri : ", gallery);
-      // console.log("서랍에 저장할 uri : ", drawer);
-      console.log("파일 이름 : ", name);
-      
-     } catch(err){
-      // console.log("uri를 가져오는데 실패함!");
+      const postServer = () => { // 서버에 넘기기
+        try{
+          var file = {
+               uri : gallery,
+               type: 'multipart/form-data',
+               name: name
+          };
+          var formData = new FormData();
+          formData.append("file", file);
+          
+          fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
+            method : "POST"
+            , body : formData
+          })
+          .then(result => result.json())
+          .catch(error => console.log(`error => ${error}`));
+    
+          console.log("서버에 이미지를 저장함!");
+          console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${name}`);
+        } catch(err){
+          console.log("서버에 이미지를 저장하지 못함");
+        }
+      }
+
+      const getFeedback = async () => {
+        try{
+          await axios.post(`${USER_SERVER}/score/${name}/${id}/${fontPath}`, JSON.stringify(ExJson), {
+            headers: { "Content-Type": `application/json`}
+          }
+          ).then((res) => { setMarkList(res?.data); });
+          console.log("백 서버에 json을 넘김!");
+          setFinish(true);
+        } catch(err){
+          console.log("백 서버에 json을 넘기지 못함!");
+          console.log(err);
+        }
+      }
+
+      postServer();
+      await getFeedback();
+     } catch(err){ 
      }
   };
-
   // 갤러리 권한 주기
   MediaLibrary.requestPermissionsAsync();
-
-  const getFeedback = async() => {
-    try{
-      axios.post(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`, JSON.stringify(ExJson), {
-        headers: { "Content-Type": `application/json`}
-      }
-      ).then((res) => {
-                setMarkList(res?.data);
-              });
-
-      console.log("백 서버에 json을 넘김!");
-      console.log(`${USER_SERVER}/score/${galleryName}/${id}/${fontPath}`);
-    } catch(err){
-      console.log("백 서버에 json을 넘기지 못함!");
-    }
-  }
 
   const onCheck = async () => { // 검사버튼 눌렀을 때
     try{
       await getPhotoUri();
-      console.log(photoUri);
-      await getFeedback();
-      console.log(markList);
-
-      setTimeout(function(){
-        setFinish(true);
-    },500);
-
-    
      } catch(err){
-       // console.log("검사에 실패함!");
      }
   };
 
@@ -174,7 +186,6 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     try{
       setFinish(false);
      } catch(err){
-       // console.log("검사에 실패함!");
      }
   };
 
@@ -182,53 +193,13 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     try{
       MediaLibrary.getPermissionsAsync().then((data) => {
         if (data.status === 'granted') {
-          MediaLibrary.saveToLibraryAsync(photoUri);
-          console.log(photoUri);
+          MediaLibrary.saveToLibraryAsync(galleryUri);
+          // console.log("갤러리에 저장한 사진 : ", galleryUri);
         }
       });
-    
      } catch(err){
-       // console.log("갤러리에 저장하는데에 실패함!");
      }
   };
-
-  // 유저아이디 기본 설정값
-  const [userId, setID] = useState("appleid");
-  // 유저아이디 가져오기
-  useEffect(() => {
-    AsyncStorage.getItem('userId').then((userId)=>{
-      if(userId!=null){
-        setID(userId);
-        console.log(userId);
-      } else setID(null);
-    })
-  },[]);
-
-  const postServer = () => { // 서버에 넘기기
-    try{
-      var file = {
-           uri : galleryUri,
-           type: 'multipart/form-data',
-           name: galleryName
-      };
-      var formData = new FormData();
-      formData.append("file", file);
-      
-      fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${galleryName}`, { 
-        method : "POST"
-        , body : formData
-      })
-      .then(result => result.json())
-      .catch(error => console.log(`error => ${error}`));
-
-      console.log("서버에 저장함!");
-      console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
-    } catch(err){
-      console.log("서버에 저장하지 못함");
-      console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${galleryName}`);
-    }
-  }
-
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -244,7 +215,46 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
   return (
     <View style={styles.container} key = {id}>
-      {isReady && (
+      {(!isReady || userId==null)?
+      <>
+        <View style={styles.headerRow}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("MAIN")}
+            style={styles.iconbutton}
+          >
+            <Image style={{ marginLeft: 20 }} source={home} />
+          </TouchableOpacity>
+        </View>
+        <AppleAuthentication.AppleAuthenticationButton
+        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+        cornerRadius={5}
+        style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginTop: "50%" }}
+        onPress={async () => {
+          try {
+            setIdentity (
+              await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+              })
+            );
+            setID(String(identity.user));
+            saveUser(String(identity.user));
+            // signed in
+          } catch (error) {
+            if (e.code === 'ERR_CANCELED') {
+              console.info("The user cancelled in the sign in.", error);
+            } else {
+              console.info("An error occurred signing in.", error);
+            }
+          }
+        }}
+      />
+    </>
+    : 
+      (
         <>
       {/* 헤더부분 */}
       <View style={styles.headerRow}>
@@ -301,7 +311,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <TouchableOpacity onPress={() => setModalVisible(false)}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginLeft: 10}} > 취소 </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {setModalVisible(false); onSave(); postServer();}}>
+            <TouchableOpacity onPress={() => {setModalVisible(false); onSave();}}>
                 <Text style={{ fontSize: 20, letterSpacing: 2,  fontWeight: "bold", textAlign: "center", marginRight: 10}} > 저장 </Text>
             </TouchableOpacity>
           </View>
@@ -328,10 +338,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         { finish === false ? (
          <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
           <View style={styles.nameContainer}>
-           <TouchableOpacity
-            onPress={() => getFeedback()}> 
             <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left",fontFamily: fontPath, }}> {setTitle} </Text>
-            </TouchableOpacity>
             <View style={styles.line}/>
             <View style={styles.line}/>
           </View>
