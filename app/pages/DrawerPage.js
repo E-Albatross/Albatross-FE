@@ -128,6 +128,7 @@ const DrawerPage = ({navigation}) => {
               onPress={() => {
                 console.log(score);
                 console.log(SecondScore);
+                console.log(userInfo);
                 }}> 
             <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
             내 서랍 </Text>
@@ -143,7 +144,8 @@ const DrawerPage = ({navigation}) => {
               renderItem={(array) => (
                   <TouchableOpacity key={array.id}
                   onPress={() => navigation.navigate("DRAWERPICTURE",{
-                    url: `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`
+                    url: `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`,
+                    score :array?.item?.score
                   })}
                     style={styles.iconbutton} >
                     <Image source={{uri : `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`}} 
