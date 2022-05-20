@@ -117,61 +117,61 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   },[]);
 
   const getPhotoUri = async() => { // 스크린샷 두개 세팅 + 서버에 넘기기
-     try{
-      const server = await captureRef.current.capture();
-      const gallery = await galleryRef.current.capture();
-      const drawer = await drawerRef.current.capture();
-      setUri(server);
-      setGallery(gallery);
-      setDrawer(drawer);
+    try{
+     const server = await captureRef.current.capture();
+     const gallery = await galleryRef.current.capture();
+     const drawer = await drawerRef.current.capture();
+     setUri(server);
+     setGallery(gallery);
+     setDrawer(drawer);
 
-      const arr = gallery.split('/');
-      const name = arr[arr.length-1];
-      setName(name);
+     const arr = gallery.split('/');
+     const name = arr[arr.length-1];
+     setName(name);
 
-      const postServer = () => { // 서버에 넘기기
-        try{
-          var file = {
-               uri : gallery,
-               type: 'multipart/form-data',
-               name: name
-          };
-          var formData = new FormData();
-          formData.append("file", file);
-          
-          fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
-            method : "POST"
-            , body : formData
-          })
-          .then(result => result.json())
-          .catch(error => console.log(`error => ${error}`));
-    
-          console.log("서버에 이미지를 저장함!");
-          console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${name}`);
-        } catch(err){
-          console.log("서버에 이미지를 저장하지 못함");
-        }
-      }
-
-      const getFeedback = async () => {
-        try{
-          await axios.post(`${USER_SERVER}/score/${name}/${id}/${fontPath}`, JSON.stringify(ExJson), {
-            headers: { "Content-Type": `application/json`}
-          }
-          ).then((res) => { setMarkList(res?.data); });
-          console.log("백 서버에 json을 넘김!");
-          setFinish(true);
-        } catch(err){
-          console.log("백 서버에 json을 넘기지 못함!");
-          console.log(err);
-        }
-      }
-
-      postServer();
-      await getFeedback();
-     } catch(err){ 
+     const postServer = () => { // 서버에 넘기기
+       try{
+         var file = {
+              uri : gallery,
+              type: 'multipart/form-data',
+              name: name
+         };
+         var formData = new FormData();
+         formData.append("file", file);
+         
+         fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
+           method : "POST"
+           , body : formData
+         })
+         .then(result => result.json())
+         .catch(error => console.log(`error => ${error}`));
+   
+         console.log("서버에 이미지를 저장함!");
+         console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${name}`);
+       } catch(err){
+         console.log("서버에 이미지를 저장하지 못함");
+       }
      }
-  };
+
+     const getFeedback = async () => {
+       try{
+         await axios.post(`${USER_SERVER}/score/${name}/${id}/${fontPath}`, JSON.stringify(ExJson), {
+           headers: { "Content-Type": `application/json`}
+         }
+         ).then((res) => { setMarkList(res?.data); });
+         console.log("백 서버에 json을 넘김!");
+         setFinish(true);
+       } catch(err){
+         console.log("백 서버에 json을 넘기지 못함!");
+         console.log(err);
+       }
+     }
+
+     postServer();
+     await getFeedback();
+    } catch(err){ 
+    }
+ };
   // 갤러리 권한 주기
   MediaLibrary.requestPermissionsAsync();
 
