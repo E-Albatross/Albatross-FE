@@ -62,7 +62,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const [photoUri, setUri] = useState(null); // 서버에 넘겨줄 스크린샷
   const [galleryUri, setGallery] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
   const [drawerUri, setDrawer] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
-  const [galleryName, setName] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진
+  const [galleryName, setName] = useState(null); // 내 서랍 & 유저 갤러리에 저장할 사진 이름
   
   // 폰트 정보 가져오기
   useEffect(async () => {
@@ -172,6 +172,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     } catch(err){ 
     }
  };
+
   // 갤러리 권한 주기
   MediaLibrary.requestPermissionsAsync();
 
@@ -194,10 +195,11 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       MediaLibrary.getPermissionsAsync().then((data) => {
         if (data.status === 'granted') {
           MediaLibrary.saveToLibraryAsync(galleryUri);
-          // console.log("갤러리에 저장한 사진 : ", galleryUri);
+          console.log("갤러리에 저장한 사진 : ", galleryUri);
         }
       });
      } catch(err){
+       console.log(err)
      }
   };
 
