@@ -129,7 +129,36 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
      const name = arr[arr.length-1];
      setName(name);
 
-     const postServer = () => { // 서버에 넘기기
+     console.log(server);
+
+     const postAI = async () => { // 딥러닝서버에 넘기기
+      try{
+        var file = {
+             uri : server,
+             type: 'multipart/form-data',
+             name: name
+        };
+        var formData = new FormData();
+        formData.append("file", file);
+        
+        fetch(`http://43.155.156.139:7012/predict`, { 
+          method : "POST"
+          , body : formData
+        })
+        .then(result => {
+          result.json();
+          console.log(result.json());
+          console.log(result);
+        })
+        .catch(error => console.log(`error => ${error}`));
+  
+        console.log("딥러닝 서버에 이미지를 저장함!");
+      } catch(err){
+        console.log("딥러닝 서버에 이미지를 저장하지 못함!");
+      }
+    }
+
+     const postServer = async() => { // 백서버에 넘기기
        try{
          var file = {
               uri : gallery,
@@ -139,7 +168,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
          var formData = new FormData();
          formData.append("file", file);
          
-         fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
+         await fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
            method : "POST"
            , body : formData
          })
@@ -166,10 +195,11 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
          console.log(err);
        }
      }
-
-     postServer();
+     // await postAI();
+     await postServer();
      await getFeedback();
     } catch(err){ 
+      console.log("오류 : ", err);
     }
  };
 
