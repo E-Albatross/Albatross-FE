@@ -129,12 +129,59 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
      const name = arr[arr.length-1];
      setName(name);
 
+     const getFeedback = async (JsonData) => { // json 넘기고 피드백 받아오기
+      try{
+        await axios.post(`${USER_SERVER}/score/${name}/${id}/${fontPath}`, JSON.stringify(JsonData), {
+          headers: { "Content-Type": `application/json`}
+        }
+        ).then((res) => { setMarkList(res?.data); });
+        console.log("백 서버에 json을 넘김!");
+        setFinish(true);
+      } catch(err){
+        console.log("백 서버에 json을 넘기지 못함!");
+        console.log(err);
+      }
+    }
+
+    const postServer = async() => { // 백서버에 이미지 넘기기
+      try{
+        var file = {
+             uri : gallery,
+             type: 'multipart/form-data',
+             name: name
+        };
+        var formData = new FormData();
+        formData.append("file", file);
+        
+        await fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
+          method : "POST"
+          , body : formData
+        })
+        .then(result => result.json())
+        .catch(error => console.log(`error => ${error}`));
+  
+        console.log("서버에 이미지를 저장함!");
+        console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${name}`);
+      } catch(err){
+        console.log("서버에 이미지를 저장하지 못함");
+      }
+    }
+    // 백 서버에 이미지 넘긴 후 피드백 받을 수 있게 함.
+    const mergeProcess = async (JsonData) => { 
+      try{
+        await postServer();
+        await getFeedback(JsonData);
+      } catch(err){
+        console.log(err);
+      }
+    }
+
      const postAI = async () => { // 딥러닝서버에 넘기기
       try{
         console.log("딥러닝 서버에 보낸 uri : ", server);
         var file = {
-             // uri : server,
-             uri : "/Users/jieun/Downloads/KakaoTalk_Photo_2022-05-21-22-51-06.jpeg",
+             uri : server,
+             // uri : "/Users/jieun/Downloads/KakaoTalk_Photo_2022-05-21-22-51-06.jpeg",
              type: 'multipart/form-data',
              name: name
         };
@@ -146,54 +193,22 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
           body : formData
         })
         .then((response) => response.json())
-        .then((data) => {console.log("결과 : ",data);})
+        .then((data) => {
+          mergeProcess(data);
+          // console.log("data :\n ", data);
+          // return data;
+        })
         .catch(err=>{"에러 : ", err});
-  
         console.log("딥러닝 서버에 이미지를 저장함!");
       } catch(err){
         console.log("딥러닝 서버에 이미지를 저장하지 못함!");
       }
     }
-
-     const postServer = async() => { // 백서버에 넘기기
-       try{
-         var file = {
-              uri : gallery,
-              type: 'multipart/form-data',
-              name: name
-         };
-         var formData = new FormData();
-         formData.append("file", file);
-         
-         await fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
-           method : "POST"
-           , body : formData
-         })
-         .then(result => result.json())
-         .catch(error => console.log(`error => ${error}`));
-   
-         console.log("서버에 이미지를 저장함!");
-         console.log(`https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${name}`);
-       } catch(err){
-         console.log("서버에 이미지를 저장하지 못함");
-       }
-     }
-
-     const getFeedback = async () => {
-       try{
-         await axios.post(`${USER_SERVER}/score/${name}/${id}/${fontPath}`, JSON.stringify(ExJson), {
-           headers: { "Content-Type": `application/json`}
-         }
-         ).then((res) => { setMarkList(res?.data); });
-         console.log("백 서버에 json을 넘김!");
-         setFinish(true);
-       } catch(err){
-         console.log("백 서버에 json을 넘기지 못함!");
-         console.log(err);
-       }
-     }
-     // var imgJson = await postAI();
-     await postAI();
+    await postAI();
+     // var imgJson = new Object();
+     // var imgJson = {};
+     // imgJson = await postAI();
+     // await postAI();
      // alert(imgJson);
      // console.log("딥러닝 서버에서 받아온 json :", imgJson);
      // await postServer();
