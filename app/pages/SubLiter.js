@@ -129,28 +129,25 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
      const name = arr[arr.length-1];
      setName(name);
 
-     console.log(server);
-
      const postAI = async () => { // 딥러닝서버에 넘기기
       try{
+        console.log("딥러닝 서버에 보낸 uri : ", server);
         var file = {
-             uri : server,
+             // uri : server,
+             uri : "/Users/jieun/Downloads/KakaoTalk_Photo_2022-05-21-22-51-06.jpeg",
              type: 'multipart/form-data',
              name: name
         };
         var formData = new FormData();
         formData.append("file", file);
         
-        fetch(`http://43.155.156.139:7012/predict`, { 
-          method : "POST"
-          , body : formData
+        await fetch('http://43.155.156.139:7012/predict', { 
+          method : "POST",
+          body : formData
         })
-        .then(result => {
-          result.json();
-          console.log(result.json());
-          console.log(result);
-        })
-        .catch(error => console.log(`error => ${error}`));
+        .then((response) => response.json())
+        .then((data) => {console.log("결과 : ",data);})
+        .catch(err=>{"에러 : ", err});
   
         console.log("딥러닝 서버에 이미지를 저장함!");
       } catch(err){
@@ -195,9 +192,12 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
          console.log(err);
        }
      }
-     // await postAI();
-     await postServer();
-     await getFeedback();
+     // var imgJson = await postAI();
+     await postAI();
+     // alert(imgJson);
+     // console.log("딥러닝 서버에서 받아온 json :", imgJson);
+     // await postServer();
+     // await getFeedback();
     } catch(err){ 
       console.log("오류 : ", err);
     }
