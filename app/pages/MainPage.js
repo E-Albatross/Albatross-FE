@@ -8,7 +8,6 @@ import { USER_SERVER } from '../config';
 
 import drawer from "../assets/MainPage/apps.png";
 import profile from "../assets/MainPage/profile.png";
-import literature from "../assets/MainPage/literature.png";
 
 import new1 from "../assets/MainPage/new1.png";
 import new2 from "../assets/MainPage/new2.png";

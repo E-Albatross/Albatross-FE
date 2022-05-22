@@ -44,6 +44,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [markModal, setMarkModal] = useState(false);
   const [markModalText, setMarkModalText] = useState("빈칸");
+  const [loadingModal, setLoading] = useState(false);
 
   //드로잉 도구들
   const canvasRef = useRef();
@@ -118,6 +119,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
   const getPhotoUri = async() => { // 스크린샷 두개 세팅 + 서버에 넘기기
     try{
+     setLoading(true);
      const server = await captureRef.current.capture();
      const gallery = await galleryRef.current.capture();
      const drawer = await drawerRef.current.capture();
@@ -135,6 +137,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
           headers: { "Content-Type": `application/json`}
         }
         ).then((res) => { setMarkList(res?.data); });
+
         console.log("백 서버에 json을 넘김!");
         setFinish(true);
       } catch(err){
@@ -194,9 +197,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         })
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           mergeProcess(data);
-          // console.log("data :\n ", data);
-          // return data;
         })
         .catch(err=>{"에러 : ", err});
         console.log("딥러닝 서버에 이미지를 저장함!");
@@ -204,15 +206,10 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         console.log("딥러닝 서버에 이미지를 저장하지 못함!");
       }
     }
+
     await postAI();
-     // var imgJson = new Object();
-     // var imgJson = {};
-     // imgJson = await postAI();
-     // await postAI();
-     // alert(imgJson);
-     // console.log("딥러닝 서버에서 받아온 json :", imgJson);
-     // await postServer();
-     // await getFeedback();
+    setLoading(false);
+
     } catch(err){ 
       console.log("오류 : ", err);
     }
@@ -370,6 +367,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
         </View>
       </Modal>
+      {/* 검사 멘트 모달창 */}
         <Modal animationType='slide' transparent={true} visible={markModal}>
               <View style={styles.markModalContainer}>
                   <Text style={{ fontSize: 30, letterSpacing: 2, textAlign: "center", paddingTop : "10%", fontFamily: fontPath }} > {markModalText} </Text> 
@@ -378,6 +376,14 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                   </TouchableOpacity>
               </View>
         </Modal>
+
+      {/* 로딩창 */}
+      <Modal animationType='slide' transparent={true} visible={loadingModal}>
+              <View style={styles.markModalContainer}>
+                  <Text > 글씨 검사를 진행하고 있습니다...</Text>
+              </View>
+        </Modal>
+
       {/* 모달창 코드 끝 */}
       
       <ViewShot ref={galleryRef} options={{ format: "jpg", quality: 0.9 }} style={{marginTop: 70, width: windowWidth, height:(windowHeight*0.92-70)}}>
