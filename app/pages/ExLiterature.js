@@ -45,6 +45,7 @@ const ExLiterature = ({navigation, route}) => {
           visible[s.num] && (
             <SubLiter
             key = {s.id}
+            pageNum = {s.num}
             navigation={navigation} 
             id={id}
             setTitle={title}

@@ -15,7 +15,7 @@ import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
 
 //스크린샷
 import ViewShot from "react-native-view-shot";
-import * as MediaLibrary from 'expo-media-library'
+import * as MediaLibrary from 'expo-media-library';
 
 //이미지 파일들
 import home from "../assets/home.png";
@@ -31,7 +31,7 @@ import markIcon from "../assets/markIcon.png";
 
 import * as Font from "expo-font";
 
-const SubLiter= ({navigation, id, setTitle, text}) => {
+const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
   const [markList, setMarkList] = useState(null);
@@ -119,6 +119,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         setID("001807.9a775268f7904dbbaf6dac8a3cdde6f9.0411");
         // setID(null);
       }
+
+      alert(userId);
     })
   },[]);
 
@@ -137,7 +139,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
      const getFeedback = async (JsonData) => { // json 넘기고 피드백 받아오기
       try{
-        await axios.post(`${USER_SERVER}/score/${name}/${id}/${fontPath}`, JSON.stringify(JsonData), {
+        await axios.post(`${USER_SERVER}/score/${name}/${id}/${pageNum+1}/${fontPath}`, JSON.stringify(JsonData), {
           headers: { "Content-Type": `application/json`}
         }
         ).then((res) => { setMarkList(res?.data); });
@@ -160,7 +162,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         var formData = new FormData();
         formData.append("file", file);
         
-        await fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${name}`, { 
+        await fetch(`${USER_SERVER}/image/s3/resource/${userId}/${id}/${pageNum+1}/${name}`, { 
           method : "POST"
           , body : formData
         })
@@ -396,9 +398,9 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
       {/* 로딩창 */}
       <Modal animationType='slide' transparent={true} visible={loadingModal}>
               <View style={styles.markModalContainer}>
-                  <Text > 글씨 검사를 진행하고 있습니다...</Text>
+                  <Text style={{ fontSize: 30, letterSpacing: 2, textAlign: "center", paddingTop : "10%", fontFamily: fontPath }} > {"글씨 검사를 진행하고 있습니다..."} </Text>
               </View>
-        </Modal>
+      </Modal>
 
       {/* 모달창 코드 끝 */}
       
