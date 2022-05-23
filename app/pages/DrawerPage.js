@@ -19,9 +19,7 @@ import { LineChart } from "react-native-chart-kit";
 import * as Font from "expo-font";
 
 const DrawerPage = ({navigation}) => {
-  const [userId, setID] = useState("001807.9a775268f7904dbbaf6dac8a3cdde6f9.0411");
-  // const [userId, setID] = useState("appleid");
-  // const [userId, setID] = useState(null);
+  const [userId, setID] = useState(undefined);
   const [userInfo, setUserInfo] = useState(null);
   const [scoreReady, setScoreReady] = useState(false);
   const [isReady, setIsReady] = useState(false);
@@ -42,12 +40,19 @@ const DrawerPage = ({navigation}) => {
     setIsReady(true);
   }, []);
 
+  // const isEmpty = function (value) {
+  //   if (value === '' || value === null || value === undefined || (value !== null && typeof value === 'object' && !Object.keys(value).length)) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // };
+
   // 유저아이디 가져오기
   useEffect(async () => {
-    AsyncStorage.getItem('userId').then((userId)=>{
-      if(userId!=null){
-        setID(userId);
-        console.log(userId);
+    AsyncStorage.getItem('userId').then((getId)=>{
+      if(getId!="undefined"){
+        setID(getId);
       } else {
       }
     })
@@ -105,7 +110,7 @@ const DrawerPage = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-        {(isReady && userId!=null)?
+        {(isReady && userId!=undefined)?
           <>
             <View style={styles.headerRow}>
               <TouchableOpacity

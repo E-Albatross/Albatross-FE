@@ -49,7 +49,7 @@ const MainPage = ({navigation}) => {
       for(var i=0 ; i<data.length; i++){
         arr[i] = data[i].score
       }
-      console.log(arr);
+      alert(arr);
     })
     }
   
@@ -61,7 +61,9 @@ const MainPage = ({navigation}) => {
           <>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => {navigation.navigate("PROFILE"); confirmScore();}}
+            onPress={() => {navigation.navigate("PROFILE"); 
+            // confirmScore();
+          }}
           >
             <Image source={profile} style={{width: 60, height: 60}} />
           </TouchableOpacity>

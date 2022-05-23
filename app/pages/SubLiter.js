@@ -37,7 +37,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
   const [isReady, setReady]= useState(false);
   const [markList, setMarkList] = useState(null);
   const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
-  const [userId, setID] = useState("appleid"); // 유저아이디 기본 설정값
+  const [userId, setID] = useState(undefined); // 유저아이디 기본 설정값
 
   const [finish, setFinish] = useState(false);
 
@@ -99,6 +99,14 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
     setReady(true);
   }, []);
 
+  const isEmpty = function (value) {
+    if (value === '' || value === null || value === undefined || (value !== null && typeof value === 'object' && !Object.keys(value).length)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   useEffect(() => {
     // 폰트 크기 가져옴
     AsyncStorage.getItem('userSize').then((size)=>{
@@ -113,15 +121,10 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
       }
     })
     // 유저 아이디 가져옴
-    AsyncStorage.getItem('userId').then((userId)=>{
-      if(userId!=null){
-        setID(userId);
-      } else {
-        setID("001807.9a775268f7904dbbaf6dac8a3cdde6f9.0411");
-        // setID(null);
+    AsyncStorage.getItem('userId').then((getId)=>{
+      if(getId!="undefined"){
+        setID(getId);
       }
-
-      // alert(userId);
     })
   },[]);
 
@@ -268,7 +271,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
 
   return (
     <View style={styles.container} key = {id}>
-      {(!isReady || userId==null)?
+      {(!isReady || userId==undefined)?
       <>
         <View style={styles.headerRow}>
           <TouchableOpacity

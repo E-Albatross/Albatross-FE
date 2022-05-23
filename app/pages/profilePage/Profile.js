@@ -14,47 +14,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import home from "../../assets/home.png";
 
 const Profile_login = ({navigation}) => {
-  //모달창
   const [fontVisible, setFontVisible] = useState(false)
-  const [modifyVisible, setModifyVisible] = useState(false)
-  const [confirmVisible, setConfirmVisible] = useState(false)
-
-  // ----- 유저 아이디 ------
-  const [userId, setID] = useState(undefined); // false면 로그아웃, true면 로그인
-
-  const saveUser = async (userId) => {
-    try {
-      await AsyncStorage.setItem('userId', String(userId))
-    } catch (e) {
-    }
-  }
-  useEffect(() => {
-    AsyncStorage.getItem('userId').then((storeId)=>{
-      if(storeId!=null){
-        setID(storeId);
-        alert(storeId);
-      } else setID(null);
-    })
-  },[]);
-
-  // ----- 유저 사이즈 -----
+  const [userId, setID] = useState("undefined"); // false면 로그아웃, true면 로그인
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
-
-  const saveSize= async (userSize) => {
-    try {
-      await AsyncStorage.setItem('userSize', String(userSize))
-    } catch (e) {
-    }
-  }
-  useEffect(() => {
-    AsyncStorage.getItem('userSize').then((size)=>{
-      if(size!=null){
-        setSize(Number(size));
-      } else setSize(25);
-    })
-  },[]);
-
-  // --- 폰트 가져오기 ---
+  const [identity, setIdentity] = useState(null);
 
   const [isReady, setReady]= useState(false);
 
@@ -81,53 +44,49 @@ const Profile_login = ({navigation}) => {
     // {id: 20, fontName: "마루부리", fontpath:"MaruBuri-Bold"},
     ];
   
-  useEffect(async () => {
-    await Font.loadAsync({
-      'NanumGaRamYeonGgoc': require('../../assets/fonts/NanumGaRamYeonGgoc.ttf'),
-      'NanumGoDigANiGoGoDing': require('../../assets/fonts/NanumGoDigANiGoGoDing.ttf'),
-      'NanumGomSinCe': require('../../assets/fonts/NanumGomSinCe.ttf'),
-      'NanumGyuRiEuiIrGi': require('../../assets/fonts/NanumGyuRiEuiIrGi.ttf'),
-      'NanumGeumEunBoHwa': require('../../assets/fonts/NanumGeumEunBoHwa.ttf'),
-      'NanumGiBbeumBarkEum': require('../../assets/fonts/NanumGiBbeumBarkEum.ttf'),
-      'NanumGimYuICe': require('../../assets/fonts/NanumGimYuICe.ttf'),
-      'NanumNaNeunIGyeoNaenDa': require('../../assets/fonts/NanumNaNeunIGyeoNaenDa.ttf'),
-      'NanumDaHaengCe': require('../../assets/fonts/NanumDaHaengCe.ttf'),
-      'NanumDongHwaDdoBag': require('../../assets/fonts/NanumDongHwaDdoBag.ttf'),
-      'NanumDdarEGeEomMaGa': require('../../assets/fonts/NanumDdarEGeEomMaGa.ttf'),
-      'NanumMasIssNeunCe': require('../../assets/fonts/NanumMasIssNeunCe.ttf'),
-      'NanumMongDor': require('../../assets/fonts/NanumMongDor.ttf'),
-      'NanumMuGungHwa': require('../../assets/fonts/NanumMuGungHwa.ttf'),
-      'NanumMiNiSonGeurSsi': require('../../assets/fonts/NanumMiNiSonGeurSsi.ttf'),
-      'NanumYaGeunHaNeunGimJuIm': require('../../assets/fonts/NanumYaGeunHaNeunGimJuIm.ttf'),
-      'NanumJangMiCe': require('../../assets/fonts/NanumJangMiCe.ttf'),
-      'NanumHaengBogHanDoBi': require('../../assets/fonts/NanumHaengBogHanDoBi.ttf'),
-      'NanumHimNaeRaNeunMarBoDan': require('../../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
-      'Pak_Yong_jun': require('../../assets/fonts/Pak_Yong_jun.ttf'),
-      'MaruBuri-Bold': require('../../assets/fonts/MaruBuri-Bold.ttf'),
-    });
-    setReady(true);
-}, []);
+    const [userFont,setFont] = useState("장미체"); // 초기 폰트 설정
+    const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
 
-  const [userFont,setFont] = useState("장미체"); // 초기 폰트 설정
-  const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
+    useEffect(async () => {
+      await Font.loadAsync({
+        'NanumGaRamYeonGgoc': require('../../assets/fonts/NanumGaRamYeonGgoc.ttf'),
+        'NanumGoDigANiGoGoDing': require('../../assets/fonts/NanumGoDigANiGoGoDing.ttf'),
+        'NanumGomSinCe': require('../../assets/fonts/NanumGomSinCe.ttf'),
+        'NanumGyuRiEuiIrGi': require('../../assets/fonts/NanumGyuRiEuiIrGi.ttf'),
+        'NanumGeumEunBoHwa': require('../../assets/fonts/NanumGeumEunBoHwa.ttf'),
+        'NanumGiBbeumBarkEum': require('../../assets/fonts/NanumGiBbeumBarkEum.ttf'),
+        'NanumGimYuICe': require('../../assets/fonts/NanumGimYuICe.ttf'),
+        'NanumNaNeunIGyeoNaenDa': require('../../assets/fonts/NanumNaNeunIGyeoNaenDa.ttf'),
+        'NanumDaHaengCe': require('../../assets/fonts/NanumDaHaengCe.ttf'),
+        'NanumDongHwaDdoBag': require('../../assets/fonts/NanumDongHwaDdoBag.ttf'),
+        'NanumDdarEGeEomMaGa': require('../../assets/fonts/NanumDdarEGeEomMaGa.ttf'),
+        'NanumMasIssNeunCe': require('../../assets/fonts/NanumMasIssNeunCe.ttf'),
+        'NanumMongDor': require('../../assets/fonts/NanumMongDor.ttf'),
+        'NanumMuGungHwa': require('../../assets/fonts/NanumMuGungHwa.ttf'),
+        'NanumMiNiSonGeurSsi': require('../../assets/fonts/NanumMiNiSonGeurSsi.ttf'),
+        'NanumYaGeunHaNeunGimJuIm': require('../../assets/fonts/NanumYaGeunHaNeunGimJuIm.ttf'),
+        'NanumJangMiCe': require('../../assets/fonts/NanumJangMiCe.ttf'),
+        'NanumHaengBogHanDoBi': require('../../assets/fonts/NanumHaengBogHanDoBi.ttf'),
+        'NanumHimNaeRaNeunMarBoDan': require('../../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
+        'Pak_Yong_jun': require('../../assets/fonts/Pak_Yong_jun.ttf'),
+        'MaruBuri-Bold': require('../../assets/fonts/MaruBuri-Bold.ttf'),
+      });
+      setReady(true);
+  }, []);
 
-  // 폰트 경로 가져옴
-  useEffect(() => {
-    AsyncStorage.getItem('userFont').then((font)=>{
-      if(font!=null){
-        setFont(font);
-      }
-    })
-  },[]);
+  const saveUser = async (inputId) => {
+    try {
+      await AsyncStorage.setItem('userId', String(inputId))
+    } catch (e) {
+    }
+  }
 
-  //폰트 이름 가져옴
-  useEffect(() => {
-    AsyncStorage.getItem('fontPath').then((font)=>{
-      if(font!=null){
-        setPath(font);
-      }
-    })
-  },[]);
+  const saveSize= async (userSize) => {
+    try {
+      await AsyncStorage.setItem('userSize', String(userSize))
+    } catch (e) {
+    }
+  }
 
   const saveFont = async (userFont) => {
     try {
@@ -145,7 +104,24 @@ const savePath = async (fontPath) => {
     }
 }
 
-const [identity, setIdentity] = useState("null");
+  useEffect(() => {
+    AsyncStorage.getItem('userId').then((inputId)=>{
+      if(inputId!=null || inputId!="undefined"){ setID(inputId); }
+      // alert(inputId);
+    })
+
+    AsyncStorage.getItem('userSize').then((size)=>{
+      if(size!=null){ setSize(Number(size)); } 
+    })
+
+    AsyncStorage.getItem('userFont').then((font)=>{
+      if(font!=null){ setFont(font); }
+    })
+
+    AsyncStorage.getItem('fontPath').then((font)=>{
+      if(font!=null){ setPath(font); }
+    })
+  },[]);
 
     return (
       <View style={styles.container}>
@@ -169,50 +145,6 @@ const [identity, setIdentity] = useState("null");
             </ScrollView>
           </View>
           
-        </Modal>
-
-        {/* 비밀번호 변경? */}
-        <Modal
-        animationType='slide'
-        transparent={true}
-        visible={modifyVisible}
-        closeOnTouchOutside={true}>
-          <View style={styles.modalContainer}>
-          <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                }}> 비밀번호를 변경하시겠습니까?</Text>
-          <View style={styles.modalButtonBox}> 
-          <TouchableOpacity
-              onPress={() => { setModifyVisible(false); setConfirmVisible(true);} }
-              style={{ height: 50, width: 200, marginRight:40, }}>
-              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                }} >YES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => { setModifyVisible(false);}}
-              style={{ height: 50, width: 200, marginRight:40, }} >
-              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-                }} >NO</Text>
-            </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-
-        {/* 비밀번호 변경 확인 */}
-        <Modal
-        animationType='slide'
-        transparent={true}
-        visible={confirmVisible}
-        closeOnTouchOutside={true}>
-          <View style={styles.modalContainer}>
-          <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, 
-                }}> 비밀번호가 변경되었습니다.</Text>
-          <TouchableOpacity
-              onPress={() => { setConfirmVisible(false);} }
-              style={{ height: 50, width: 200, marginRight:40, marginTop: "5%"}}>
-              <Text style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50,
-                }} >YES</Text>
-            </TouchableOpacity>
-          </View>
         </Modal>
         
       {/* 모달창 코드 끝 */}
@@ -278,7 +210,7 @@ const [identity, setIdentity] = useState("null");
               }} >저장</Text>
           </TouchableOpacity>
 
-          {userId!=undefined? null :
+          {userId=="undefined"? null :
             // ID가 null 일 때 애플 로그인
             <AppleAuthentication.AppleAuthenticationButton
               buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
@@ -295,8 +227,10 @@ const [identity, setIdentity] = useState("null");
                       ],
                     })
                   );
+                  alert(identity);
                   setID(String(identity.user));
                   saveUser(String(identity.user));
+                  // alert(String(identity.user));
                   // signed in
                 } catch (error) {
                   if (e.code === 'ERR_CANCELED') {
