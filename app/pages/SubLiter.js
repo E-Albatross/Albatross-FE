@@ -44,6 +44,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [markModal, setMarkModal] = useState(false);
   const [markModalText, setMarkModalText] = useState("빈칸");
+  const [emptyWordModal, setEmpty] = useState(false);
   const [loadingModal, setLoading] = useState(false);
 
   //드로잉 도구들
@@ -119,7 +120,6 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
 
   const getPhotoUri = async() => { // 스크린샷 두개 세팅 + 서버에 넘기기
     try{
-     setLoading(true);
      const server = await captureRef.current.capture();
      const gallery = await galleryRef.current.capture();
      const drawer = await drawerRef.current.capture();
@@ -184,23 +184,28 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
         console.log("딥러닝 서버에 보낸 uri : ", server);
         var file = {
              uri : server,
-             // uri : "/Users/jieun/Downloads/KakaoTalk_Photo_2022-05-21-22-51-06.jpeg",
              type: 'multipart/form-data',
              name: name
         };
         var formData = new FormData();
         formData.append("file", file);
+        setLoading(true);
         
-        await fetch('http://43.155.156.139:7012/predict', { 
-          method : "POST",
-          body : formData
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          mergeProcess(data);
-        })
-        .catch(err=>{"에러 : ", err});
+        await fetch('http://43.155.131.79:7012/predict', { 
+           method : "POST",
+           body : formData
+         })
+         .then((response) => response.json())
+         .then((data) => {
+          if ( JSON.stringify(data) === JSON.stringify(ExJson)) { // 빈 배열이 온다면
+            setLoading(false);
+            setEmpty(true);
+          } else { // json을 반환받았다면
+            mergeProcess(data);
+          }
+         })
+         .catch(err=>{"에러 : ", err});
+
         console.log("딥러닝 서버에 이미지를 저장함!");
       } catch(err){
         console.log("딥러닝 서버에 이미지를 저장하지 못함!");
@@ -322,7 +327,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
               <TouchableOpacity onPress={() => {onCheck(); setTool(null);} } style={styles.iconbutton}>
                 <Image source={confirm} />
               </TouchableOpacity> 
-              </View>
+            </View>
             </> 
             ): (
             <>
@@ -376,6 +381,16 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                   </TouchableOpacity>
               </View>
         </Modal>
+
+      {/* 유저가 쓴 글씨가 없을 때 모달창 */}
+      <Modal animationType='slide' transparent={true} visible={emptyWordModal}>
+              <View style={styles.markModalContainer}>
+                  <Text style={{ fontSize: 30, letterSpacing: 2, textAlign: "center", paddingTop : "10%", fontFamily: fontPath }} > {"검사할 수 있는 글씨가 없습니다!\n 글씨를 써 보세요"} </Text>
+                  <TouchableOpacity onPress={() => setEmpty(false)} style={{ width: "100%", height: "25%", backgroundColor: "#80AE92"}}>
+                      <Text style={{ fontSize: 22, letterSpacing: 2, textAlign: "center", marginLeft: 10, color:"white", fontWeight:"bold", paddingTop: "2%", fontFamily: fontPath }} > 확인 </Text>
+                  </TouchableOpacity>
+              </View>
+      </Modal>
 
       {/* 로딩창 */}
       <Modal animationType='slide' transparent={true} visible={loadingModal}>
