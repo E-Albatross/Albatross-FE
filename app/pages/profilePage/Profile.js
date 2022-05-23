@@ -17,7 +17,6 @@ const Profile_login = ({navigation}) => {
   const [fontVisible, setFontVisible] = useState(false)
   const [userId, setID] = useState("undefined"); // false면 로그아웃, true면 로그인
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
-  const [identity, setIdentity] = useState(null);
 
   const [isReady, setReady]= useState(false);
 
@@ -210,7 +209,7 @@ const savePath = async (fontPath) => {
               }} >저장</Text>
           </TouchableOpacity>
 
-          {userId=="undefined"? null :
+          {userId!="undefined"? null :
             // ID가 null 일 때 애플 로그인
             <AppleAuthentication.AppleAuthenticationButton
               buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
@@ -219,7 +218,7 @@ const savePath = async (fontPath) => {
               style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginLeft: 40 }}
               onPress={async () => {
                 try {
-                  setIdentity (
+                  const identity = (
                     await AppleAuthentication.signInAsync({
                       requestedScopes: [
                         AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
@@ -227,10 +226,9 @@ const savePath = async (fontPath) => {
                       ],
                     })
                   );
-                  alert(identity);
                   setID(String(identity.user));
                   saveUser(String(identity.user));
-                  // alert(String(identity.user));
+                  alert(String(identity.user));
                   // signed in
                 } catch (error) {
                   if (e.code === 'ERR_CANCELED') {
