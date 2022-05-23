@@ -131,7 +131,6 @@ const MainPage = ({navigation}) => {
         </View>
 
         <View style={styles.wordRow}>
-          <Text style={{ color: "#C4C4C4" }}> New </Text>
           <View style={styles.line}></View>
         </View>
 
@@ -153,7 +152,6 @@ const MainPage = ({navigation}) => {
         </ScrollView>
 
         <View style={styles.wordRow}>
-          <Text style={{ color: "#C4C4C4" }}> Best </Text>
           <View style={styles.line}></View>
         </View>
 
@@ -224,7 +222,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   line: {
-    width: "94%",
+    width: "100%",
     height: 1,
     backgroundColor: "#C4C4C4",
   },
