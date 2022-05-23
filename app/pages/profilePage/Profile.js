@@ -29,10 +29,10 @@ const Profile_login = ({navigation}) => {
     }
   }
   useEffect(() => {
-    AsyncStorage.getItem('userId').then((userId)=>{
-      if(userId!=null){
-        setID(userId);
-        console.log(userId);
+    AsyncStorage.getItem('userId').then((storeId)=>{
+      if(storeId!=null){
+        setID(storeId);
+        alert(storeId);
       } else setID(null);
     })
   },[]);
@@ -311,7 +311,6 @@ const [identity, setIdentity] = useState("null");
         </View>
         </>
         )}
-        {/* <Text style={{ marginTop: 0, width: "80%" }}> user id : {userId} </Text> */}
       </View>
     );
   };

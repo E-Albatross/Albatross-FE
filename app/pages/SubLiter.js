@@ -23,6 +23,7 @@ import pen from "../assets/pen.png";
 import erase from "../assets/erase.png";
 import arrow from "../assets/arrow.png";
 import confirm from "../assets/confirm.png";
+import loading from "../assets/loading.gif";
 
 import Score from "../components/ExLiterature/Score";
 
@@ -120,7 +121,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
         // setID(null);
       }
 
-      alert(userId);
+      // alert(userId);
     })
   },[]);
 
@@ -397,8 +398,9 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
 
       {/* 로딩창 */}
       <Modal animationType='slide' transparent={true} visible={loadingModal}>
-              <View style={styles.markModalContainer}>
-                  <Text style={{ fontSize: 30, letterSpacing: 2, textAlign: "center", paddingTop : "10%", fontFamily: fontPath }} > {"글씨 검사를 진행하고 있습니다..."} </Text>
+              <View style={styles.checkModalContainer}>
+                  <Text style={{ fontSize: 30, letterSpacing: 2, textAlign: "center", fontFamily: fontPath, marginBottom: 20 }} > {"글씨 검사를 진행하고 있습니다..."} </Text>
+                  <Image source={loading} sttle={{width: 10, height:10, marginTop: 50}}/>
               </View>
       </Modal>
 
@@ -418,7 +420,6 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
        :( 
         <View style={{width: "90%", height: "10%", flexDirection: "row", justifyContent: "start", marginLeft: 30}}> 
           <View style={styles.nameContainer}>
-            
             <Text style={{fontSize: 30, letterSpacing: 3, textAlign:"left", fontFamily: fontPath}}> {setTitle} </Text>
             <View style={styles.line}/>
             <View style={styles.line}/>
@@ -568,5 +569,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#FFFFFF",
     justifyContent: "space-between"
+  },
+  checkModalContainer: {
+    width: "60%",
+    height: "30%",
+    top: "35%",
+    left: "20%",
+    borderWidth: 0.5,
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    borderRadius: 20,
+    borderWidth:2,
   },
 });
