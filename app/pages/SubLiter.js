@@ -173,6 +173,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     const mergeProcess = async (JsonData) => { 
       try{
         await postServer();
+        setLoading(false);
         await getFeedback(JsonData);
       } catch(err){
         console.log(err);
@@ -213,7 +214,6 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
     }
 
     await postAI();
-    setLoading(false);
 
     } catch(err){ 
       console.log("오류 : ", err);
@@ -433,11 +433,11 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
             <Canvas
               ref={canvasRef}
               height={720}
-              width={900}
+              // width={900}
               color="black"
               tool={tool}
               eraserSize={5}
-              style={{ backgroundColor: 'transparent', width: "90%",  height: "72%", position: "absolute", left: "5%", top: "0%"}}
+              style={{ backgroundColor: 'transparent', width: "90%", position: "absolute", left: "5%", top: "0%"}}
             />
               {/* 가로줄 */}
               <View style={{ width: "90%", height: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: 0, }} />
