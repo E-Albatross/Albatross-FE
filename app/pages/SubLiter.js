@@ -426,7 +426,7 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
        {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
       {/* 캔버스보드 부분 */}
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
-        style={{ marginTop: "10%", height:720}}>
+        style={{borderWidth: 2, marginTop: "10%", height:720}}>
           <View style={{ height: 1000, justifyContent: "center",  alignItems: "center"}} >
             <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
             <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
@@ -466,8 +466,8 @@ const SubLiter= ({navigation, id, setTitle, text}) => {
                     <TouchableOpacity key={index} style={styles.iconbutton}
                     onPress={() => {setMarkModal(true); setMarkModalText(feedbackText[s.fidx-1].text )}}>
                       {s.fidx===1? 
-                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x*0.6-390-60+20, top:30-30-360+s.line*180}} source={markIcon} />
-                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x*0.6-390-60+20, top:-30-360+s.line*180}} source={markIcon} />
+                        <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x*0.5-390-60+20, top:30-30-360+s.line*180}} source={markIcon} />
+                      : <Image key={index} style={{ resizeMode:"contain", height: 30, width:30, position: "absolute", left:s.x*0.5-390-60+20, top:-30-360+s.line*180}} source={markIcon} />
                       }
               
                     </TouchableOpacity>
