@@ -202,7 +202,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
         formData.append("file", file);
         setLoading(true);
         
-        await fetch('http://43.155.131.79:7012/predict', { 
+        await fetch('http://43.131.250.175:7012/predict', { 
            method : "POST",
            body : formData
          })

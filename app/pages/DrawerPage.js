@@ -19,7 +19,7 @@ import { LineChart } from "react-native-chart-kit";
 import * as Font from "expo-font";
 
 const DrawerPage = ({navigation}) => {
-  const [userId, setID] = useState(undefined);
+  const [userId, setID] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
   const [scoreReady, setScoreReady] = useState(false);
   const [isReady, setIsReady] = useState(false);
@@ -40,46 +40,40 @@ const DrawerPage = ({navigation}) => {
     setIsReady(true);
   }, []);
 
-  // const isEmpty = function (value) {
-  //   if (value === '' || value === null || value === undefined || (value !== null && typeof value === 'object' && !Object.keys(value).length)) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // };
-
   // 유저아이디 가져오기
-  useEffect(async () => {
-    AsyncStorage.getItem('userId').then((getId)=>{
-      if(getId!="undefined"){
-        setID(getId);
-      } else {
-      }
-    })
+  useEffect(() => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!="undefined"){
+        setID(userId);
+        axios.get(`${USER_SERVER}/record/${userId}`)
+        .then(response => {
+          setUserInfo(response.data);
+          var data = response.data;
 
-    axios.get(`${USER_SERVER}/record/${userId}`)
-    .then(response => {
-      setUserInfo(response.data);
-      var data = response.data;
-
-      arr=[];
-      for(var i=0 ; i<data.length; i++){
-        arr[i] = data[i].score
-      }
-
-      score = {
-        datasets: [
-          {
-            data: arr,
-            color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
-            strokeWidth: 5 
+          arr=[];
+          for(var i=0 ; i<data.length; i++){
+            arr[i] = data[i].score
           }
-        ],
-        legend: ["내 점수"] // optional
-      };
-      setSecondScore(score);
+
+          score = {
+            datasets: [
+              {
+                data: arr,
+                color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+                strokeWidth: 5 
+              }
+            ],
+            legend: ["내 점수"] // optional
+          };
+          setSecondScore(score);
+        })
+      } else {
+        setID(null);
+      }
+      console.log(userId);
     })
-    setSecondScore(score)
+
+    setSecondScore(score);
     setScoreReady(true);
   },[]);
 
@@ -110,7 +104,7 @@ const DrawerPage = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-        {(isReady && userId!=undefined)?
+        {(isReady && userId!=null)?
           <>
             <View style={styles.headerRow}>
               <TouchableOpacity
@@ -171,7 +165,7 @@ const DrawerPage = ({navigation}) => {
             </TouchableOpacity>
             </View>
 
-            {userId!=undefined? null :
+            {userId!=null? null :
             // ID가 null 일 때 애플 로그인
             <AppleAuthentication.AppleAuthenticationButton
               buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}

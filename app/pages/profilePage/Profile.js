@@ -15,32 +15,15 @@ import home from "../../assets/home.png";
 
 const Profile_login = ({navigation}) => {
   const [fontVisible, setFontVisible] = useState(false)
-  const [userId, setID] = useState("undefined"); // false면 로그아웃, true면 로그인
+  const [userId, setID] = useState(null); // false면 로그아웃, true면 로그인
   const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
 
   const [isReady, setReady]= useState(false);
 
   const fontArr = [
-    // {id: 1, fontName: "가람연꽃", fontpath:"NanumGaRamYeonGgoc"},
     {id: 2, fontName: "고딕 아니고 고딩", fontpath:"NanumGoDigANiGoGoDing"},
-    // {id: 3, fontName: "곰신체", fontpath:"NanumGomSinCe"},
-    // {id: 4, fontName: "규리의 일기", fontpath:"NanumGyuRiEuiIrGi"},
-    // {id: 5, fontName: "금은보화", fontpath:"NanumGeumEunBoHwa"},
-    // {id: 6, fontName: "기쁨밝음", fontpath:"NanumGiBbeumBarkEum"},
-    // {id: 7, fontName: "김유이체", fontpath:"NanumGimYuICe"},
-    // {id: 8, fontName: "나는 이겨낸다", fontpath:"NanumNaNeunIGyeoNaenDa"},
-    // {id: 9, fontName: "다행체", fontpath:"NanumDaHaengCe"},
-    // {id: 10, fontName: "동화또박", fontpath:"NanumDongHwaDdoBag"},
     {id: 11, fontName: "딸에게 엄마가", fontpath:"NanumDdarEGeEomMaGa"},
-    // {id: 12, fontName: "맛있는체", fontpath:"NanumMasIssNeunCe"},
-    // {id: 13, fontName: "몽돌", fontpath:"NanumMongDor"},
-    // {id: 14, fontName: "무궁화", fontpath:"NanumMuGungHwa"},
-    // {id: 15, fontName: "미니 손글씨", fontpath:"NanumMiNiSonGeurSsi"},
-    // {id: 16, fontName: "야근하는 김주임", fontpath:"NanumYaGeunHaNeunGimJuIm"},
     {id: 17, fontName: "장미체", fontpath:"NanumJangMiCe"},
-    // {id: 18, fontName: "행복한 도비", fontpath:"NanumHaengBogHanDoBi"},
-    // {id: 19, fontName: "힘내라는 말보단", fontpath:"NanumHimNaeRaNeunMarBoDan"},
-    // {id: 20, fontName: "마루부리", fontpath:"MaruBuri-Bold"},
     ];
   
     const [userFont,setFont] = useState("장미체"); // 초기 폰트 설정
@@ -104,9 +87,13 @@ const savePath = async (fontPath) => {
 }
 
   useEffect(() => {
-    AsyncStorage.getItem('userId').then((inputId)=>{
-      if(inputId!=null || inputId!="undefined"){ setID(inputId); }
-      // alert(inputId);
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!="undefined"){
+        setID(userId);
+      } else {
+        setID(null);
+      }
+      console.log(userId);
     })
 
     AsyncStorage.getItem('userSize').then((size)=>{
@@ -209,7 +196,7 @@ const savePath = async (fontPath) => {
               }} >저장</Text>
           </TouchableOpacity>
 
-          {userId!="undefined"? null :
+          {userId!=null? null :
             // ID가 null 일 때 애플 로그인
             <AppleAuthentication.AppleAuthenticationButton
               buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
