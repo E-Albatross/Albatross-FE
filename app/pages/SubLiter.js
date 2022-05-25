@@ -106,6 +106,13 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
     }
   };
 
+  const saveUser = async (item) => {
+    try {
+      await AsyncStorage.setItem('userId', String(item))
+    } catch (e) {
+    }
+  }
+
   useEffect(() => {
     // 폰트 크기 가져옴
     // AsyncStorage.getItem('userSize').then((size)=>{
