@@ -16,7 +16,7 @@ import home from "../../assets/home.png";
 const Profile_login = ({navigation}) => {
   const [fontVisible, setFontVisible] = useState(false)
   const [userId, setID] = useState(null); // false면 로그아웃, true면 로그인
-  const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+  const [userSize,setSize] = useState(40); // 초기값을 폰트사이즈 25로 설정
 
   const [isReady, setReady]= useState(false);
 
@@ -63,12 +63,12 @@ const Profile_login = ({navigation}) => {
     }
   }
 
-  const saveSize= async (userSize) => {
-    try {
-      await AsyncStorage.setItem('userSize', String(userSize))
-    } catch (e) {
-    }
-  }
+  // const saveSize= async (userSize) => {
+  //   try {
+  //     await AsyncStorage.setItem('userSize', String(userSize))
+  //   } catch (e) {
+  //   }
+  // }
 
   const saveFont = async (userFont) => {
     try {
@@ -96,9 +96,9 @@ const savePath = async (fontPath) => {
       console.log(userId);
     })
 
-    AsyncStorage.getItem('userSize').then((size)=>{
-      if(size!=null){ setSize(Number(size)); } 
-    })
+    // AsyncStorage.getItem('userSize').then((size)=>{
+    //   if(size!=null){ setSize(Number(size)); } 
+    // })
 
     AsyncStorage.getItem('userFont').then((font)=>{
       if(font!=null){ setFont(font); }
@@ -151,7 +151,7 @@ const savePath = async (fontPath) => {
           <Text style={{color: "#808080",fontSize: 20,marginTop: 30, marginBottom: 10, }} > 기본 값 설정 </Text>
         </View>
         <View style={styles.informBox}>
-          <View style={styles.settingText}> 
+          {/* <View style={styles.settingText}> 
             <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
               lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
               }} > 글자 크기 </Text>
@@ -167,7 +167,7 @@ const savePath = async (fontPath) => {
               />
               <Text style={{ fontSize: 30, letterSpacing: 2, marginLeft: "1%",}}> A </Text>
           </View>
-          <View style={styles.line}></View>
+          <View style={styles.line}></View> */}
           <View style={styles.settingText}> 
             <Text
               style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",

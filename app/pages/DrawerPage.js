@@ -49,7 +49,7 @@ const DrawerPage = ({navigation}) => {
         .then(response => {
           setUserInfo(response.data);
           var data = response.data;
-
+   
           arr=[];
           for(var i=0 ; i<data.length; i++){
             arr[i] = data[i].score

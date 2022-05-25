@@ -33,7 +33,7 @@ import markIcon from "../assets/markIcon.png";
 import * as Font from "expo-font";
 
 const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
-  const [userSize,setSize] = useState(25); // 초기값을 폰트사이즈 25로 설정
+  const [userSize,setSize] = useState(40); // 초기값을 폰트사이즈 25로 설정
   const [isReady, setReady]= useState(false);
   const [markList, setMarkList] = useState(null);
   const [fontPath,setPath] = useState("NanumJangMiCe"); // 초기 폰트 설정
@@ -109,11 +109,11 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
 
   useEffect(() => {
     // 폰트 크기 가져옴
-    AsyncStorage.getItem('userSize').then((size)=>{
-      if(size!=null){
-        setSize(Number(size));
-      } else setSize(25);
-    })
+    // AsyncStorage.getItem('userSize').then((size)=>{
+    //   if(size!=null){
+    //     setSize(Number(size));
+    //   } else setSize(25);
+    // })
     // 폰트 경로 가져옴
     AsyncStorage.getItem('fontPath').then((font)=>{
       if(font!=null){
