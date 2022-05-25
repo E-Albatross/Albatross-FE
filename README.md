@@ -28,10 +28,6 @@
 <img src="https://user-images.githubusercontent.com/65931227/170225469-d5e5ab50-3393-48fa-ad30-59c5b03dab95.png" align="left" width="30%" height="30%"/>
 <img src="https://user-images.githubusercontent.com/65931227/170225639-b761524a-5526-4327-8c0f-759f7c467d9b.png" width="30%" height="30%"/> 
 
-<div style="margin-bottom:50px"> </div>
- 
-<img src="https://user-images.githubusercontent.com/65931227/170225567-c2b9aad9-0b21-44cf-9feb-4e04259171e3.png" width="30%" height="30%"/> 
-<hr/>
 
 
 
