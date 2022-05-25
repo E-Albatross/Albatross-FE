@@ -20,7 +20,7 @@
 
 <div style="margin-bottom:50px"> </div>
  
-<img src="https://user-images.githubusercontent.com/65931227/170225335-cdb6be82-a764-43ed-b5d8-f9f1d0e7dd98.png"  width="30%" height="30%"/> 
+<img src="https://user-images.githubusercontent.com/65931227/170225335-cdb6be82-a764-43ed-b5d8-f9f1d0e7dd98.png"  align="left width="30%" height="30%"/> 
 <img src="https://user-images.githubusercontent.com/65931227/170225411-87574d1d-64d6-401b-911a-dd585c05c8f6.png" align="left" width="30%" height="30%"/>
 
 <div style="margin-bottom:50px"> </div>
