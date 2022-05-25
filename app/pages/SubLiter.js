@@ -277,7 +277,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
 
   return (
     <View style={styles.container} key = {id}>
-      {(!isReady || userId==undefined)?
+      {(!isReady || userId==null)?
       <>
         <View style={styles.headerRow}>
           <TouchableOpacity
@@ -441,7 +441,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
       <ViewShot ref={captureRef} options={{ format: "jpg", quality: 0.9 }} 
         style={{marginTop: "10%", height:720}}>
           <View style={{ height: 1000, justifyContent: "center",  alignItems: "center"}} >
-            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: -58, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
+            <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: -60, lineHeight: 180, width: "85%", fontFamily: fontPath}}> {text} </Text> 
             <Text style={{ fontSize: userSize, letterSpacing: 7, position: "absolute", left: "7%", top: 0, lineHeight: 180, width: "85%", fontFamily: fontPath, color:"#C4C4C4"}}> {text} </Text> 
             <Canvas
               ref={canvasRef}

@@ -104,7 +104,7 @@ const DrawerPage = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-        {(isReady && userId!=null)?
+        {(!isReady || userId==null)?
           <>
             <View style={styles.headerRow}>
               <TouchableOpacity
