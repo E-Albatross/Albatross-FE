@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "bareun-geulssi",
-    "slug": "expo.dev/@0909oje/bareun-geulssi",
+    "slug": "bareungeulssi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

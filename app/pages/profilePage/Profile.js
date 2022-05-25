@@ -189,7 +189,7 @@ const savePath = async (fontPath) => {
         {/* 확인, 로그아웃 상자 */}
         <View style={styles.ButtonBox}>
           <TouchableOpacity
-            onPress={() => {navigation.navigate("MAIN"); saveSize(userSize); saveFont(userFont); savePath(fontPath);}}
+            onPress={() => {navigation.navigate("MAIN"); saveFont(userFont); savePath(fontPath);}}
             style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginRight:40, }} >
             <Text
               style={{ fontSize: 25, letterSpacing: 2, color: "white", fontWeight: "bold", textAlign: "center", lineHeight: 50, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
