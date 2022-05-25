@@ -215,7 +215,6 @@ const savePath = async (fontPath) => {
                   );
                   setID(String(identity.user));
                   saveUser(String(identity.user));
-                  alert(String(identity.user));
                   // signed in
                 } catch (error) {
                   if (e.code === 'ERR_CANCELED') {

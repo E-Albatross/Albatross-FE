@@ -174,7 +174,7 @@ const DrawerPage = ({navigation}) => {
               style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginTop: "50%" }}
               onPress={async () => {
                 try {
-                  setIdentity (
+                  const identity = (
                     await AppleAuthentication.signInAsync({
                       requestedScopes: [
                         AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
