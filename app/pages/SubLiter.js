@@ -277,7 +277,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
 
   return (
     <View style={styles.container} key = {id}>
-      {(!isReady && userId!=null)?
+      {(!isReady || userId==null)?
       <>
         <View style={styles.headerRow}>
           <TouchableOpacity
