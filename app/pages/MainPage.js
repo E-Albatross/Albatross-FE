@@ -3,6 +3,9 @@ import { Text, View, Button, StyleSheet, Image,
   TouchableOpacity, ScrollView,
 } from "react-native";
 
+import * as AppleAuthentication from 'expo-apple-authentication';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import axios from 'axios';
 import { USER_SERVER } from '../config';
 
@@ -26,8 +29,23 @@ import * as Font from "expo-font";
 const MainPage = ({navigation}) => {
   const img = [new1, new2, new3, new4, best1, best2, best3, best4];
 
+  const [userId, setID] = useState(null);
   const [isReady, setIsReady] = useState(false);
+
+  const saveUser = async (item) => {
+    try {
+      await AsyncStorage.setItem('userId', String(item))
+    } catch (e) {
+    }
+  }
+
   useEffect(async () => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!="undefined"){
+        setID(userId);
+      }
+    })
+
     await Font.loadAsync({
         'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
     });
@@ -35,25 +53,38 @@ const MainPage = ({navigation}) => {
 }, []);
 
   const fontPath = "SeoulHangangL"; // 초기 폰트 설정
-
-  const confirmScore = () =>{
-    axios.get(`${USER_SERVER}/record/001807.9a775268f7904dbbaf6dac8a3cdde6f9.0411`)
-    .then(response => {
-      var data = response.data;
-
-      var arr=[];
-      for(var i=0 ; i<data.length; i++){
-        arr[i] = data[i].score
-      }
-      alert(arr);
-    })
-    }
   
-  
-    return (
-      
-      <View style={styles.container}>
-        {isReady && (
+  return (
+    <View style={styles.container}>
+      {(!isReady || userId==null)?
+        <AppleAuthentication.AppleAuthenticationButton
+        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+        cornerRadius={5}
+        style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginTop: "60%" }}
+        onPress={async () => {
+          try {
+            const identity = (
+              await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+              })
+            );
+            setID(String(identity.user));
+            saveUser(String(identity.user));
+            // signed in
+          } catch (error) {
+            if (e.code === 'ERR_CANCELED') {
+              console.info("The user cancelled in the sign in.", error);
+            } else {
+              console.info("An error occurred signing in.", error);
+            }
+          }
+        }}
+      />
+      : (
           <>
         <View style={styles.headerRow}>
           <TouchableOpacity
