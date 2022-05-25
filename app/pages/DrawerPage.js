@@ -104,7 +104,7 @@ const DrawerPage = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-        {(!isReady || userId==null)?
+         {(isReady || userId!=null)?
           <>
             <View style={styles.headerRow}>
               <TouchableOpacity
@@ -156,45 +156,14 @@ const DrawerPage = ({navigation}) => {
           </>
           :
           <>
-          <View style={styles.headerRow}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("MAIN")}
-              style={styles.iconbutton}
-            >
-              <Image style={{ marginLeft: 10 }} source={home} />
-            </TouchableOpacity>
+            <View style={styles.headerRow}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MAIN")}
+                style={styles.iconbutton}
+              >
+                <Image style={{ marginLeft: 10 }} source={home} />
+              </TouchableOpacity>
             </View>
-
-            {userId!=null? null :
-            // ID가 null 일 때 애플 로그인
-            <AppleAuthentication.AppleAuthenticationButton
-              buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-              buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-              cornerRadius={5}
-              style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginTop: "50%" }}
-              onPress={async () => {
-                try {
-                  const identity = (
-                    await AppleAuthentication.signInAsync({
-                      requestedScopes: [
-                        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                        AppleAuthentication.AppleAuthenticationScope.EMAIL,
-                      ],
-                    })
-                  );
-                  setID(String(identity.user));
-                  saveUser(String(identity.user));
-                  // signed in
-                } catch (error) {
-                  if (e.code === 'ERR_CANCELED') {
-                    console.info("The user cancelled in the sign in.", error);
-                  } else {
-                    console.info("An error occurred signing in.", error);
-                  }
-                }
-              }}
-            />
-          }
           </>
           }
       </View>
