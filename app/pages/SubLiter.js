@@ -434,7 +434,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
             <View style={styles.line}/>
             <View style={styles.line}/>
           </View>
-          {/* <Score score={markList[markList.length-1].score}/> */}
+          <Score score={markList[markList.length-1].score}/>
         </View>
        )}
        {/* (windowHeight*0.92*0.9-70)*0.88-2 */}
@@ -472,7 +472,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
               <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", left: "5%", top: "0%"}} />
               <View style={{ height: 720, width: 1, backgroundColor: "#000000", position: "absolute", right: "5%", top: "0%" }} />
 
-               {/* {finish === false ? (
+               {finish === false ? (
                 <>
                 </>) 
                 :(<>
@@ -487,7 +487,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
                     </TouchableOpacity>
                     ))}
                   </>
-              )}  */}
+              )} 
             </View>
           </ViewShot>
           </ViewShot>
