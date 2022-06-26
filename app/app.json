@@ -10,6 +10,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "infoPlist": {
+      "Data Collection and Storage": "This app requests gallery access to store user's handwriting images in the gallery."
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
