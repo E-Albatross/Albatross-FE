@@ -1,5 +1,18 @@
 # Albatross-FE
 
+### 📱미리보기
+<hr/>
+<img src="https://user-images.githubusercontent.com/76611903/170242040-d4187334-4fe0-404b-88f9-fb7e9be8abf1.png" align="left" width="30%" height="30%"/>
+<img width="30%" alt="image" src="https://user-images.githubusercontent.com/86579242/170249351-4d0513fe-ba8c-4d6b-849f-0879f405000f.png" align="left">
+<img src="https://user-images.githubusercontent.com/76611903/170242713-6e49a9e9-3693-4110-8092-d811e81b5424.png"  width="30%" height="30%"/> 
+<div style="margin-bottom:50px">
+ </div>
+ 
+<img src="https://user-images.githubusercontent.com/76611903/170242737-9e477887-b6d5-4c3e-8f72-bd9f0c273e70.png" align="left" width="30%" height="30%"/>
+<img src="https://user-images.githubusercontent.com/76611903/170242756-06468441-2027-4108-b38a-98bc1519ec1a.png" align="left" width="30%" height="30%"/>
+<img src="https://user-images.githubusercontent.com/76611903/170242836-334acdfb-d0b2-43bb-acd5-ed8eec7a972e.png" width="30%" height="30%"/> 
+<hr/>
+
 ## 📌 Introduce
 
 딥러닝을 활용한 글씨연습어플, 바른글씨를 React-Native를 이용해 개발하였습니다.
