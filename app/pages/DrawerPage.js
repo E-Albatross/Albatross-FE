@@ -6,9 +6,12 @@ import {
 } from "react-native";
 
 import { FlatList } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import { USER_SERVER } from '../config';
+import axios from 'axios';
 
 import home from "../assets/home.png";
-import literature from "../assets/literature.png";
 import myLiter from "../components/myLiter";
 
 import { LineChart } from "react-native-chart-kit";
@@ -16,7 +19,19 @@ import { LineChart } from "react-native-chart-kit";
 import * as Font from "expo-font";
 
 const DrawerPage = ({navigation}) => {
+  const [userId, setID] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  const [scoreReady, setScoreReady] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [SecondScore, setSecondScore] = useState(null);
+  var arr=[];
+  
+  const saveUser = async (item) => {
+    try {
+      await AsyncStorage.setItem('userId', String(item))
+    } catch (e) {
+    }
+  }
 
   useEffect(async () => {
     await Font.loadAsync({
@@ -25,8 +40,55 @@ const DrawerPage = ({navigation}) => {
     setIsReady(true);
   }, []);
 
-  const fontPath = "SeoulHangangL"; // 초기 폰트 설정
+  // 유저아이디 가져오기
+  useEffect(() => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!="undefined"){
+        setID(userId);
+        axios.get(`${USER_SERVER}/record/${userId}`)
+        .then(response => {
+          setUserInfo(response.data);
+          var data = response.data;
+   
+          arr=[];
+          for(var i=0 ; i<data.length; i++){
+            arr[i] = data[i].score
+          }
 
+          score = {
+            datasets: [
+              {
+                data: arr,
+                color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+                strokeWidth: 5 
+              }
+            ],
+            legend: ["내 점수"] // optional
+          };
+          setSecondScore(score);
+        })
+      } else {
+        setID(null);
+      }
+      console.log(userId);
+    })
+
+    setSecondScore(score);
+    setScoreReady(true);
+  },[]);
+
+  var score = {
+    datasets: [
+      {
+        data: myLiter.first.map(s=>( s.score )),
+        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
+        strokeWidth: 5 // optional
+      }
+    ],
+    legend: ["내 점수"] // optional
+  };
+
+  const fontPath = "SeoulHangangL"; // 초기 폰트 설정
   const screenWidth = Dimensions.get("window").width;
 
   const chartConfig = {
@@ -40,62 +102,70 @@ const DrawerPage = ({navigation}) => {
     useShadowColorFromDataset: false // optional
   };
 
-  const data = {
-    datasets: [
-      {
-        data: myLiter.first.map(s=>( s.score )),
-        color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
-        strokeWidth: 5 // optional
-      }
-    ],
-    legend: ["내 점수"] // optional
-  };
-
     return (
       <View style={styles.container}>
-        {isReady && (
+         {(isReady || userId!=null)?
           <>
-        <View style={styles.headerRow}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("MAIN")}
-            style={styles.iconbutton}
-          >
-            <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
-          </TouchableOpacity>
-        </View>
-
-          {/* <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, }} > 
-          내 점수 </Text> */}
-
-          <LineChart
-            data={data}
-            width={screenWidth-200}
-            height={200}
-            chartConfig={chartConfig}
-          />
-
-          <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
-          내 서랍 </Text>
-          
-            <FlatList
-            data={myLiter.first}
-            columnWrapperStyle={{
-              marginBottom: 20,
-            }}
-            indicatorStyle={"white"}
-            nestedScrollEnabled ={true}
-            renderItem={({item}) => 
-                <TouchableOpacity key={item.id}
-                  // onPress={() => navigation.navigate()}
-                  style={styles.iconbutton} >
-                  <Image source={literature} style={{marginLeft: 20, marginRight: 20}} />
-                </TouchableOpacity>
-          }
-            keyExtractor={(item, index) => index}
-            numColumns={3}
-          />
+            <View style={styles.headerRow}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MAIN")}
+                style={styles.iconbutton}
+              >
+                <Image style={{ marginLeft: 10, marginTop: 10 }} source={home} />
+              </TouchableOpacity>
+            </View>
+             {scoreReady? 
+              <LineChart
+              data={SecondScore}
+              width={screenWidth-200}
+              height={200}
+              chartConfig={chartConfig}
+            />
+            : null} 
+           
+            <TouchableOpacity
+              onPress={() => {
+                console.log(score);
+                console.log(SecondScore);
+                }}> 
+            <Text style={{ fontSize: 30, marginTop: 45, marginBottom: 45, marginLeft: 15, letterSpacing: 10, fontFamily : fontPath }} > 
+            내 서랍 </Text>
+            </TouchableOpacity> 
+            
+              <FlatList
+              data={userInfo}
+              columnWrapperStyle={{ 
+                marginBottom: 20,
+              }}
+              indicatorStyle={"white"}
+              nestedScrollEnabled ={true}
+              renderItem={(array) => (
+                  <TouchableOpacity key={array.id}
+                  onPress={() => navigation.navigate("DRAWERPICTURE",{
+                    url: `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`,
+                    score :array?.item?.score
+                  })}
+                    style={styles.iconbutton} >
+                    <Image source={{uri : `https://albatross-backend.s3.ap-northeast-2.amazonaws.com/captured-image/${array?.item?.imageName}`}} 
+                    style={{marginLeft: 20, marginRight: 20, height: 250, width: 220, borderWidth: 0.5}} /> 
+                  </TouchableOpacity>
+              )}
+              keyExtractor={(item, index) => index}
+              numColumns={3}
+            /> 
           </>
-          )}
+          :
+          <>
+            <View style={styles.headerRow}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MAIN")}
+                style={styles.iconbutton}
+              >
+                <Image style={{ marginLeft: 10 }} source={home} />
+              </TouchableOpacity>
+            </View>
+          </>
+          }
       </View>
     );
 }
@@ -116,7 +186,7 @@ const styles = StyleSheet.create({
   // 컴포넌트를 양쪽에 배치하는 컴포넌트
   headerRow: {
     width: "100%",
-    height: 70,
+    height: 80,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

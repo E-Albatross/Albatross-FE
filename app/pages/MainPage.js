@@ -3,18 +3,49 @@ import { Text, View, Button, StyleSheet, Image,
   TouchableOpacity, ScrollView,
 } from "react-native";
 
+import * as AppleAuthentication from 'expo-apple-authentication';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import axios from 'axios';
+import { USER_SERVER } from '../config';
+
 import drawer from "../assets/MainPage/apps.png";
 import profile from "../assets/MainPage/profile.png";
-import literature from "../assets/MainPage/literature.png";
+
+import new1 from "../assets/MainPage/new1.png";
+import new2 from "../assets/MainPage/new2.png";
+import new3 from "../assets/MainPage/new3.png";
+import new4 from "../assets/MainPage/new4.png";
+
+import best1 from "../assets/MainPage/best1.png";
+import best2 from "../assets/MainPage/best2.png";
+import best3 from "../assets/MainPage/best3.png";
+import best4 from "../assets/MainPage/best4.png";
 
 import literList from "../components/ExLiterature/literList";
 
 import * as Font from "expo-font";
 
 const MainPage = ({navigation}) => {
+  const img = [new1, new2, new3, new4, best1, best2, best3, best4];
+
+  const [userId, setID] = useState(null);
   const [isReady, setIsReady] = useState(false);
 
+  const saveUser = async (item) => {
+    try {
+      await AsyncStorage.setItem('userId', String(item))
+    } catch (e) {
+    }
+  }
+
   useEffect(async () => {
+    AsyncStorage.getItem('userId').then((userId)=>{
+      if(userId!="undefined"){
+        setID(userId);
+      }
+    })
+
     await Font.loadAsync({
         'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
     });
@@ -23,14 +54,43 @@ const MainPage = ({navigation}) => {
 
   const fontPath = "SeoulHangangL"; // 초기 폰트 설정
   
-    return (
-      
-      <View style={styles.container}>
-        {isReady && (
+  return (
+    <View style={styles.container}>
+      {(!isReady || userId==null)?
+        <AppleAuthentication.AppleAuthenticationButton
+        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+        cornerRadius={5}
+        style={{ height: 50, width: 200, backgroundColor: "#80AE92", borderRadius: 5, marginTop: "60%" }}
+        onPress={async () => {
+          try {
+            const identity = (
+              await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+              })
+            );
+            setID(String(identity.user));
+            saveUser(String(identity.user));
+            // signed in
+          } catch (error) {
+            if (e.code === 'ERR_CANCELED') {
+              console.info("The user cancelled in the sign in.", error);
+            } else {
+              console.info("An error occurred signing in.", error);
+            }
+          }
+        }}
+      />
+      : (
           <>
         <View style={styles.headerRow}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("PROFILE_LOGIN")}
+            onPress={() => {navigation.navigate("PROFILE"); 
+            // confirmScore();
+          }}
           >
             <Image source={profile} style={{width: 60, height: 60}} />
           </TouchableOpacity>
@@ -100,7 +160,6 @@ const MainPage = ({navigation}) => {
         </View>
 
         <View style={styles.wordRow}>
-          <Text style={{ color: "#C4C4C4" }}> New </Text>
           <View style={styles.line}></View>
         </View>
 
@@ -115,14 +174,13 @@ const MainPage = ({navigation}) => {
                 text: s.text,
               })}
               style={styles.iconbutton} >
-              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+              <Image key={s.id} source={img[s.id-1]} style={{marginLeft: 10, marginRight: 10, width: 194, height: 257}} />
             </TouchableOpacity>
           ))}
         </View>
         </ScrollView>
 
         <View style={styles.wordRow}>
-          <Text style={{ color: "#C4C4C4" }}> Best </Text>
           <View style={styles.line}></View>
         </View>
 
@@ -137,7 +195,7 @@ const MainPage = ({navigation}) => {
                 text: s.text,
               })}
               style={styles.iconbutton} >
-              <Image source={literature} style={{marginLeft: 10, marginRight: 10}} />
+              <Image key={s.id} source={img[s.id-1]} style={{marginLeft: 10, marginRight: 10, width: 194, height: 257}} />
             </TouchableOpacity>
           ))}
         </View>
@@ -193,7 +251,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   line: {
-    width: "94%",
+    width: "100%",
     height: 1,
     backgroundColor: "#C4C4C4",
   },
