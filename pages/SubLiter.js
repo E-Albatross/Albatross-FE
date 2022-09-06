@@ -98,14 +98,6 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
     setReady(true);
   }, []);
 
-  const isEmpty = function (value) {
-    if (value === '' || value === null || value === undefined || (value !== null && typeof value === 'object' && !Object.keys(value).length)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const saveUser = async (item) => {
     try {
       await AsyncStorage.setItem('userId', String(item))
@@ -114,19 +106,11 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
   }
 
   useEffect(() => {
-    // 폰트 크기 가져옴
-    // AsyncStorage.getItem('userSize').then((size)=>{
-    //   if(size!=null){
-    //     setSize(Number(size));
-    //   } else setSize(25);
-    // })
-    // 폰트 경로 가져옴
     AsyncStorage.getItem('fontPath').then((font)=>{
       if(font!=null){
         setPath(font);
       }
     })
-    // 유저 아이디 가져옴
     AsyncStorage.getItem('userId').then((getId)=>{
       if(getId!="undefined"){
         setID(getId);
