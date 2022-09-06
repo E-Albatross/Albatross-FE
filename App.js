@@ -8,10 +8,6 @@ import DrawerPicture from "./pages/DrawerPicture";
 import Profile from "./pages/profilePage/Profile";
 import Login from "./pages/profilePage/Login";
 
-import CaptureSign from "./components/CaptureSign";
-
-// import FontsList from "./assets/fonts/FontsList";
-
 import ExLine from "./pages/ExLine";
 import ExWord from "./pages/ExWord";
 import ExLiterature from "./pages/ExLiterature";
@@ -34,12 +30,9 @@ function App() {
 
         <Stack.Screen name="PROFILE" component={Profile} />
         <Stack.Screen name="LOGIN" component={Login} />
-        {/* <Stack.Screen name="FONTSLIST" component={FontsList} /> */}
 
         <Stack.Screen name="LINE" component={ExLine} />
         <Stack.Screen name="WORD" component={ExWord} />
-
-        <Stack.Screen name="CAPTURESIGN" component={CaptureSign} />
       </Stack.Navigator>
     </NavigationContainer>
   );

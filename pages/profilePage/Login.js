@@ -9,10 +9,6 @@ import Checkbox from 'expo-checkbox';
 
 import home from "../../assets/home.png";
 import back from "../../assets/back.png";
-import literature from "../../assets/literature.png";
-
-import SwitchToggle from "react-native-switch-toggle";
-import ToggleSwitch from 'toggle-switch-react-native'
 
 const Login = ({navigation}) => {
     const [id, onChangeId] = React.useState(null);
