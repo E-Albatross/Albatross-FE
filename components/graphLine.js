@@ -1,9 +1,7 @@
-import React,  {useState} from "react";
-import { StyleSheet, View, Text,
-  Image, TouchableOpacity, Modal
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Modal
 } from "react-native";
 
-//mark: first, second,,,,
 const graphLine = (score) => {
     return (
         <View style={styles.container}>

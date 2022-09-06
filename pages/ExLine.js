@@ -1,11 +1,9 @@
-import React, { useState, Component, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
-  StyleSheet,
-  View, Image,
-  TouchableOpacity,
+  StyleSheet, View, Image, TouchableOpacity,
 } from "react-native";
 
-import { Canvas, CanvasRef, DrawingTool } from '@benjeau/react-native-draw';
+import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
 
 //이미지 파일들
 import home from "../assets/home.png";

@@ -1,4 +1,4 @@
-import React, { useState, Component, useRef } from "react";
+import React from "react";
 import {
   StyleSheet,
   View, Image, Text,
@@ -8,7 +8,6 @@ import {
 //이미지 파일들
 import home from "../assets/home.png";
 import drawer from "../assets/MainPage/apps_white2.png";
-import Score from "../components/ExLiterature/Score";
 
 const DrawerPicture = ({ navigation, route }) => {
     const url = route.params.url;

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
+import { 
   Text, View, StyleSheet, Image,
-  TouchableOpacity, Modal,  ScrollView, TextInput
+  TouchableOpacity, Modal,  ScrollView,
 } from "react-native";
 import * as Font from "expo-font";
 
 import * as AppleAuthentication from 'expo-apple-authentication';
-
-//텍스트 슬라이더
-import Slider from '@react-native-community/slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import home from "../../assets/home.png";
@@ -95,10 +92,6 @@ const savePath = async (fontPath) => {
       }
       console.log(userId);
     })
-
-    // AsyncStorage.getItem('userSize').then((size)=>{
-    //   if(size!=null){ setSize(Number(size)); } 
-    // })
 
     AsyncStorage.getItem('userFont').then((font)=>{
       if(font!=null){ setFont(font); }

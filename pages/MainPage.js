@@ -1,13 +1,10 @@
-import React, { Component, useEffect, useState } from "react";
-import { Text, View, Button, StyleSheet, Image,
+import React, { useEffect, useState } from "react";
+import { Text, View, StyleSheet, Image,
   TouchableOpacity, ScrollView,
 } from "react-native";
 
 import * as AppleAuthentication from 'expo-apple-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import axios from 'axios';
-import { USER_SERVER } from '../config';
 
 import drawer from "../assets/MainPage/apps.png";
 import profile from "../assets/MainPage/profile.png";

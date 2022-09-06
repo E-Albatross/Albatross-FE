@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
-import { StyleSheet, View, Button, Text,
-  SafeAreaView, PermissionsAndroid, Platform } from "react-native";
+import { 
+  StyleSheet, View, Button, Text,
+  PermissionsAndroid, Platform 
+} from "react-native";
 import SignatureScreen from "react-native-signature-canvas";
 
 //스크린샷
-import ViewShot, { captureScreen } from 'react-native-view-shot';
+import ViewShot from 'react-native-view-shot';
 import CameraRoll from '@react-native-community/cameraroll';
 
 const Canvas = ({ onOK }) => {

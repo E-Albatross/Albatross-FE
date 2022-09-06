@@ -5,16 +5,15 @@ import {
   Dimensions
 } from "react-native";
 
-import { FlatList } from 'react-native-gesture-handler';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as AppleAuthentication from 'expo-apple-authentication';
 import { USER_SERVER } from '../config';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { FlatList } from 'react-native-gesture-handler';
+import { LineChart } from "react-native-chart-kit";
 
 import home from "../assets/home.png";
 import myLiter from "../components/myLiter";
-
-import { LineChart } from "react-native-chart-kit";
 
 import * as Font from "expo-font";
 
@@ -25,13 +24,6 @@ const DrawerPage = ({navigation}) => {
   const [isReady, setIsReady] = useState(false);
   const [SecondScore, setSecondScore] = useState(null);
   var arr=[];
-  
-  const saveUser = async (item) => {
-    try {
-      await AsyncStorage.setItem('userId', String(item))
-    } catch (e) {
-    }
-  }
 
   useEffect(async () => {
     await Font.loadAsync({

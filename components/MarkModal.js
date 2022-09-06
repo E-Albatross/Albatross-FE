@@ -1,6 +1,5 @@
 import React,  {useState} from "react";
-import { StyleSheet, View, Text,
-  Image, TouchableOpacity, Modal
+import { StyleSheet, View, Text, TouchableOpacity, Modal
 } from "react-native";
 
 import markList from "./markList";
