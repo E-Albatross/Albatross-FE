@@ -17,7 +17,7 @@
 
 딥러닝을 활용한 글씨연습어플, 바른글씨를 React-Native를 이용해 개발하였습니다.
 <br>
-그 개발 과정은 https://velog.io/@0909oje/series/React-Native 에서 찾아볼 수 있습니다.
+그 개발 과정은 https://55wldms.tistory.com/category/%EC%A1%B8%EC%97%85%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8 에서 찾아볼 수 있습니다.
 
 ## 📌 Stacks
 
