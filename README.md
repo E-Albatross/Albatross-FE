@@ -4,7 +4,7 @@
 
 - 딥러닝을 활용한 글씨 연습 어플
 - 자체적인 바른 글씨 기준에 따라 사용자의 글씨를 평가하고, 그 결과에 따라 사용자의 글씨에 대한 피드백을 주는 어플입니다.
-- 이 프로젝트의 개발 과정은 https://55wldms.tistory.com/category/%EC%A1%B8%EC%97%85%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8 에서 찾아볼 수 습니다.
+- 이 프로젝트의 개발 과정은 https://55wldms.tistory.com/category/%EC%A1%B8%EC%97%85%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8 에서 찾아볼 수 있습니다.
 
 <br/>
 
