@@ -1,21 +1,21 @@
-import React,  {useState} from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React, { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import MainPage from "./pages/MainPage";
-import DrawerPage from "./pages/DrawerPage";
-import DrawerPicture from "./pages/DrawerPicture";
-import Profile from "./pages/profilePage/Profile";
-import Login from "./pages/profilePage/Login";
+import MainPage from './pages/MainPage';
+import DrawerPage from './pages/DrawerPage';
+import DrawerPicture from './pages/DrawerPicture';
+import Profile from './pages/profilePage/Profile';
+import Login from './pages/profilePage/Login';
 
-import CaptureSign from "./components/CaptureSign";
+import CaptureSign from './components/CaptureSign';
 
 // import FontsList from "./assets/fonts/FontsList";
 
-import ExLine from "./pages/ExLine";
-import ExWord from "./pages/ExWord";
-import ExLiterature from "./pages/ExLiterature";
-import SubLiter from "./pages/SubLiter";
+import ExLine from './pages/practicePage/ExLine';
+import ExWord from './pages/practicePage/ExWord';
+import ExLiterature from './pages/practicePage/ExLiterature';
+import SubLiter from './pages/SubLiter';
 
 const Stack = createStackNavigator();
 
