@@ -1,17 +1,25 @@
-import React, { useRef } from "react";
-import { StyleSheet, View, Button, Text,
-  SafeAreaView, PermissionsAndroid, Platform } from "react-native";
-import SignatureScreen from "react-native-signature-canvas";
+import React, { useRef } from 'react';
+import { StyleSheet, View, Button } from 'react-native';
+import SignatureScreen from 'react-native-signature-canvas';
 
 const Sign = ({ onOK }) => {
   const ref = useRef();
 
-  const handleOK = (signature) => { onOK(signature); };
-  const handleClear = () => { ref.current.clearSignature(); };
-  const handleUndo = () => { ref.current.undo(); };
-  const handleRedo = () => { ref.current.redo(); };
-  const handleDraw = () => { ref.current.draw(); };
-  const handleErase = () => { ref.current.erase(); };
+  const handleOK = (signature) => {
+    onOK(signature);
+  };
+  const handleUndo = () => {
+    ref.current.undo();
+  };
+  const handleRedo = () => {
+    ref.current.redo();
+  };
+  const handleDraw = () => {
+    ref.current.draw();
+  };
+  const handleErase = () => {
+    ref.current.erase();
+  };
 
   const style = `.m-signature-pad { border: none; 
     margin-left: 10px; margin-right: 20px;
@@ -29,7 +37,6 @@ const Sign = ({ onOK }) => {
       </View>
       <SignatureScreen ref={ref} onOK={handleOK} webStyle={style} />
     </View>
-    
   );
 };
 
@@ -38,17 +45,17 @@ export default Sign;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     height: 250,
     // padding: 10,
   },
   row: {
     marginTop: 70,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "50%",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '50%',
+    alignItems: 'center',
   },
 });
