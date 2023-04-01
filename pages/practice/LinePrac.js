@@ -6,10 +6,10 @@ import {
 import { Canvas, DrawingTool } from '@benjeau/react-native-draw';
 
 //이미지 파일들
-import home from "../assets/home.png";
-import pen from "../assets/pen.png";
-import erase from "../assets/erase.png";
-import arrow from "../assets/arrow.png";
+import home from "../../assets/img/home.png";
+import pen from "../../assets/img/pen.png";
+import erase from "../../assets/img/erase.png";
+import arrow from "../../assets/img/arrow.png";
 
 const ExLine = ({ navigation }) => {
   //draw

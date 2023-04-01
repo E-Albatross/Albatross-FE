@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 
-import SubLiter from "./SubLiter";
+import SubLiter from "./LiterCanvas";
 
 const ExLiterature = ({navigation, route}) => {
   const id = route.params.id;

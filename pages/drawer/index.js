@@ -5,15 +5,15 @@ import {
   Dimensions
 } from "react-native";
 
-import { USER_SERVER } from '../config';
+import { USER_SERVER } from '../../config';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { FlatList } from 'react-native-gesture-handler';
 import { LineChart } from "react-native-chart-kit";
 
-import home from "../assets/home.png";
-import myLiter from "../components/myLiter";
+import home from "../../assets/img/home.png";
+import scoreEx from "../../assets/sample/scoreEx";
 
 import * as Font from "expo-font";
 
@@ -27,7 +27,7 @@ const DrawerPage = ({navigation}) => {
 
   useEffect(async () => {
     await Font.loadAsync({
-        'SeoulHangangL': require('../assets/fonts/SeoulHangangL.ttf'),
+        'SeoulHangangL': require('../../assets/fonts/SeoulHangangL.ttf'),
     });
     setIsReady(true);
   }, []);
@@ -72,7 +72,7 @@ const DrawerPage = ({navigation}) => {
   var score = {
     datasets: [
       {
-        data: myLiter.first.map(s=>( s.score )),
+        data: scoreEx.first.map(s=>( s.score )),
         color: (opacity = 1) => `rgba(0, 70, 42, ${opacity})`,
         strokeWidth: 5 // optional
       }

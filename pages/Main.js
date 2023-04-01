@@ -6,20 +6,20 @@ import { Text, View, StyleSheet, Image,
 import * as AppleAuthentication from 'expo-apple-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import drawer from "../assets/MainPage/apps.png";
-import profile from "../assets/MainPage/profile.png";
+import drawer from "../assets/img/main/drawer_green.png";
+import profile from "../assets/img/main/profile.png";
 
-import new1 from "../assets/MainPage/new1.png";
-import new2 from "../assets/MainPage/new2.png";
-import new3 from "../assets/MainPage/new3.png";
-import new4 from "../assets/MainPage/new4.png";
+import new1 from "../assets/img/main/new1.png";
+import new2 from "../assets/img/main/new2.png";
+import new3 from "../assets/img/main/new3.png";
+import new4 from "../assets/img/main/new4.png";
 
-import best1 from "../assets/MainPage/best1.png";
-import best2 from "../assets/MainPage/best2.png";
-import best3 from "../assets/MainPage/best3.png";
-import best4 from "../assets/MainPage/best4.png";
+import best1 from "../assets/img/main/best1.png";
+import best2 from "../assets/img/main/best2.png";
+import best3 from "../assets/img/main/best3.png";
+import best4 from "../assets/img/main/best4.png";
 
-import literList from "../components/ExLiterature/literList";
+import literInfo from "../assets/sample/literInfo";
 
 import * as Font from "expo-font";
 
@@ -162,7 +162,7 @@ const MainPage = ({navigation}) => {
 
         <ScrollView style={styles.scrollView} indicatorStyle={"white"}> 
         <View style={styles.literatureRow}>
-        {literList.new.map(s=>(
+        {literInfo.new.map(s=>(
             <TouchableOpacity key={s.id}
               onPress={() => navigation.navigate("LITER",{
                 category: "new",
@@ -183,7 +183,7 @@ const MainPage = ({navigation}) => {
 
         <ScrollView style={styles.scrollView} indicatorStyle={"white"}> 
         <View style={styles.literatureRow}>
-        {literList.best.map(s=>(
+        {literInfo.best.map(s=>(
             <TouchableOpacity key={s.id}
               onPress={() => navigation.navigate("LITER",{
                 category: "best",

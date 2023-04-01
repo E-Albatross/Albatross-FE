@@ -8,7 +8,7 @@ import * as Font from "expo-font";
 import * as AppleAuthentication from 'expo-apple-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import home from "../../assets/home.png";
+import home from "../../assets/img/home.png";
 
 const Profile_login = ({navigation}) => {
   const [fontVisible, setFontVisible] = useState(false)
@@ -59,13 +59,6 @@ const Profile_login = ({navigation}) => {
     } catch (e) {
     }
   }
-
-  // const saveSize= async (userSize) => {
-  //   try {
-  //     await AsyncStorage.setItem('userSize', String(userSize))
-  //   } catch (e) {
-  //   }
-  // }
 
   const saveFont = async (userFont) => {
     try {
@@ -144,23 +137,6 @@ const savePath = async (fontPath) => {
           <Text style={{color: "#808080",fontSize: 20,marginTop: 30, marginBottom: 10, }} > 기본 값 설정 </Text>
         </View>
         <View style={styles.informBox}>
-          {/* <View style={styles.settingText}> 
-            <Text style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",
-              lineHeight: 60, // 버튼 높이와 똑같이 설정하면 수직정렬이 됨.
-              }} > 글자 크기 </Text>
-              <Text style={{ fontSize: 20, letterSpacing: 2, marginLeft: "3%", marginRight: "1%"}}> A </Text>
-              <Slider
-                style={{width: 200, height: 40}}
-                minimumValue={30}
-                maximumValue={40}
-                value={userSize}
-                onValueChange={(value)=>setSize(value)} // 슬라이더 움직일 때 출력값 반환
-                minimumTrackTintColor="#80AE92"
-                maximumTrackTintColor="#80AE92"
-              />
-              <Text style={{ fontSize: 30, letterSpacing: 2, marginLeft: "1%",}}> A </Text>
-          </View>
-          <View style={styles.line}></View> */}
           <View style={styles.settingText}> 
             <Text
               style={{ fontSize: 22, letterSpacing: 2, marginLeft: "3%",

@@ -4,8 +4,8 @@ import { StyleSheet, View, Text,
 } from "react-native";
    
 import axios from 'axios';
-import ExJson from "../assets/ExJson";
-import { USER_SERVER } from '../config';
+import emptyRes from "../../assets/sample/emptyRes";
+import { USER_SERVER } from '../../config';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as AppleAuthentication from 'expo-apple-authentication';
@@ -18,17 +18,17 @@ import ViewShot from "react-native-view-shot";
 import * as MediaLibrary from 'expo-media-library';
 
 //이미지 파일들
-import home from "../assets/home.png";
-import pen from "../assets/pen.png";
-import erase from "../assets/erase.png";
-import arrow from "../assets/arrow.png";
-import confirm from "../assets/confirm.png";
-import loading from "../assets/loading.gif";
+import home from "../../assets/img/home.png";
+import pen from "../../assets/img/pen.png";
+import erase from "../../assets/img/erase.png";
+import arrow from "../../assets/img/arrow.png";
+import confirm from "../../assets/img/confirm.png";
+import loading from "../../assets/img/loading.gif";
 
-import Score from "../components/ExLiterature/Score";
+import Score from "../../components/ExLiterature/Score";
 
 //느낌표 모달
-import markIcon from "../assets/markIcon.png";
+import markIcon from "../../assets/img/markIcon.png";
 
 import * as Font from "expo-font";
 
@@ -73,27 +73,27 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
   // 폰트 정보 가져오기
   useEffect(async () => {
     await Font.loadAsync({
-      'NanumGaRamYeonGgoc': require('../assets/fonts/NanumGaRamYeonGgoc.ttf'),
-      'NanumGoDigANiGoGoDing': require('../assets/fonts/NanumGoDigANiGoGoDing.ttf'),
-      'NanumGomSinCe': require('../assets/fonts/NanumGomSinCe.ttf'),
-      'NanumGyuRiEuiIrGi': require('../assets/fonts/NanumGyuRiEuiIrGi.ttf'),
-      'NanumGeumEunBoHwa': require('../assets/fonts/NanumGeumEunBoHwa.ttf'),
-      'NanumGiBbeumBarkEum': require('../assets/fonts/NanumGiBbeumBarkEum.ttf'),
-      'NanumGimYuICe': require('../assets/fonts/NanumGimYuICe.ttf'),
-      'NanumNaNeunIGyeoNaenDa': require('../assets/fonts/NanumNaNeunIGyeoNaenDa.ttf'),
-      'NanumDaHaengCe': require('../assets/fonts/NanumDaHaengCe.ttf'),
-      'NanumDongHwaDdoBag': require('../assets/fonts/NanumDongHwaDdoBag.ttf'),
-      'NanumDdarEGeEomMaGa': require('../assets/fonts/NanumDdarEGeEomMaGa.ttf'),
-      'NanumMasIssNeunCe': require('../assets/fonts/NanumMasIssNeunCe.ttf'),
-      'NanumMongDor': require('../assets/fonts/NanumMongDor.ttf'),
-      'NanumMuGungHwa': require('../assets/fonts/NanumMuGungHwa.ttf'),
-      'NanumMiNiSonGeurSsi': require('../assets/fonts/NanumMiNiSonGeurSsi.ttf'),
-      'NanumYaGeunHaNeunGimJuIm': require('../assets/fonts/NanumYaGeunHaNeunGimJuIm.ttf'),
-      'NanumJangMiCe': require('../assets/fonts/NanumJangMiCe.ttf'),
-      'NanumHaengBogHanDoBi': require('../assets/fonts/NanumHaengBogHanDoBi.ttf'),
-      'NanumHimNaeRaNeunMarBoDan': require('../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
-      'Pak_Yong_jun': require('../assets/fonts/Pak_Yong_jun.ttf'),
-      'MaruBuri-Bold': require('../assets/fonts/MaruBuri-Bold.ttf'),
+      'NanumGaRamYeonGgoc': require('../../assets/fonts/NanumGaRamYeonGgoc.ttf'),
+      'NanumGoDigANiGoGoDing': require('../../assets/fonts/NanumGoDigANiGoGoDing.ttf'),
+      'NanumGomSinCe': require('../../assets/fonts/NanumGomSinCe.ttf'),
+      'NanumGyuRiEuiIrGi': require('../../assets/fonts/NanumGyuRiEuiIrGi.ttf'),
+      'NanumGeumEunBoHwa': require('../../assets/fonts/NanumGeumEunBoHwa.ttf'),
+      'NanumGiBbeumBarkEum': require('../../assets/fonts/NanumGiBbeumBarkEum.ttf'),
+      'NanumGimYuICe': require('../../assets/fonts/NanumGimYuICe.ttf'),
+      'NanumNaNeunIGyeoNaenDa': require('../../assets/fonts/NanumNaNeunIGyeoNaenDa.ttf'),
+      'NanumDaHaengCe': require('../../assets/fonts/NanumDaHaengCe.ttf'),
+      'NanumDongHwaDdoBag': require('../../assets/fonts/NanumDongHwaDdoBag.ttf'),
+      'NanumDdarEGeEomMaGa': require('../../assets/fonts/NanumDdarEGeEomMaGa.ttf'),
+      'NanumMasIssNeunCe': require('../../assets/fonts/NanumMasIssNeunCe.ttf'),
+      'NanumMongDor': require('../../assets/fonts/NanumMongDor.ttf'),
+      'NanumMuGungHwa': require('../../assets/fonts/NanumMuGungHwa.ttf'),
+      'NanumMiNiSonGeurSsi': require('../../assets/fonts/NanumMiNiSonGeurSsi.ttf'),
+      'NanumYaGeunHaNeunGimJuIm': require('../../assets/fonts/NanumYaGeunHaNeunGimJuIm.ttf'),
+      'NanumJangMiCe': require('../../assets/fonts/NanumJangMiCe.ttf'),
+      'NanumHaengBogHanDoBi': require('../../assets/fonts/NanumHaengBogHanDoBi.ttf'),
+      'NanumHimNaeRaNeunMarBoDan': require('../../assets/fonts/NanumHimNaeRaNeunMarBoDan.ttf'),
+      'Pak_Yong_jun': require('../../assets/fonts/Pak_Yong_jun.ttf'),
+      'MaruBuri-Bold': require('../../assets/fonts/MaruBuri-Bold.ttf'),
     });
     setReady(true);
   }, []);
@@ -198,7 +198,7 @@ const SubLiter= ({navigation, id, setTitle, text, pageNum }) => {
          })
          .then((response) => response.json())
          .then((data) => {
-          if ( JSON.stringify(data) === JSON.stringify(ExJson)) { // 빈 배열이 온다면
+          if ( JSON.stringify(data) === JSON.stringify(emptyRes)) { // 빈 배열이 온다면
             setLoading(false);
             setEmpty(true);
           } else { // json을 반환받았다면

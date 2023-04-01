@@ -6,10 +6,10 @@ import {
 } from "react-native";
 
 //이미지 파일들
-import home from "../assets/home.png";
-import drawer from "../assets/MainPage/apps_white2.png";
+import home from "../../assets/img/home.png";
+import drawer from "../../assets/img/main/drawer_white.png";
 
-const DrawerPicture = ({ navigation, route }) => {
+const DetailScore = ({ navigation, route }) => {
     const url = route.params.url;
     const score = route.params.score;
   return (
@@ -44,7 +44,7 @@ const DrawerPicture = ({ navigation, route }) => {
 );
 };
 
-export default DrawerPicture;
+export default DetailScore;
 
 const styles = StyleSheet.create({
   container: {

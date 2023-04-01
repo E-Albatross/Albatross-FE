@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Modal
 } from "react-native";
 
-const graphLine = (score) => {
+const GraphLine = (score) => {
     return (
         <View style={styles.container}>
                 <Modal animationType='slide' transparent={true} visible={markModal}>
@@ -19,7 +19,7 @@ const graphLine = (score) => {
     );
   };
   
-  export default graphLine;
+  export default GraphLine;
   
   const styles = StyleSheet.create({
       container:{

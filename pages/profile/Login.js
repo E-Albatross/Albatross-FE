@@ -4,8 +4,8 @@ import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity,
 
 import Checkbox from 'expo-checkbox';
 
-import home from "../../assets/home.png";
-import back from "../../assets/back.png";
+import home from "../../assets/img/home.png";
+import back from "../../assets/img/back.png";
 
 const Login = ({navigation}) => {
     const [id, onChangeId] = React.useState(null);

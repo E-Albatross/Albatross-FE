@@ -1,4 +1,4 @@
-let ExJson =
+let emptyRes =
   {
     "syllable": {
       "0": [],
@@ -13,4 +13,4 @@ let ExJson =
       "3": []
     }
   }
-export default ExJson;
+export default emptyRes;

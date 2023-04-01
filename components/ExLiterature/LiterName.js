@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet 
 } from "react-native";
 
-const Liter_name = ({name}) => {
+const LiterName = ({name}) => {
 
   return (
     <View style={styles.container}>
@@ -13,7 +13,7 @@ const Liter_name = ({name}) => {
   );
 };
 
-export default Liter_name;
+export default LiterName;
 
 const styles = StyleSheet.create({
     container: {
