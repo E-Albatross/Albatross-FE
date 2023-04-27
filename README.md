@@ -45,44 +45,26 @@ expo start
 
 **[1] 프로젝트 통솔**
 
-- 팀 리더로 활동
-- 프로젝트 기획, 디자인 with figma, 일정 관리 with Notion
+- 프로젝트의 기획부터, figma를 이용한 디자인까지 모두 주도
+- 팀의 리더로서 교수님, 멘토님과의 컨택에 주도적으로 참여
+- 프로젝트의 전반적인 계획 수립 with 노션
 
 **[2] 스피커**
 
 - 수업 내 대부분의 발표 세션에서 스피커로 활동
-    - 3-2 : 중간발표, 기말발표
-    - 4-1 : 엘레베이터 스피치, 포스터세션, 최종발표
 - 한국정보처리학회의 춘계학술대회에서 논문 발표
 - 포스터 세션 장려상 수상
 
 **[3] 기능 구현**
 
-*앱의 프론트 단의 모든 화면 구현*
+앱 내 모든 화면을 구현하고 딥러닝 서버, 웹 서버와의 연결 등 
 
-*아래는 이용한 라이브러리들*
-
-**1. 로그인 화면**
-- apple 소셜 로그인 구현 with [expo-apple-authentication](https://docs.expo.dev/versions/latest/sdk/apple-authentication/)
-- 로그인 정보, 사용자 설정 값 로컬스토리지에 저장
-    
-    with [@react-native-async-storage/async-storage](https://github.com/react-native-async-storage/async-storage)
-    
-**2. 글씨 연습 화면**
-- 글씨 연습을 위한 캔버스 구현 with [@benjeau/react-native-draw](https://www.npmjs.com/package/@benjeau/react-native-draw)
-- 글씨 결과 스크린샷 구현 with [react-native-view-shot](https://github.com/gre/react-native-view-shot)
-- 스크린샷 갤러리에 저장 with [expo-media-library](https://docs.expo.dev/versions/latest/sdk/media-library/)
-
-**3. 글씨 결과 화면**
-- 글씨 결과 이미지 그리드 형식으로 띄우는 기능 with [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler?activeTab=readme)
-- 글씨 연습 결과 점수 그래프화 with [react-native-chart-kit](https://github.com/indiespirit/react-native-chart-kit)
-
-**4. 기타 설정 화면**
-- 다양한 글씨체로 글씨 연습 가능 with [expo-font](https://docs.expo.dev/versions/latest/sdk/font/)
+프론트 단의 필요한 모든 기능을 구현하였습니다.
 
 **[4] 테스트**
 
-- 배포링크 배포 후 테스트 with TestFlight
+- TestFlight를 이용해 테스터들에게 링크를 배포하고 테스트하였습니다.
+
 <br/>
 
 ### 📌 미리보기
